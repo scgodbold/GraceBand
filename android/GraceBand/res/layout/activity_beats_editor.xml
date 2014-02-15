@@ -14,7 +14,7 @@
         android:id="@+id/menuBar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight=".05" >
+         >
 
         <View
 		    android:id="@+id/divider0"
