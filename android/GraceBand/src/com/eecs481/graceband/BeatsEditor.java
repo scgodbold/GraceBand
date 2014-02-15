@@ -24,7 +24,7 @@ public class BeatsEditor extends Activity {
         final Button playButton = (Button) findViewById(R.id.play);
         final Button pauseButton = (Button) findViewById(R.id.pause);
         final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
-        final Button testButton = (Button) findViewById(R.id.testButton);
+        final Button saveButton = (Button) findViewById(R.id.saveButton);
         
         // Tracks Handler
         t = new TrackHandle(this.getApplicationContext());
@@ -56,7 +56,8 @@ public class BeatsEditor extends Activity {
 		instList = new Instruments(this, t, trackView);
         instButtons();
         instList.createScreen();
-        findViewById(R.id.beatMenuBar).setVisibility(LinearLayout.INVISIBLE);
+        findViewById(R.id.beatMenuBar).setVisibility(LinearLayout.GONE);
+        findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
         findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
 	}
 	
