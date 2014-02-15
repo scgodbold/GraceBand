@@ -27,7 +27,7 @@ public class BeatsEditor extends Activity {
         final Button saveButton = (Button) findViewById(R.id.saveButton);
         
         // Tracks Handler
-        t = new TrackHandle(this.getApplicationContext());
+        t = new TrackHandle(this.getApplicationContext(), this);
         trackView = findViewById(R.id.tracks);
 		//testButton.setOnClickListener( new AddTrackListener(t, trackView, this));
         
