@@ -116,4 +116,12 @@
 		    android:background="?android:attr/dividerVertical" />
 	</LinearLayout>
 	
+	<LinearLayout android:id="@+id/soundMenu"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight=".05"
+	    android:orientation="horizontal">
+	    
+	</LinearLayout>
+	
 </LinearLayout>
