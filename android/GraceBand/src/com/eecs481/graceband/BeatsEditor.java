@@ -19,6 +19,7 @@ public class BeatsEditor extends Activity {
         
         final Button playButton = (Button) findViewById(R.id.play);
         final Button pauseButton = (Button) findViewById(R.id.pause);
+        final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
         
         playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -30,6 +31,13 @@ public class BeatsEditor extends Activity {
 			@Override
 			public void onClick(View v) {
 				
+			}
+		});
+        beatMenuButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getBaseContext(), SoundsMenu.class);
+				startActivity(intent);
 			}
 		});
 	}

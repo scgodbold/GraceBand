@@ -9,5 +9,8 @@
     <string name="title_activity_beats_editor">BeatsEditor</string>
     <string name="play">Play</string>
     <string name="pause">Pause</string>
+    <string name="beatMenu">Beats Menu</string>
+    <string name="title_activity_beats_menu">BeatsMenu</string>
+    <string name="title_activity_sounds_menu">SoundsMenu</string>
 
 </resources>
