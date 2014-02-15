@@ -16,27 +16,63 @@
         android:layout_height="wrap_content"
         android:layout_weight=".05" >
 
+        <View
+		    android:id="@+id/divider0"
+		    android:layout_width="1dip"
+		    android:layout_height="40dip"
+		    android:layout_marginBottom="4dip"
+		    android:layout_marginTop="4dip"
+		    android:background="?android:attr/dividerVertical" />
+        
 	     <Button
 	         android:id="@+id/play"
 	         android:layout_width="wrap_content"
     	     android:layout_height="wrap_content"
-    	     android:layout_gravity="left"
-        	 android:text="@string/play" />
+        	 android:text="@string/play"
+        	 android:layout_weight=".33"
+        	 style="?android:attr/borderlessButtonStyle" />
+	     
+	     <View
+		    android:id="@+id/divider1"
+		    android:layout_width="1dip"
+		    android:layout_height="40dip"
+		    android:layout_marginBottom="4dip"
+		    android:layout_marginTop="4dip"
+		    android:background="?android:attr/dividerVertical" />
      
 		<Button
     	    android:id="@+id/pause"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
-    	    android:layout_toRightOf="@+id/play"
     	    android:layout_gravity="left"
-    	    android:text="@string/pause" />
+    	    android:text="@string/pause"
+    	    android:layout_weight=".33"
+    	    style="?android:attr/borderlessButtonStyle" />
+
+		<View
+		    android:id="@+id/divider2"
+		    android:layout_width="1dip"
+		    android:layout_height="40dip"
+		    android:layout_marginBottom="4dip"
+		    android:layout_marginTop="4dip"
+		    android:background="?android:attr/dividerVertical" />
+
 		<Button
     	    android:id="@+id/testButton"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
-    	    android:layout_toRightOf="@+id/pause"
     	    android:layout_gravity="left"
-    	    android:text="Add A Track" />
+    	    android:text="Add A Track"
+    	    android:layout_weight=".33"
+    	    style="?android:attr/borderlessButtonStyle" />
+		
+		<View
+		    android:id="@+id/divider3"
+		    android:layout_width="1dip"
+		    android:layout_height="40dip"
+		    android:layout_marginBottom="4dip"
+		    android:layout_marginTop="4dip"
+		    android:background="?android:attr/dividerVertical" />
 
 	</LinearLayout>
 
@@ -46,15 +82,38 @@
 	    android:layout_height="wrap_content"
 	    android:layout_weight=".9"
 	    android:orientation="vertical" >
+
 	</LinearLayout>
     
-	<Button
-    	android:id="@+id/beatMenu"
-       	android:layout_width="wrap_content"
-       	android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/beatMenu"
-        android:layout_weight=".05"
-        />
+	<LinearLayout
+	    android:id="@+id/beatMenuBar"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight=".05">
+		
+	    		<View
+		    android:id="@+id/divider4"
+		    android:layout_width="1dip"
+		    android:layout_height="40dip"
+		    android:layout_marginBottom="4dip"
+		    android:layout_marginTop="4dip"
+		    android:background="?android:attr/dividerVertical" />
+	    		
+	    <Button
+		android:id="@+id/beatMenu"
+	    style="?android:attr/borderlessButtonStyle"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	 	android:layout_weight="1"
+	    android:text="@string/beatMenu" />
 
+	    		<View
+		    android:id="@+id/divider5"
+		    android:layout_width="1dip"
+		    android:layout_height="40dip"
+		    android:layout_marginBottom="4dip"
+		    android:layout_marginTop="4dip"
+		    android:background="?android:attr/dividerVertical" />
+	</LinearLayout>
+	
 </LinearLayout>
