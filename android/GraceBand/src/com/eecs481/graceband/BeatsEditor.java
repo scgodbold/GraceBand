@@ -54,7 +54,11 @@ public class BeatsEditor extends Activity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
+				findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);
+				findViewById(R.id.beatMenuBar).setVisibility(LinearLayout.VISIBLE);
+				findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
+				findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
 			}
 		});
 	}

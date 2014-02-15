@@ -120,10 +120,12 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_weight=".8"
+	    android:paddingTop="50dip"
 	    android:visibility="gone"
 	    android:orientation="horizontal">
 	    
 	</LinearLayout>
+	
 	<LinearLayout android:id="@+id/cancelBar"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
