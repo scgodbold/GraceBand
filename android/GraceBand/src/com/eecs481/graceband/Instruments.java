@@ -36,7 +36,7 @@ public class Instruments {
 		rarrow.setText("R");
 		rarrow.setTextColor(Color.BLACK);
 		larrow.setOnClickListener(leftClick);
-		rarrow.setOnClickListener(leftClick);
+		rarrow.setOnClickListener(rightClick);
 		tracks = _t;
 		trackView = (LinearLayout) _view;
 	}
@@ -48,6 +48,9 @@ public class Instruments {
 		tempButton.setText(name);
 		tempButton.setTextColor(Color.BLACK);
     	tempButton.setOnClickListener(new AddTrackListener(tracks, trackView, activity, this));
+    	LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT);
+    	params.weight=(float) .3;
+    	tempButton.setLayoutParams(params);
 		buttonList.add(tempButton);
 	}
 	
@@ -84,6 +87,7 @@ public class Instruments {
 	
 	void right(){
 		layout.removeAllViewsInLayout();
+		layout.addView(larrow);
 		curLoc += 1;
 		if(curLoc == buttonList.size()) curLoc = 0;
 		int counter = 0;
@@ -96,6 +100,7 @@ public class Instruments {
 	    	Button button = buttonList.get(i);
 	    	layout.addView(button);	    	
 	    }
+	    layout.addView(rarrow);
 	}
 	
 	final OnClickListener leftClick = new OnClickListener() {
