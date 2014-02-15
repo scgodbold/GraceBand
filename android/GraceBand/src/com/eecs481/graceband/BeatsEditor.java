@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class BeatsEditor extends Activity {
 
@@ -20,6 +21,11 @@ public class BeatsEditor extends Activity {
         final Button playButton = (Button) findViewById(R.id.play);
         final Button pauseButton = (Button) findViewById(R.id.pause);
         final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
+        final Button testButton = (Button) findViewById(R.id.testButton);
+        
+        // Tracks Handler
+        TrackHandle t = new TrackHandle(this.getApplicationContext());
+		testButton.setOnClickListener( new AddTrackListener(t, findViewById(R.id.tracks)));
         
         playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
