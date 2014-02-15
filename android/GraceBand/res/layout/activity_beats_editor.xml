@@ -119,9 +119,24 @@
 	<LinearLayout android:id="@+id/soundMenu"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_weight=".05"
+	    android:layout_weight=".8"
+	    android:visibility="gone"
 	    android:orientation="horizontal">
 	    
+	</LinearLayout>
+	<LinearLayout android:id="@+id/cancelBar"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight=".1"
+	    android:visibility="gone"
+	    android:orientation="vertical">
+	
+		<Button
+			android:id="@+id/cancel"
+		    style="?android:attr/borderlessButtonStyle"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:text="Cancel" />
 	</LinearLayout>
 	
 </LinearLayout>

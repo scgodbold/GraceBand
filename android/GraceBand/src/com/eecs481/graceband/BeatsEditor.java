@@ -25,6 +25,7 @@ public class BeatsEditor extends Activity {
         final Button pauseButton = (Button) findViewById(R.id.pause);
         final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
         final Button saveButton = (Button) findViewById(R.id.saveButton);
+        final Button cancelButton = (Button) findViewById(R.id.cancel);
         
         // Tracks Handler
         t = new TrackHandle(this.getApplicationContext());
@@ -50,6 +51,12 @@ public class BeatsEditor extends Activity {
 				createSoundMenu();
 			}
 		});
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+			}
+		});
 	}
 
 	void createSoundMenu(){
@@ -58,6 +65,8 @@ public class BeatsEditor extends Activity {
         instList.createScreen();
         findViewById(R.id.beatMenuBar).setVisibility(LinearLayout.GONE);
         findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
+        findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
+        findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
         findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
 	}
 	
