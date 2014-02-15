@@ -2,18 +2,35 @@ package com.eecs481.graceband;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
 public class SoundsMenu extends Activity {
+	
+	Instruments instList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sounds_menu);
-		// Show the Up button in the action bar.
 		setupActionBar();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        getActionBar().hide();
+        
+        instList = new Instruments(this.getApplicationContext());
+        instButtons();
+        instList.createScreen();
+        setContentView(instList.layout);
+	}
+	
+	void instButtons(){
+		instList.createButton("Snare Drum");
+		instList.createButton("Bass Drum");
+		instList.createButton("Piano");
+		instList.createButton("BeatBox");
+		instList.createButton("Vocals");
 	}
 
 	/**
