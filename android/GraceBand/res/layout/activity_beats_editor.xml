@@ -58,11 +58,11 @@
 		    android:background="?android:attr/dividerVertical" />
 
 		<Button
-    	    android:id="@+id/testButton"
+    	    android:id="@+id/saveButton"
     	    android:layout_width="wrap_content"
     	    android:layout_height="wrap_content"
     	    android:layout_gravity="left"
-    	    android:text="Add A Track"
+    	    android:text="Save Track"
     	    android:layout_weight=".33"
     	    style="?android:attr/borderlessButtonStyle" />
 		
@@ -114,6 +114,14 @@
 		    android:layout_marginBottom="4dip"
 		    android:layout_marginTop="4dip"
 		    android:background="?android:attr/dividerVertical" />
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/soundMenu"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight=".05"
+	    android:orientation="horizontal">
+	    
 	</LinearLayout>
 	
 </LinearLayout>

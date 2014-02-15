@@ -2,7 +2,6 @@ package com.eecs481.graceband;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.View;
@@ -11,6 +10,10 @@ import android.widget.LinearLayout;
 
 public class BeatsEditor extends Activity {
 
+	TrackHandle t;	
+	View trackView;
+	Instruments instList;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,11 +24,12 @@ public class BeatsEditor extends Activity {
         final Button playButton = (Button) findViewById(R.id.play);
         final Button pauseButton = (Button) findViewById(R.id.pause);
         final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
-        final Button testButton = (Button) findViewById(R.id.testButton);
+        final Button saveButton = (Button) findViewById(R.id.saveButton);
         
         // Tracks Handler
-        TrackHandle t = new TrackHandle(this.getApplicationContext());
-		testButton.setOnClickListener( new AddTrackListener(t, findViewById(R.id.tracks)));
+        t = new TrackHandle(this.getApplicationContext());
+        trackView = findViewById(R.id.tracks);
+		//testButton.setOnClickListener( new AddTrackListener(t, trackView, this));
         
         playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -42,12 +46,29 @@ public class BeatsEditor extends Activity {
         beatMenuButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getBaseContext(), SoundsMenu.class);
-				startActivity(intent);
+				System.out.println("clicked beats menu");
+				createSoundMenu();
 			}
 		});
 	}
 
+	void createSoundMenu(){
+		instList = new Instruments(this, t, trackView);
+        instButtons();
+        instList.createScreen();
+        findViewById(R.id.beatMenuBar).setVisibility(LinearLayout.GONE);
+        findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
+        findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
+	}
+	
+	void instButtons(){
+		instList.createButton("Snare Drum");
+		instList.createButton("Bass Drum ");
+		instList.createButton("Piano     ");
+		instList.createButton("BeatBox   ");
+		instList.createButton("Vocals    ");
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

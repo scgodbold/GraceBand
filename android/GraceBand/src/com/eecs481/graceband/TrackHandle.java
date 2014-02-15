@@ -6,7 +6,7 @@ import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class TrackHandle {
+public class TrackHandle{
 	private ArrayList<LinearLayout> tracks; // Change data type to work with music thing
 	private Context context;
 	

@@ -1,10 +1,9 @@
 package com.eecs481.graceband;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,9 +20,15 @@ public class Instruments {
 	Button larrow;
 	Button rarrow;
 	
-	Instruments(Context _context){
+	TrackHandle tracks;
+	LinearLayout trackView;
+	Activity activity;
+	
+	Instruments(Activity _activity, TrackHandle _t, View _view){
+		System.out.println("creating Instruments");
 		buttonList = new ArrayList<Button>();
-		context = _context;
+		activity = _activity;
+		context = activity.getApplicationContext();
 		larrow = new Button(context);
 		rarrow = new Button(context);
 		larrow.setText("L");
@@ -32,26 +37,28 @@ public class Instruments {
 		rarrow.setTextColor(Color.BLACK);
 		larrow.setOnClickListener(leftClick);
 		rarrow.setOnClickListener(leftClick);
+		tracks = _t;
+		trackView = (LinearLayout) _view;
 	}
 	
 	// ADD SOUND FILE STUFF HERE?
 	void createButton(String name){
+		System.out.println("creating button " + name);
 		Button tempButton = new Button(context);
 		tempButton.setText(name);
 		tempButton.setTextColor(Color.BLACK);
+    	tempButton.setOnClickListener(new AddTrackListener(tracks, trackView, activity, this));
 		buttonList.add(tempButton);
 	}
 	
 	void createScreen(){
-		layout = new LinearLayout(context);
-		layout.setOrientation(LinearLayout.HORIZONTAL);
-		LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-	    layout.setLayoutParams(layoutParams);
+		System.out.println("creating screen");
+		layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
 	    curLoc = 0;
 	    layout.addView(larrow);
 	    for(int i = curLoc; i < curLoc+3; i++){
 	    	Button button = buttonList.get(i);
-	    	button.setOnClickListener(centerClick);
 	    	layout.addView(button);	    	
 	    }
 	    layout.addView(rarrow);
@@ -70,7 +77,6 @@ public class Instruments {
 	    		curLocTemp = -counter;
 	    	}
 	    	Button button = buttonList.get(i);
-	    	button.setOnClickListener(centerClick);
 	    	layout.addView(button);	    	
 	    }
 	    layout.addView(rarrow);
@@ -88,13 +94,8 @@ public class Instruments {
 	    		curLocTemp = -counter;
 	    	}
 	    	Button button = buttonList.get(i);
-	    	button.setOnClickListener(centerClick);
 	    	layout.addView(button);	    	
 	    }
-	}
-	
-	void center(){
-		
 	}
 	
 	final OnClickListener leftClick = new OnClickListener() {
@@ -106,12 +107,6 @@ public class Instruments {
     final OnClickListener rightClick = new OnClickListener() {
         public void onClick(final View v) {
         	right();
-        }
-    };
-    
-    final OnClickListener centerClick = new OnClickListener() {
-        public void onClick(final View v) {
-        	center();
         }
     };
 }
