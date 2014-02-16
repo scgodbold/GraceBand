@@ -49,7 +49,7 @@ public class Instruments {
 		tempButton.setTextColor(Color.BLACK);
     	tempButton.setOnClickListener(new AddTrackListener(tracks, trackView, activity, this));
     	LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT);
-    	params.weight=(float) .3;
+    	params.weight=(float).3;
     	tempButton.setLayoutParams(params);
 		buttonList.add(tempButton);
 	}

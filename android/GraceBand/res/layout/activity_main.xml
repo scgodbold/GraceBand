@@ -25,6 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/start"
-        style="?android:attr/borderlessButtonStyle" />   
+        style="?android:attr/borderlessButtonStyle" />  
+        
+    <com.eecs481.graceband.startAnimation android:id="@+id/startAnimation" 
+              android:layout_width="match_parent" 
+              android:layout_height="match_parent"/>
 
 </LinearLayout>
