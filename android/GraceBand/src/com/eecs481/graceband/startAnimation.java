@@ -10,6 +10,10 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+class image {
+	
+}
+
 public class startAnimation extends View {
 
 	private Paint paint;
