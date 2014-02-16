@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Picture;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -66,7 +65,7 @@ public class startAnimation extends View {
     	}
     	if(counter2 > 1425){
     		counter2 = 0;
-    		rand2 = random.nextInt(150);
+    		rand2 = random.nextInt(120);
     	}
     	if(counter3 > 1425){
     		counter3 = 0;
@@ -74,12 +73,18 @@ public class startAnimation extends View {
     	}
     	if(counter4 > 1425){ 
     		counter4 = 0;
-    		rand4 = random.nextInt(150);
+    		rand4 = random.nextInt(120);
     	}
-    	canvas.drawBitmap(b, (float)(counter-50), (float)(rand*Math.sin((double)counter/(double)100.0)+150), paint);
-    	canvas.drawBitmap(a, counter2-225, (float)(rand2*Math.sin((double)counter2/(double)100.0)+50), paint);
-    	canvas.drawBitmap(b, (float)(counter3-50), (float)(rand3*Math.sin((double)-counter3/(double)100.0)+150), paint);
-    	canvas.drawBitmap(a, counter4-225, (float)(rand4*Math.sin((double)-counter4/(double)100.0)+50), paint);
+    	
+    	float sinVar = (float)(rand*Math.sin((double)counter/(double)100.0)+150);
+    	float sinVar2 = (float)(rand2*Math.sin((double)counter2/(double)100.0)+100);
+    	float sinVar3 = (float)(rand3*Math.sin((double)-counter3/(double)100.0)+150);
+    	float sinVar4 = (float)(rand4*Math.sin((double)-counter4/(double)100.0)+100);
+    	
+    	canvas.drawBitmap(b, (float)(counter-50), sinVar, paint);
+    	canvas.drawBitmap(a, counter2-225, sinVar2, paint);
+    	canvas.drawBitmap(b, (float)(counter3-50), sinVar3, paint);
+    	canvas.drawBitmap(a, counter4-225, sinVar4, paint);
         animator.run();
     }
     
