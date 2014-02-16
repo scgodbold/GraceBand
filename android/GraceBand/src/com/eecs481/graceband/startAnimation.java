@@ -1,15 +1,29 @@
 package com.eecs481.graceband;
 
+import java.util.Random;
+
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Picture;
 import android.util.AttributeSet;
 import android.view.View;
 
 public class startAnimation extends View {
 
 	private Paint paint;
-	int counter;
+	int counter = 0;
+	int counter2 = -300;
+	int counter3 = -650;
+	int counter4 = -950;
+	int rand;
+	int rand2;
+	int rand3;
+	int rand4;
+	Random random;
+	Bitmap a, b;
 	
 	public startAnimation(Context context) {
 		super(context);
@@ -17,6 +31,13 @@ public class startAnimation extends View {
         paint.setTextSize(12);
         paint.setColor(0xFF668800);
         paint.setStyle(Paint.Style.FILL);
+        a = BitmapFactory.decodeResource(getResources(), R.drawable.eighth);
+    	b = BitmapFactory.decodeResource(getResources(), R.drawable.note);
+    	random = new Random(); 
+    	rand = random.nextInt(150);
+    	rand2 = random.nextInt(150);
+    	rand3 = random.nextInt(150);
+    	rand4 = random.nextInt(150);
 	}
 	public startAnimation(Context context, AttributeSet attrs) {
 	    super(context, attrs);
@@ -24,12 +45,41 @@ public class startAnimation extends View {
         paint.setTextSize(12);
         paint.setColor(0xFF668800);
         paint.setStyle(Paint.Style.FILL);
+        a = BitmapFactory.decodeResource(getResources(), R.drawable.eighth);
+    	b = BitmapFactory.decodeResource(getResources(), R.drawable.note);
+    	random = new Random(); 
+    	rand = random.nextInt(150);
+    	rand2 = random.nextInt(150);
+    	rand3 = random.nextInt(150);
+    	rand4 = random.nextInt(150);
 	}
 
     @Override
     protected void onDraw(Canvas canvas) {
     	counter++;
-        canvas.drawText("TEEEST " + counter/10, 250, 250, paint);
+    	counter2++;
+    	counter3++;
+    	counter4++;
+    	if(counter > 1425){
+    		counter = 0;
+    		rand = random.nextInt(150);
+    	}
+    	if(counter2 > 1425){
+    		counter2 = 0;
+    		rand2 = random.nextInt(150);
+    	}
+    	if(counter3 > 1425){
+    		counter3 = 0;
+    		rand3 = random.nextInt(150);
+    	}
+    	if(counter4 > 1425){ 
+    		counter4 = 0;
+    		rand4 = random.nextInt(150);
+    	}
+    	canvas.drawBitmap(b, (float)(counter-50), (float)(rand*Math.sin((double)counter/(double)100.0)+150), paint);
+    	canvas.drawBitmap(a, counter2-225, (float)(rand2*Math.sin((double)counter2/(double)100.0)+50), paint);
+    	canvas.drawBitmap(b, (float)(counter3-50), (float)(rand3*Math.sin((double)-counter3/(double)100.0)+150), paint);
+    	canvas.drawBitmap(a, counter4-225, (float)(rand4*Math.sin((double)-counter4/(double)100.0)+50), paint);
         animator.run();
     }
     
