@@ -19,18 +19,23 @@ import android.widget.LinearLayout.LayoutParams;
 	private ArrayList<LinearLayout> tracks; // Change data type to work with music thing
 	private Context context;
 	private Activity activity;
-	
+	private LinearLayout list;
 	static Integer ids = 0;
+	private LinearLayout addTrackButtonBar;
 	
 	public TrackHandle(Context _context, Activity _activity)
 	{
 		tracks = new ArrayList<LinearLayout>();
 		context = _context;
 		activity = _activity;
+
+		list = (LinearLayout) activity.findViewById(R.id.tracks);
+		addTrackButtonBar = activity.findViewById(R.id.addTrackButtonBar);
 	}
 	
-	public LinearLayout addTrack(String val)
+	public void addTrack(String val)
 	{
+		list.removeView(addTrackButtonBar);
 		LinearLayout l = new LinearLayout(context);
 		l.setId(ids++);
 		TextView icon = new TextView(context);
@@ -63,7 +68,10 @@ import android.widget.LinearLayout.LayoutParams;
 		l.addView(icon);
 		l.addView(trackImg);
 		tracks.add(l);
-		return l;
+		list.addView(l);
+		if(tracks.size() < 6) {
+			list.addView(addTrackButtonBar);
+		}
 	}
 	
 	public int getNumTracks()
