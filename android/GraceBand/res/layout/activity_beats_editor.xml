@@ -53,6 +53,18 @@
 	    android:layout_weight=".9"
 	    android:layout_margin="15dp"
 	    android:background="@drawable/layout_border">
+		
+	    <LinearLayout
+	        android:id="@+id/addTrackButtonBar"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content">
+	        <Button
+			android:id="@+id/beatMenu"
+		    style="?android:attr/borderlessButtonStyle"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/beatMenu" />
+	    </LinearLayout>
 
 	</LinearLayout>
     	

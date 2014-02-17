@@ -13,5 +13,5 @@
     android:drawable="@drawable/play" />
 <item
     android:state_enabled="true"
-    android:drawable="@@drawable/pause_unselected" />
+    android:drawable="@drawable/pause_unselected" />
 </selector>
