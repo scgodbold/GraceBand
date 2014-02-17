@@ -25,8 +25,8 @@ public class AddTrackListener implements OnClickListener {
 		// TODO Auto-generated method stub
 		Button button = (Button) v;
 		System.out.println("clicked button " + button.getText().toString());
-		LinearLayout newLayout = tracks.addTrack(button.getText().toString());
-		trackView.addView(newLayout);
+		tracks.addTrack(button.getText().toString());
+		//trackView.addView(newLayout);
 		activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
 		activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);
 		activity.findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
