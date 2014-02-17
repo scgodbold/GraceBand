@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 public class BeatsEditor extends Activity {
@@ -21,10 +22,10 @@ public class BeatsEditor extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getActionBar().hide();
         
-        final Button playButton = (Button) findViewById(R.id.play);
-        final Button pauseButton = (Button) findViewById(R.id.pause);
-        final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
-        final Button saveButton = (Button) findViewById(R.id.saveButton);
+        final ImageButton playButton = (ImageButton) findViewById(R.id.play);
+        final ImageButton pauseButton = (ImageButton) findViewById(R.id.pause);
+        //final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
+        final ImageButton saveButton = (ImageButton) findViewById(R.id.saveButton);
         final Button cancelButton = (Button) findViewById(R.id.cancel);
         
         // Tracks Handler
@@ -44,19 +45,18 @@ public class BeatsEditor extends Activity {
 				
 			}
 		});
-        beatMenuButton.setOnClickListener(new View.OnClickListener() {
+        /*beatMenuButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				System.out.println("clicked beats menu");
 				createSoundMenu();
 			}
-		});
+		});*/
         cancelButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
 				findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);
-				findViewById(R.id.beatMenuBar).setVisibility(LinearLayout.VISIBLE);
 				findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
 				findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
 			}
@@ -67,7 +67,6 @@ public class BeatsEditor extends Activity {
 		instList = new Instruments(this, t, trackView);
         instButtons();
         instList.createScreen();
-        findViewById(R.id.beatMenuBar).setVisibility(LinearLayout.GONE);
         findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
         findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
         findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);

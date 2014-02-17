@@ -32,7 +32,6 @@ import android.widget.LinearLayout.LayoutParams;
 	public LinearLayout addTrack(String val)
 	{
 		LinearLayout l = new LinearLayout(context);
-		l.setBackground(context.getResources().getDrawable(R.drawable.layout_border_bottom));
 		l.setId(ids++);
 		TextView icon = new TextView(context);
 		icon.setText(val);

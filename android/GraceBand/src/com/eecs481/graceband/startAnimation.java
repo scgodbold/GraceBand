@@ -81,9 +81,9 @@ public class startAnimation extends View {
     	}
     	
     	float sinVar = (float)(rand*Math.sin((double)counter/(double)100.0)+150);
-    	float sinVar2 = (float)(rand2*Math.sin((double)counter2/(double)100.0)+100);
+    	float sinVar2 = (float)(rand2*Math.sin((double)counter2/(double)100.0)+125);
     	float sinVar3 = (float)(rand3*Math.sin((double)-counter3/(double)100.0)+150);
-    	float sinVar4 = (float)(rand4*Math.sin((double)-counter4/(double)100.0)+100);
+    	float sinVar4 = (float)(rand4*Math.sin((double)-counter4/(double)100.0)+125);
     	
     	canvas.drawBitmap(b, (float)(counter-50), sinVar, paint);
     	canvas.drawBitmap(a, counter2-225, sinVar2, paint);
