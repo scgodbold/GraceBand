@@ -27,6 +27,15 @@ public class BeatsEditor extends Activity {
         final Button saveButton = (Button) findViewById(R.id.saveButton);
         final Button cancelButton = (Button) findViewById(R.id.cancel);
         
+        int[] testSoundGroup = null;
+        testSoundGroup[0] = R.raw.kick;
+        testSoundGroup[1] = R.raw.ride_bell;
+        
+        final Track singleTrack = new Track(this, R.raw.kick);
+        
+        final Track multiTrack = new Track(this, testSoundGroup);
+        
+        
         // Tracks Handler
         t = new TrackHandle(this.getApplicationContext(), this);
         trackView = findViewById(R.id.tracks);
@@ -35,13 +44,13 @@ public class BeatsEditor extends Activity {
         playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				singleTrack.play();
 			}
 		});
         pauseButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				multiTrack.play();
 			}
 		});
         beatMenuButton.setOnClickListener(new View.OnClickListener() {
