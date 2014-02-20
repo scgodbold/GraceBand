@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:state_enabled="false"
-    android:drawable="@drawable/pause" />
+    android:drawable="@drawable/save_unselected" />
 <item
     android:state_pressed="true"
     android:state_enabled="true"
@@ -10,7 +10,7 @@
 <item
     android:state_focused="true"
     android:state_enabled="true"
-    android:drawable="@drawable/play" />
+    android:drawable="@drawable/save" />
 <item
     android:state_enabled="true"
     android:drawable="@drawable/save_unselected" />

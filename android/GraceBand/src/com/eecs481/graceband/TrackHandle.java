@@ -23,6 +23,8 @@ import android.widget.LinearLayout.LayoutParams;
 	static Integer ids = 0;
 	private LinearLayout addTrackButtonBar;
 	
+	final int maxTracks = 6;
+	
 	public TrackHandle(Context _context, Activity _activity)
 	{
 		tracks = new ArrayList<LinearLayout>();
@@ -30,11 +32,12 @@ import android.widget.LinearLayout.LayoutParams;
 		activity = _activity;
 
 		list = (LinearLayout) activity.findViewById(R.id.tracks);
-		addTrackButtonBar = activity.findViewById(R.id.addTrackButtonBar);
+		addTrackButtonBar = (LinearLayout) activity.findViewById(R.id.addTrackButtonBar);
 	}
 	
 	public void addTrack(String val)
 	{
+		if(tracks.size() >= maxTracks)return;
 		list.removeView(addTrackButtonBar);
 		LinearLayout l = new LinearLayout(context);
 		l.setId(ids++);
@@ -59,7 +62,11 @@ import android.widget.LinearLayout.LayoutParams;
 				LinearLayout layout = (LinearLayout) activity.findViewById(R.id.tracks);
 				LinearLayout removed = (LinearLayout) v.getParent();
 				layout.removeView(removed);
+				if(tracks.size() == maxTracks) {
+					list.addView(addTrackButtonBar);
+				}
 				tracks.remove(removed);
+				
 			}
 		});
 		
@@ -69,7 +76,7 @@ import android.widget.LinearLayout.LayoutParams;
 		l.addView(trackImg);
 		tracks.add(l);
 		list.addView(l);
-		if(tracks.size() < 6) {
+		if(tracks.size() < maxTracks) {
 			list.addView(addTrackButtonBar);
 		}
 	}

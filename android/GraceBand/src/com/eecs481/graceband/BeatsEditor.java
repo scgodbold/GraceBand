@@ -24,7 +24,7 @@ public class BeatsEditor extends Activity {
         
         final ImageButton playButton = (ImageButton) findViewById(R.id.play);
         final ImageButton pauseButton = (ImageButton) findViewById(R.id.pause);
-        //final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
+        final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
         final ImageButton saveButton = (ImageButton) findViewById(R.id.saveButton);
         final Button cancelButton = (Button) findViewById(R.id.cancel);
         
@@ -45,13 +45,13 @@ public class BeatsEditor extends Activity {
 				
 			}
 		});
-        /*beatMenuButton.setOnClickListener(new View.OnClickListener() {
+        beatMenuButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				System.out.println("clicked beats menu");
 				createSoundMenu();
 			}
-		});*/
+		});
         cancelButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
