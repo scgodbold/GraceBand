@@ -5,29 +5,15 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 
 public class Track extends SoundPool {
-	
-	private SoundData[] soundIds;
+	private String name;
+	private int soundId;
+	private int streamId;
 	private float volume;
-	private boolean isPlaying = false;
-	
-	public Track(Context context, int[] resId) {
-		super(10, AudioManager.STREAM_MUSIC, 0);
-		getVolume(context);
-		soundIds = new SoundData[resId.length];
-		
-		for (int i = 0; i < resId.length; i++) {
-			soundIds[i] = new SoundData();
-			soundIds[i].soundId = this.load(context, resId[i], 1);
-		}
-		
-	}
-	
+
 	public Track(Context context, int resId) {
 		super(10, AudioManager.STREAM_MUSIC, 0);
 		getVolume(context);
-	    soundIds = new SoundData[1];
-		soundIds[0] = new SoundData();
-		soundIds[0].soundId = this.load(context, resId, 1);
+		soundId = this.load(context, resId, 1);
 
 	}
 	
@@ -41,22 +27,19 @@ public class Track extends SoundPool {
 	}
 	
 	public void play() {
-		//if (!isPlaying) {
-			for (int i = 0; i < soundIds.length; i++) {
-				soundIds[i].streamId = this.play(soundIds[i].soundId, volume, volume, 1, 0, 1f);
-			}
-			//isPlaying = true;
-		//}
+		streamId = this.play(soundId, volume, volume, 1, -1, 1f);
 	}
 	
 	public void stop() {
-		//if (isPlaying) {
-			for (int i = 0; i < soundIds.length; i++) {
-				this.stop(soundIds[i].streamId);
-			}
-			//isPlaying = false;
-		//}
+		this.stop(streamId);
 	}
 	
+	public void pause(){
+		//??
+	}
+
+	public String getName(){
+		return name;
+	}
 	
 }
