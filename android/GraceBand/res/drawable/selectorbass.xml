@@ -2,16 +2,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:state_enabled="false"
-    android:drawable="@drawable/pause_unselected" />
+    android:drawable="@drawable/bass" />
 <item
     android:state_pressed="true"
     android:state_enabled="true"
-    android:drawable="@drawable/pause_click" />
+    android:drawable="@drawable/oh_no" />
 <item
     android:state_focused="true"
     android:state_enabled="true"
-    android:drawable="@drawable/pause" />
+    android:drawable="@drawable/oh_no" />
 <item
     android:state_enabled="true"
-    android:drawable="@drawable/pause_unselected" />
+    android:drawable="@drawable/bass" />
 </selector>

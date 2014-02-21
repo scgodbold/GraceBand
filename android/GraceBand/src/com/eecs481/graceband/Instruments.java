@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnHoverListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
 public class Instruments {
 	
-	ArrayList<Button> buttonList;
+	ArrayList<ImageButton> buttonList;
 	Context context;
 	LinearLayout layout;
 	int curLoc = 0;
@@ -26,7 +29,7 @@ public class Instruments {
 	
 	Instruments(Activity _activity, TrackHandle _t, View _view){
 		System.out.println("creating Instruments");
-		buttonList = new ArrayList<Button>();
+		buttonList = new ArrayList<ImageButton>();
 		activity = _activity;
 		context = activity.getApplicationContext();
 		larrow = new Button(context);
@@ -44,13 +47,29 @@ public class Instruments {
 	// ADD SOUND FILE STUFF HERE?
 	void createButton(String name){
 		System.out.println("creating button " + name);
-		Button tempButton = new Button(context);
-		tempButton.setText(name);
-		tempButton.setTextColor(Color.BLACK);
+		ImageButton tempButton = new ImageButton(context);
+		tempButton.setOnHoverListener(onHover);
+		tempButton.setId(buttonList.size());
+		tempButton.setTag(name);
+		
+		if(name.contentEquals("Piano")){
+			tempButton.setImageResource(R.drawable.piano);
+		}
+		else if(name.contentEquals("Snare Drum")){
+			tempButton.setImageResource(R.drawable.snare);
+		}
+		else if(name.contentEquals("Bass Drum")){
+			tempButton.setImageResource(R.drawable.bass);
+		}
+		else if(name.contentEquals("Vocals")){
+			tempButton.setImageResource(R.drawable.vocals);
+		}
+		else{
+			tempButton.setImageResource(R.drawable.beatbox);
+		}
+		
     	tempButton.setOnClickListener(new AddTrackListener(tracks, trackView, activity, this));
-    	LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT);
-    	params.weight=(float).3;
-    	tempButton.setLayoutParams(params);
+    	tempButton.setBackgroundColor(Color.TRANSPARENT);
 		buttonList.add(tempButton);
 	}
 	
@@ -59,12 +78,11 @@ public class Instruments {
 		layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
 		layout.removeAllViewsInLayout();
 	    curLoc = 0;
-	    layout.addView(larrow);
-	    for(int i = curLoc; i < curLoc+3; i++){
-	    	Button button = buttonList.get(i);
+	    //layout.addView(larrow);
+	    for(ImageButton button : buttonList){
 	    	layout.addView(button);	    	
 	    }
-	    layout.addView(rarrow);
+	    //layout.addView(rarrow);
 	}
 	
 	void left(){
@@ -79,7 +97,7 @@ public class Instruments {
 	    		i = 0;
 	    		curLocTemp = -counter;
 	    	}
-	    	Button button = buttonList.get(i);
+	    	ImageButton button = buttonList.get(i);
 	    	layout.addView(button);	    	
 	    }
 	    layout.addView(rarrow);
@@ -97,7 +115,7 @@ public class Instruments {
 	    		i = 0;
 	    		curLocTemp = -counter;
 	    	}
-	    	Button button = buttonList.get(i);
+	    	ImageButton button = buttonList.get(i);
 	    	layout.addView(button);	    	
 	    }
 	    layout.addView(rarrow);
@@ -113,5 +131,51 @@ public class Instruments {
         public void onClick(final View v) {
         	right();
         }
+    };
+    final OnHoverListener onHover = new OnHoverListener() {
+		@Override
+		public boolean onHover(View v, MotionEvent event) {
+			layout.removeAllViews();
+			switch (v.getId()) {
+				case 0:
+				    for(int i = 3; i<buttonList.size(); i++){
+				    	layout.addView(v);	    	
+				    }
+				    for(int i = 0; i<3; i++){
+				    	layout.addView(v);	    	
+				    }
+		            break;
+		        case 1:
+				    for(int i = 4; i<buttonList.size(); i++){
+				    	layout.addView(v);	    	
+				    }
+				    for(int i = 0; i<4; i++){
+				    	layout.addView(v);	    	
+				    }
+		            break;
+		        case 2:
+				    for(int i = 0; i<buttonList.size(); i++){
+				    	layout.addView(v);	    	
+				    }
+		            break;
+		        case 3:
+				    for(int i = 1; i<buttonList.size(); i++){
+				    	layout.addView(v);	    	
+				    }
+				    for(int i = 0; i<1; i++){
+				    	layout.addView(v);	    	
+				    }
+		            break;
+		        default:
+				    for(int i = 2; i<buttonList.size(); i++){
+				    	layout.addView(v);	    	
+				    }
+				    for(int i = 0; i<2; i++){
+				    	layout.addView(v);	    	
+				    }
+		            break;
+			}
+			return true;
+		}	
     };
 }

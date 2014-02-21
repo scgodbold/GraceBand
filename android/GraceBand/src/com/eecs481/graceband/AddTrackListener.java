@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 public class AddTrackListener implements OnClickListener {
@@ -23,9 +24,9 @@ public class AddTrackListener implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		Button button = (Button) v;
-		System.out.println("clicked button " + button.getText().toString());
-		tracks.addTrack(button.getText().toString());
+		ImageButton button = (ImageButton) v;
+		System.out.println("clicked button " + button.getTag().toString());
+		tracks.addTrack(button.getTag().toString());
 		//trackView.addView(newLayout);
 		activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
 		activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);

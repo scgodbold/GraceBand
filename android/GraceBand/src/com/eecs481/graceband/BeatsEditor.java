@@ -24,15 +24,22 @@ public class BeatsEditor extends Activity {
         
         final ImageButton playButton = (ImageButton) findViewById(R.id.play);
         final ImageButton pauseButton = (ImageButton) findViewById(R.id.pause);
-        final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
+        //final ImageButton beatMenuButton = (ImageButton) findViewById(R.id.beatMenu);
         final ImageButton saveButton = (ImageButton) findViewById(R.id.saveButton);
         final Button cancelButton = (Button) findViewById(R.id.cancel);
+        final ImageButton backButton = (ImageButton) findViewById(R.id.back);
         
         // Tracks Handler
         t = new TrackHandle(this.getApplicationContext(), this);
         trackView = findViewById(R.id.tracks);
 		//testButton.setOnClickListener( new AddTrackListener(t, trackView, this));
         
+        backButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
         playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -45,13 +52,6 @@ public class BeatsEditor extends Activity {
 				
 			}
 		});
-        beatMenuButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				System.out.println("clicked beats menu");
-				createSoundMenu();
-			}
-		});
         cancelButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -61,24 +61,6 @@ public class BeatsEditor extends Activity {
 				findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
 			}
 		});
-	}
-
-	void createSoundMenu(){
-		instList = new Instruments(this, t, trackView);
-        instButtons();
-        instList.createScreen();
-        findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
-        findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
-        findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
-        findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
-	}
-	
-	void instButtons(){
-		instList.createButton("Snare Drum");
-		instList.createButton("Bass Drum ");
-		instList.createButton("Piano     ");
-		instList.createButton("BeatBox   ");
-		instList.createButton("Vocals    ");
 	}
 	
 	@Override

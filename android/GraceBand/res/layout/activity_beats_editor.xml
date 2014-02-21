@@ -13,7 +13,13 @@
         android:layout_height="wrap_content"
         android:background="#272727">
        
-	     <ImageButton
+  		<ImageButton
+	         android:id="@+id/back"
+	         android:layout_width="93dp"
+    	     android:layout_height="50dp" 
+        	 android:src="@drawable/selectorback"/>
+       
+	    <ImageButton
 	         android:id="@+id/play"
 	         android:layout_width="290dp"
     	     android:layout_height="50dp" 
@@ -49,22 +55,23 @@
 	    android:id="@+id/tracks"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
+	    android:orientation="horizontal"
 	    android:layout_weight=".9"
 	    android:layout_margin="15dp"
 	    android:background="@drawable/layout_border">
 		
-	    <LinearLayout
+	    <!-- <LinearLayout
 	        android:id="@+id/addTrackButtonBar"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content">
-	        <Button
-			android:id="@+id/beatMenu"
-		    style="?android:attr/borderlessButtonStyle"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="@string/beatMenu" />
-	    </LinearLayout>
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content">
+	        
+	        <ImageButton
+				android:id="@+id/beatMenu"
+			    android:layout_width="150dp"
+			    android:layout_height="150dp"
+			    android:background="@drawable/add_track"/>
+	        
+	    </LinearLayout> -->
 
 	</LinearLayout>
     	

@@ -9,9 +9,14 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnHoverListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
@@ -22,8 +27,10 @@ import android.widget.LinearLayout.LayoutParams;
 	private LinearLayout list;
 	static Integer ids = 0;
 	private LinearLayout addTrackButtonBar;
+	private ImageButton addTrackButton;
+	Instruments instList;
 	
-	final int maxTracks = 6;
+	final int maxTracks = 5;
 	
 	public TrackHandle(Context _context, Activity _activity)
 	{
@@ -32,7 +39,25 @@ import android.widget.LinearLayout.LayoutParams;
 		activity = _activity;
 
 		list = (LinearLayout) activity.findViewById(R.id.tracks);
-		addTrackButtonBar = (LinearLayout) activity.findViewById(R.id.addTrackButtonBar);
+		addTrackButtonBar = new LinearLayout(context);
+		addTrackButton = new ImageButton(context);
+		addTrackButton.setBackgroundColor(Color.TRANSPARENT);
+		addTrackButton.setImageResource(R.drawable.add_track);
+		addTrackButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				System.out.println("clicked beats menu");
+				createSoundMenu();
+				
+			}
+		});
+		
+		
+		addTrackButtonBar.addView(addTrackButton);
+		//l.addView(icon);
+		//l.addView(trackImg);
+		list.addView(addTrackButtonBar);
 	}
 	
 	public void addTrack(String val)
@@ -41,20 +66,33 @@ import android.widget.LinearLayout.LayoutParams;
 		list.removeView(addTrackButtonBar);
 		LinearLayout l = new LinearLayout(context);
 		l.setId(ids++);
-		TextView icon = new TextView(context);
+		/*TextView icon = new TextView(context);
 		icon.setText(val);
 		icon.setTextSize(28);
 		TextView trackImg = new TextView(context);
 		trackImg.setText("  //  This works");
 		
-		int[] attrs = new int[] { android.R.attr.selectableItemBackground /* index 0 */};
+		int[] attrs = new int[] { android.R.attr.selectableItemBackground};
 	    TypedArray ta = context.getTheme().obtainStyledAttributes(attrs);
-	    Drawable drawableFromTheme = ta.getDrawable(0 /* index */);
-	    ta.recycle();
-		Button remove = new Button(context);
-		remove.setText("X");
-		remove.setTextColor(Color.BLACK);
-		remove.setBackground(drawableFromTheme);
+	    Drawable drawableFromTheme = ta.getDrawable(0);
+	    ta.recycle();*/
+		ImageButton remove = new ImageButton(context);
+		remove.setBackgroundColor(Color.TRANSPARENT);
+		if(val.contentEquals("Piano")){
+			remove.setImageResource(R.drawable.selectorpiano);
+		}
+		else if(val.contentEquals("Snare Drum")){
+			remove.setImageResource(R.drawable.selectorsnare);
+		}
+		else if(val.contentEquals("Bass Drum")){
+			remove.setImageResource(R.drawable.selectorbass);
+		}
+		else if(val.contentEquals("Vocals")){
+			remove.setImageResource(R.drawable.selectorvocals);
+		}
+		else{
+			remove.setImageResource(R.drawable.selectorbeatbox);
+		}
 		remove.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -69,11 +107,11 @@ import android.widget.LinearLayout.LayoutParams;
 				
 			}
 		});
-		
-		
+		remove.setBaselineAlignBottom(true);
+		l.setBaselineAligned(false);
 		l.addView(remove);
-		l.addView(icon);
-		l.addView(trackImg);
+		//l.addView(icon);
+		//l.addView(trackImg);
 		tracks.add(l);
 		list.addView(l);
 		if(tracks.size() < maxTracks) {
@@ -84,5 +122,23 @@ import android.widget.LinearLayout.LayoutParams;
 	public int getNumTracks()
 	{
 		return tracks.size();
+	}
+	
+	void createSoundMenu(){
+		instList = new Instruments(activity, this, activity.findViewById(R.id.tracks));
+        instButtons();
+        instList.createScreen();
+        activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
+        activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
+        activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
+        activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
+	}
+	
+	void instButtons(){
+		instList.createButton("Snare Drum");
+		instList.createButton("Bass Drum");
+		instList.createButton("Piano");
+		instList.createButton("BeatBox");
+		instList.createButton("Vocals");
 	}
 }
