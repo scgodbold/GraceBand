@@ -96,7 +96,7 @@ import android.widget.LinearLayout.LayoutParams;
 					list.addView(addTrackButtonBar);
 				}
 				tracks.remove(removed);
-				//BeatsEditor.trackList.removeTrack(v.getId());
+				TrackList.get_instance().removeTrack(v.getId());
 				
 			}
 		});

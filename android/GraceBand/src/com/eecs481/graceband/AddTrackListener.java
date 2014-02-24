@@ -25,8 +25,7 @@ public class AddTrackListener implements OnClickListener {
 	public void onClick(View v) {
 		ImageButton button = (ImageButton) v;
 		System.out.println("clicked button " + button.getTag().toString());
-		int i = 0;
-		//i = BeatsEditor.trackList.addTrack(button.getId());
+		int i = TrackList.get_instance().addTrack(button.getId());
 		tracks.addTrack(button.getTag().toString(), i);
 		activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
 		activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);

@@ -15,7 +15,6 @@ public class BeatsEditor extends Activity {
 	TrackHandle t;	
 	View trackView;
 	Instruments instList;
-	public static TrackList trackList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +22,6 @@ public class BeatsEditor extends Activity {
 		setContentView(R.layout.activity_beats_editor);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getActionBar().hide();
-        
-        trackList = new TrackList();
         
         final ImageButton playButton = (ImageButton) findViewById(R.id.play);
         final ImageButton pauseButton = (ImageButton) findViewById(R.id.pause);
@@ -44,13 +41,13 @@ public class BeatsEditor extends Activity {
         playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				trackList.playAll();
+				TrackList.get_instance().playAll();
 			}
 		});
         pauseButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				trackList.pauseAll();
+				TrackList.get_instance().pauseAll();
 			}
 		});
         
