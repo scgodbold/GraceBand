@@ -60,24 +60,16 @@ import android.widget.LinearLayout.LayoutParams;
 		list.addView(addTrackButtonBar);
 	}
 	
-	public void addTrack(String val)
+	public void addTrack(String val, int id)
 	{
 		if(tracks.size() >= maxTracks)return;
 		list.removeView(addTrackButtonBar);
 		LinearLayout l = new LinearLayout(context);
 		l.setId(ids++);
-		/*TextView icon = new TextView(context);
-		icon.setText(val);
-		icon.setTextSize(28);
-		TextView trackImg = new TextView(context);
-		trackImg.setText("  //  This works");
 		
-		int[] attrs = new int[] { android.R.attr.selectableItemBackground};
-	    TypedArray ta = context.getTheme().obtainStyledAttributes(attrs);
-	    Drawable drawableFromTheme = ta.getDrawable(0);
-	    ta.recycle();*/
 		ImageButton remove = new ImageButton(context);
 		remove.setBackgroundColor(Color.TRANSPARENT);
+		remove.setId(id);
 		if(val.contentEquals("Piano")){
 			remove.setImageResource(R.drawable.selectorpiano);
 		}
@@ -104,14 +96,13 @@ import android.widget.LinearLayout.LayoutParams;
 					list.addView(addTrackButtonBar);
 				}
 				tracks.remove(removed);
+				//BeatsEditor.trackList.removeTrack(v.getId());
 				
 			}
 		});
 		remove.setBaselineAlignBottom(true);
 		l.setBaselineAligned(false);
 		l.addView(remove);
-		//l.addView(icon);
-		//l.addView(trackImg);
 		tracks.add(l);
 		list.addView(l);
 		if(tracks.size() < maxTracks) {

@@ -20,8 +20,6 @@ public class Instruments {
 	Context context;
 	LinearLayout layout;
 	int curLoc = 0;
-	Button larrow;
-	Button rarrow;
 	
 	TrackHandle tracks;
 	LinearLayout trackView;
@@ -32,14 +30,6 @@ public class Instruments {
 		buttonList = new ArrayList<ImageButton>();
 		activity = _activity;
 		context = activity.getApplicationContext();
-		larrow = new Button(context);
-		rarrow = new Button(context);
-		larrow.setText("L");
-		larrow.setTextColor(Color.BLACK);
-		rarrow.setText("R");
-		rarrow.setTextColor(Color.BLACK);
-		larrow.setOnClickListener(leftClick);
-		rarrow.setOnClickListener(rightClick);
 		tracks = _t;
 		trackView = (LinearLayout) _view;
 	}
@@ -78,60 +68,11 @@ public class Instruments {
 		layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
 		layout.removeAllViewsInLayout();
 	    curLoc = 0;
-	    //layout.addView(larrow);
 	    for(ImageButton button : buttonList){
 	    	layout.addView(button);	    	
 	    }
-	    //layout.addView(rarrow);
 	}
-	
-	void left(){
-		layout.removeAllViewsInLayout();
-		layout.addView(larrow);
-		curLoc -= 1;
-		if(curLoc < 0) curLoc = buttonList.size()-1;
-		int counter = 0;
-		int curLocTemp = curLoc;
-	    for(int i = curLoc; i < curLocTemp+3; i++, counter++){
-	    	if(i == buttonList.size()) {
-	    		i = 0;
-	    		curLocTemp = -counter;
-	    	}
-	    	ImageButton button = buttonList.get(i);
-	    	layout.addView(button);	    	
-	    }
-	    layout.addView(rarrow);
-	}
-	
-	void right(){
-		layout.removeAllViewsInLayout();
-		layout.addView(larrow);
-		curLoc += 1;
-		if(curLoc == buttonList.size()) curLoc = 0;
-		int counter = 0;
-		int curLocTemp = curLoc;
-	    for(int i = curLoc; i < curLocTemp+3; i++, counter++){
-	    	if(i == buttonList.size()) {
-	    		i = 0;
-	    		curLocTemp = -counter;
-	    	}
-	    	ImageButton button = buttonList.get(i);
-	    	layout.addView(button);	    	
-	    }
-	    layout.addView(rarrow);
-	}
-	
-	final OnClickListener leftClick = new OnClickListener() {
-        public void onClick(final View v) {
-        	left();
-        }
-    };
-    
-    final OnClickListener rightClick = new OnClickListener() {
-        public void onClick(final View v) {
-        	right();
-        }
-    };
+
     final OnHoverListener onHover = new OnHoverListener() {
 		@Override
 		public boolean onHover(View v, MotionEvent event) {
