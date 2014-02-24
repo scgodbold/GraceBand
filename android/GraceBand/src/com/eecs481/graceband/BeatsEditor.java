@@ -1,5 +1,6 @@
 package com.eecs481.graceband;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -29,6 +30,15 @@ public class BeatsEditor extends Activity {
         final Button cancelButton = (Button) findViewById(R.id.cancel);
         final ImageButton backButton = (ImageButton) findViewById(R.id.back);
         
+        int[] testSoundGroup = new int[2];
+        testSoundGroup[0] = R.raw.kick;
+        testSoundGroup[1] = R.raw.ride_bell;
+
+        final Track singleTrack = new Track(this, R.raw.kick);
+        final Track singleTrack2 = new Track(this, R.raw.ride_bell);
+        final Track multiTrack = new Track(this, testSoundGroup);
+        
+        
         // Tracks Handler
         t = new TrackHandle(this.getApplicationContext(), this);
         trackView = findViewById(R.id.tracks);
@@ -43,7 +53,7 @@ public class BeatsEditor extends Activity {
         playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				multiTrack.play();
 			}
 		});
         pauseButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +62,13 @@ public class BeatsEditor extends Activity {
 				
 			}
 		});
+        
+        saveButton.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		singleTrack2.play();
+        	}
+        });
         cancelButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
