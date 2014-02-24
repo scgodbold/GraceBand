@@ -45,11 +45,11 @@ public class Instruments {
 	}
 	
 	// ADD SOUND FILE STUFF HERE?
-	void createButton(String name){
+	void createButton(String name, int id){
 		System.out.println("creating button " + name);
 		ImageButton tempButton = new ImageButton(context);
 		tempButton.setOnHoverListener(onHover);
-		tempButton.setId(buttonList.size());
+		tempButton.setId(id);
 		tempButton.setTag(name);
 		
 		if(name.contentEquals("Piano")){

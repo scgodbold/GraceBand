@@ -135,10 +135,10 @@ import android.widget.LinearLayout.LayoutParams;
 	}
 	
 	void instButtons(){
-		instList.createButton("Snare Drum");
-		instList.createButton("Bass Drum");
-		instList.createButton("Piano");
-		instList.createButton("BeatBox");
-		instList.createButton("Vocals");
+		instList.createButton("Snare Drum",0);
+		instList.createButton("Bass Drum",1);
+		instList.createButton("Piano",2);
+		instList.createButton("BeatBox",3);
+		instList.createButton("Vocals",4);
 	}
 }
