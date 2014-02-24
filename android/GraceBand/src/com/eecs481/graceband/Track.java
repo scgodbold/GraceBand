@@ -5,10 +5,16 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 
 public class Track extends SoundPool {
-	private String name;
 	private int soundId;
 	private int streamId;
 	private float volume;
+	
+	//track attributes - add other things like image here
+	private String name;
+	
+	public Track(){
+		super(10, AudioManager.STREAM_MUSIC, 0);
+	}
 
 	public Track(Context context, int resId) {
 		super(10, AudioManager.STREAM_MUSIC, 0);
@@ -35,9 +41,13 @@ public class Track extends SoundPool {
 	}
 	
 	public void pause(){
-		//??
+		this.pause(streamId);
 	}
 
+	public int getSoundId(){
+		return soundId;
+	}
+	
 	public String getName(){
 		return name;
 	}
