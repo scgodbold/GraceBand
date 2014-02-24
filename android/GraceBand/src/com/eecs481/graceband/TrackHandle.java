@@ -128,9 +128,8 @@ import android.widget.LinearLayout.LayoutParams;
 	void instButtons(){
 		AllTracks trackList = new AllTracks(context);
 		TrackList.get_instance().setList(trackList);
-		ArrayList<Track> temp = trackList.tracks;
-		instList.createButton("Snare Drum",temp.get(0).getSoundId());
-		instList.createButton("Bass Drum",1);
+		instList.createButton("Snare Drum",trackList.tracks.get(0).getSoundId());
+		instList.createButton("Bass Drum",trackList.tracks.get(1).getSoundId());
 		instList.createButton("Piano",2);
 		instList.createButton("BeatBox",3);
 		instList.createButton("Vocals",4);

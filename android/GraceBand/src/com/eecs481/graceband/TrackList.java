@@ -52,8 +52,10 @@ public class TrackList {
 	}
 
 	public void removeTrack(int position_){
-		for(CurrentTrack ct : tracks){
+		for(int i = 0; i < tracks.size(); i++){
+			CurrentTrack ct = tracks.get(i);
 			if (ct.position == position_){
+				ct.t.stop();
 				tracks.remove(ct);
 			}
 		}
