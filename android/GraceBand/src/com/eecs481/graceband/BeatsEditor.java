@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 public class BeatsEditor extends Activity {
@@ -22,50 +23,38 @@ public class BeatsEditor extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getActionBar().hide();
         
-        final Button playButton = (Button) findViewById(R.id.play);
-        final Button pauseButton = (Button) findViewById(R.id.pause);
-        final Button beatMenuButton = (Button) findViewById(R.id.beatMenu);
-        final Button saveButton = (Button) findViewById(R.id.saveButton);
+        final ImageButton playButton = (ImageButton) findViewById(R.id.play);
+        final ImageButton pauseButton = (ImageButton) findViewById(R.id.pause);
+        final ImageButton saveButton = (ImageButton) findViewById(R.id.saveButton);
         final Button cancelButton = (Button) findViewById(R.id.cancel);
-        
-        int[] testSoundGroup = new int[2];
-        testSoundGroup[0] = R.raw.kick;
-        testSoundGroup[1] = R.raw.ride_bell;
-
-        final Track singleTrack = new Track(this, R.raw.kick);
-        final Track singleTrack2 = new Track(this, R.raw.ride_bell);
-        final Track multiTrack = new Track(this, testSoundGroup);
-        
-        
-        // Tracks Handler
+        final ImageButton backButton = (ImageButton) findViewById(R.id.back);
+    
         t = new TrackHandle(this.getApplicationContext(), this);
         trackView = findViewById(R.id.tracks);
-		//testButton.setOnClickListener( new AddTrackListener(t, trackView, this));
         
+        backButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
         playButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				singleTrack.play();
+				TrackList.get_instance().playAll();
 			}
 		});
         pauseButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				multiTrack.play();
-			}
-		});
-        beatMenuButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				System.out.println("clicked beats menu");
-				createSoundMenu();
+				TrackList.get_instance().pauseAll();
 			}
 		});
         
         saveButton.setOnClickListener(new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
-        		singleTrack2.play();
+
         	}
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -73,30 +62,10 @@ public class BeatsEditor extends Activity {
 			public void onClick(View v) {
 				findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
 				findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);
-				findViewById(R.id.beatMenuBar).setVisibility(LinearLayout.VISIBLE);
 				findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
 				findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
 			}
 		});
-	}
-
-	void createSoundMenu(){
-		instList = new Instruments(this, t, trackView);
-        instButtons();
-        instList.createScreen();
-        findViewById(R.id.beatMenuBar).setVisibility(LinearLayout.GONE);
-        findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
-        findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
-        findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
-        findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
-	}
-	
-	void instButtons(){
-		instList.createButton("Snare Drum");
-		instList.createButton("Bass Drum ");
-		instList.createButton("Piano     ");
-		instList.createButton("BeatBox   ");
-		instList.createButton("Vocals    ");
 	}
 	
 	@Override
