@@ -38,8 +38,9 @@ public class Instruments {
 	void createButton(String name, int id){
 		System.out.println("creating button " + name);
 		ImageButton tempButton = new ImageButton(context);
-		tempButton.setOnHoverListener(onHover);
+		//tempButton.setOnHoverListener(onHover);
 		tempButton.setId(id);
+		tempButton.setPadding(46, 60, 0, 46);
 		tempButton.setTag(name);
 		
 		// This makes the Track Selection Menu!!!!!
@@ -74,7 +75,7 @@ public class Instruments {
 	    }
 	}
 
-    final OnHoverListener onHover = new OnHoverListener() {
+    /*final OnHoverListener onHover = new OnHoverListener() {
 		@Override
 		public boolean onHover(View v, MotionEvent event) {
 			layout.removeAllViews();
@@ -119,5 +120,5 @@ public class Instruments {
 			}
 			return true;
 		}	
-    };
+    };*/
 }
