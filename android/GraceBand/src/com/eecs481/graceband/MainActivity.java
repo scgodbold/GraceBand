@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -18,13 +19,23 @@ public class MainActivity extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getActionBar().hide();
         
-        final Button startButton = (Button) findViewById(R.id.start);
+        final ImageButton startButton = (ImageButton) findViewById(R.id.start);
+        final ImageButton quitButton = (ImageButton) findViewById(R.id.quit);
         
         startButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getBaseContext(), BeatsEditor.class);
 				startActivity(intent);
+			}
+		});
+        
+        quitButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
 			}
 		});
     }
