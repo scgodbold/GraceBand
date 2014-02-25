@@ -41,6 +41,7 @@ import android.widget.LinearLayout.LayoutParams;
 		list = (LinearLayout) activity.findViewById(R.id.tracks);
 		addTrackButtonBar = new LinearLayout(context);
 		addTrackButton = new ImageButton(context);
+		addTrackButton.setPadding(40, 40, 0, 40);
 		addTrackButton.setBackgroundColor(Color.TRANSPARENT);
 		addTrackButton.setImageResource(R.drawable.add_track);
 		addTrackButton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +69,7 @@ import android.widget.LinearLayout.LayoutParams;
 		l.setId(ids++);
 		
 		ImageButton remove = new ImageButton(context);
+		remove.setPadding(40, 40, 0, 40);
 		remove.setBackgroundColor(Color.TRANSPARENT);
 		remove.setId(id);
 		if(val.contentEquals("Piano")){
