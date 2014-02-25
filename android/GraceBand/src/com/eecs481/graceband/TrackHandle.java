@@ -42,7 +42,7 @@ import android.widget.LinearLayout.LayoutParams;
 		addTrackButtonBar = new LinearLayout(context);
 		addTrackButton = new ImageButton(context);
 		addTrackButton.setBackgroundColor(Color.TRANSPARENT);
-		addTrackButton.setImageResource(R.drawable.add_track);
+		addTrackButton.setImageResource(R.drawable.add_track_selector);
 		addTrackButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
