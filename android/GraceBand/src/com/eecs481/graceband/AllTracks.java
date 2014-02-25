@@ -10,6 +10,31 @@ import java.util.ArrayList;
 
 public class AllTracks {
 	public ArrayList<Track> tracks;
+<<<<<<< HEAD
+	
+	private static AllTracks singleton = new AllTracks();
+	
+	public static AllTracks get_instance(){
+		return singleton;
+	}
+	
+	private AllTracks(){
+		//initialize all available tracks
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	public class TrackNotFoundException extends Exception{
+		TrackNotFoundException(){}
+	}
+	
+=======
 
 	/*private static AllTracks singleton = new AllTracks();
 
@@ -32,6 +57,7 @@ public class AllTracks {
 		TrackNotFoundException(){}
 	}
 
+>>>>>>> frontend
 	Track getTrackById(int soundId_) throws TrackNotFoundException {
 		for(Track t : tracks){
 			if(t.getSoundId() == soundId_){
@@ -40,6 +66,10 @@ public class AllTracks {
 		}
 		throw new TrackNotFoundException();
 	}
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> frontend
 
 }

@@ -8,6 +8,13 @@ public class Track extends SoundPool {
 	private int soundId;
 	private int streamId;
 	private float volume;
+	
+	//track attributes - add other things like image here
+	private String name;
+	
+	public Track(){
+		super(10, AudioManager.STREAM_MUSIC, 0);
+	}
 
 	//track attributes - add other things like image here
 	private String name;
@@ -55,6 +62,10 @@ public class Track extends SoundPool {
 		return soundId;
 	}
 
+	public int getSoundId(){
+		return soundId;
+	}
+	
 	public String getName(){
 		return name;
 	}
