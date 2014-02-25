@@ -39,6 +39,7 @@ public class Track extends SoundPool {
 	public void play() {
 		streamId = this.play(soundId, 0.0f, 0.0f, 0, -1, 1f);
 		streamId = this.play(soundId, 0.0f, 0.0f, 0, -1, 1f);
+		this.stop(streamId);
 		streamId = this.play(soundId, volume, volume, 0, -1, 1f);
 	}
 

@@ -41,6 +41,7 @@ import android.widget.LinearLayout.LayoutParams;
 		list = (LinearLayout) activity.findViewById(R.id.tracks);
 		addTrackButtonBar = new LinearLayout(context);
 		addTrackButton = new ImageButton(context);
+		addTrackButton.setPadding(40, 40, 0, 40);
 		addTrackButton.setBackgroundColor(Color.TRANSPARENT);
 		addTrackButton.setImageResource(R.drawable.add_track_selector);
 		addTrackButton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +69,7 @@ import android.widget.LinearLayout.LayoutParams;
 		l.setId(ids++);
 		
 		ImageButton remove = new ImageButton(context);
+		remove.setPadding(40, 40, 0, 40);
 		remove.setBackgroundColor(Color.TRANSPARENT);
 		remove.setId(id);
 		if(val.contentEquals("Piano")){
@@ -128,9 +130,8 @@ import android.widget.LinearLayout.LayoutParams;
 	void instButtons(){
 		AllTracks trackList = new AllTracks(context);
 		TrackList.get_instance().setList(trackList);
-		ArrayList<Track> temp = trackList.tracks;
-		instList.createButton("Snare Drum",temp.get(0).getSoundId());
-		instList.createButton("Bass Drum",1);
+		instList.createButton("Snare Drum",trackList.tracks.get(0).getSoundId());
+		instList.createButton("Bass Drum",trackList.tracks.get(1).getSoundId());
 		instList.createButton("Piano",2);
 		instList.createButton("BeatBox",3);
 		instList.createButton("Vocals",4);
