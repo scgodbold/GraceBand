@@ -119,10 +119,10 @@ import android.widget.LinearLayout;
 	}
 	
 	void instButtons(){
-		AllTracks trackList = new AllTracks(context);
-		TrackList.get_instance().setList(trackList);
-		instList.createButton("Snare Drum",trackList.tracks.get(0).getSoundId());
-		instList.createButton("Bass Drum",trackList.tracks.get(1).getSoundId());
+		AllTracks all_tracks = new AllTracks();
+		ArrayList<Track> temp = all_tracks.tracks;
+		instList.createButton("Snare Drum",temp.get(0).get_resid());
+		instList.createButton("Bass Drum",temp.get(1).get_resid());
 		instList.createButton("Piano",2);
 		instList.createButton("BeatBox",3);
 		instList.createButton("Vocals",4);
