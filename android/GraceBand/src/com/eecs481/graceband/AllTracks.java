@@ -8,9 +8,20 @@ import com.eecs481.graceband.Track;
 import java.io.File;
 import java.util.ArrayList;
 
+public class AllTracks{
+	public ArrayList<Track> tracks;
+	
+	public AllTracks(){
+		tracks = new ArrayList<Track>();
+		//initialize all available tracks
+		tracks.add(new Track(R.raw.kick, "Kick drum"));
+		tracks.add(new Track(R.raw.ride_bell, "Ride bell"));
+	}
+}
+
+/*
 public class AllTracks {
 	public ArrayList<Track> tracks;
-<<<<<<< HEAD
 	
 	private static AllTracks singleton = new AllTracks();
 	
@@ -21,42 +32,20 @@ public class AllTracks {
 	private AllTracks(){
 		//initialize all available tracks
 		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
-	public class TrackNotFoundException extends Exception{
-		TrackNotFoundException(){}
-	}
-	
-=======
-
-	/*private static AllTracks singleton = new AllTracks();
-
-	public static AllTracks get_instance(){
-		return singleton;
-	}*/
-
 	public AllTracks(Context context){
 		//initialize all available tracks	
 		tracks = new ArrayList<Track>();
 		tracks.add(new Track(context, R.raw.kick));
-		
-
-
+		tracks.add(new Track(context, R.raw.ride_bell));
 
 	}
-
+	
 	public class TrackNotFoundException extends Exception{
 		TrackNotFoundException(){}
 	}
 
->>>>>>> frontend
 	Track getTrackById(int soundId_) throws TrackNotFoundException {
 		for(Track t : tracks){
 			if(t.getSoundId() == soundId_){
@@ -64,11 +53,6 @@ public class AllTracks {
 			}
 		}
 		throw new TrackNotFoundException();
-	}
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> frontend
-
+	} 
 }
+*/

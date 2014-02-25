@@ -4,6 +4,18 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
+public class Track {
+	private int resid;
+	private String name;
+	public int get_resid(){return resid;}
+	public String get_name(){return name;}
+	public Track(int resid_, String name_){
+		resid = resid_;
+		name = name_;
+	}
+}
+
+/*
 public class Track extends SoundPool {
 	private int soundId;
 	private int streamId;
@@ -16,12 +28,7 @@ public class Track extends SoundPool {
 		super(10, AudioManager.STREAM_MUSIC, 0);
 	}
 
-	//track attributes - add other things like image here
-	private String name;
 
-	public Track(){
-		super(10, AudioManager.STREAM_MUSIC, 0);
-	}
 
 	public Track(String path) {
 		super(10, AudioManager.STREAM_MUSIC, 0);
@@ -61,12 +68,9 @@ public class Track extends SoundPool {
 		return soundId;
 	}
 
-	public int getSoundId(){
-		return soundId;
-	}
-	
 	public String getName(){
 		return name;
 	}
 
 }
+*/

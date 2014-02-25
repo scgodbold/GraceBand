@@ -47,7 +47,7 @@ public class BeatsEditor extends Activity {
         pauseButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				TrackList.get_instance().pauseAll();
+				TrackList.get_instance().stopAll();
 			}
 		});
         
