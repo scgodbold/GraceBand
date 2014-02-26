@@ -1,5 +1,6 @@
 package com.eecs481.graceband;
 
+//defunct - Track now handles this information for itself
 public class SoundData {
 	public int soundId;
 	public int streamId;

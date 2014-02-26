@@ -2,9 +2,11 @@ package com.eecs481.graceband;
 
 import java.util.ArrayList;
 
+import android.R.bool;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
+
 import com.eecs481.graceband.Track;
 
 public class TrackList extends SoundPool {
@@ -118,8 +120,16 @@ public class TrackList extends SoundPool {
 	}
 	
 	public int addTrack(Context context, int resid){
+		boolean resume = isPlaying;
+		if(isPlaying){
+			stopAll();
+		}
 		Beats.add(new CurrentTrack(curPos, this.load(context, resid, 1)));
 		return curPos++;
+	}
+
+	public void clearBeats(){
+		Beats.clear();
 	}
 	
 }
