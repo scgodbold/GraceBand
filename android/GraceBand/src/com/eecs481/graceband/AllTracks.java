@@ -14,10 +14,10 @@ public class AllTracks{
 	public AllTracks(){
 		tracks = new ArrayList<Track>();
 		//initialize all available tracks
-		tracks.add(new Track(R.raw.kick, "Kick drum"));
-		tracks.add(new Track(R.raw.ride_bell, "Ride bell"));
-		tracks.add(new Track(R.raw.bongo, "Bongo"));
-		tracks.add(new Track(R.raw.drums, "Drums"));
+		tracks.add(new Track(R.raw.tambourine, "Tambourine"));
+		tracks.add(new Track(R.raw.piano, "Piano"));
+		tracks.add(new Track(R.raw.bongo, "Bongos"));
+		tracks.add(new Track(R.raw.vocal, "Vocals"));
 		tracks.add(new Track(R.raw.guitar, "Guitar"));
 	}
 }
@@ -40,9 +40,7 @@ public class AllTracks {
 	public AllTracks(Context context){
 		//initialize all available tracks	
 		tracks = new ArrayList<Track>();
-		tracks.add(new Track(context, R.raw.ride_bell));
 		tracks.add(new Track(context, R.raw.kick));
-
 		tracks.add(new Track(context, R.raw.ride_bell));
 
 	}
