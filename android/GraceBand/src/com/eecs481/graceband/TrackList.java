@@ -118,7 +118,14 @@ public class TrackList extends SoundPool {
 	}
 	
 	public int addTrack(Context context, int resid){
+		bool resume = isPlaying;
+		if(isPlaying){
+			stopAll();
+		}
 		Beats.add(new CurrentTrack(curPos, this.load(context, resid, 1)));
+		if(resume){
+			playAll();
+		}
 		return curPos++;
 	}
 	
