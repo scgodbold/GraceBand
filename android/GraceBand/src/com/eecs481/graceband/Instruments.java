@@ -52,23 +52,23 @@ public class Instruments {
 		// This makes the Track Selection Menu!!!!!
 		if(name.contentEquals("Piano")){
 			tempButton.setImageResource(R.drawable.selectorpiano_trackmenu);
-			t.setText("Piano");
+			t.setText(name);
 		}
-		else if(name.contentEquals("Snare Drum")){
+		else if(name.contentEquals("Tambourine")){
 			tempButton.setImageResource(R.drawable.selectorsnare_trackmenu);
-			t.setText("Snare Drum");
+			t.setText(name);
 		}
-		else if(name.contentEquals("Bass Drum")){
+		else if(name.contentEquals("Bongo")){
 			tempButton.setImageResource(R.drawable.selectorbass_trackmenu);
-			t.setText("Bass Drum");
+			t.setText(name);
 		}
 		else if(name.contentEquals("Vocals")){
 			tempButton.setImageResource(R.drawable.selectorvocals_trackmenu);
-			t.setText("Vocals");
+			t.setText(name);
 		}
 		else{
 			tempButton.setImageResource(R.drawable.selectorbeatbox_trackmenu);
-			t.setText("Beat Box");
+			t.setText(name);
 		}
 		
     	tempButton.setOnClickListener(new AddTrackListener(tracks, trackView, activity, this));

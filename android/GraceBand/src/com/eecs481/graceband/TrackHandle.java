@@ -67,10 +67,10 @@ import android.widget.LinearLayout;
 		if(val.contentEquals("Piano")){
 			remove.setImageResource(R.drawable.selectorpiano);
 		}
-		else if(val.contentEquals("Snare Drum")){
+		else if(val.contentEquals("Tambourine")){
 			remove.setImageResource(R.drawable.selectorsnare);
 		}
-		else if(val.contentEquals("Bass Drum")){
+		else if(val.contentEquals("Bongo")){
 			remove.setImageResource(R.drawable.selectorbass);
 		}
 		else if(val.contentEquals("Vocals")){
@@ -122,10 +122,10 @@ import android.widget.LinearLayout;
 	void instButtons(){
 		AllTracks all_tracks = new AllTracks();
 		ArrayList<Track> temp = all_tracks.tracks;
-		instList.createButton("Snare Drum",temp.get(0).get_resid());
-		instList.createButton("Bass Drum",temp.get(1).get_resid());
-		instList.createButton("Piano",temp.get(2).get_resid());
-		instList.createButton("BeatBox",temp.get(3).get_resid());
-		instList.createButton("Vocals",temp.get(4).get_resid());
+		instList.createButton("Tambourine",temp.get(0).get_resid()); //S
+		instList.createButton("Bongo",temp.get(2).get_resid()); //B
+		instList.createButton("Piano",temp.get(1).get_resid()); //P
+		instList.createButton("Guitar",temp.get(4).get_resid()); //BB
+		instList.createButton("Vocals",temp.get(3).get_resid()); //V
 	}
 }
