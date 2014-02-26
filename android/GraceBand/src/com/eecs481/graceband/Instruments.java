@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,10 +14,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
 public class Instruments {
 	
-	ArrayList<ImageButton> buttonList;
+	ArrayList<LinearLayout> buttonList;
 	Context context;
 	LinearLayout layout;
 	int curLoc = 0;
@@ -27,7 +29,7 @@ public class Instruments {
 	
 	Instruments(Activity _activity, TrackHandle _t, View _view){
 		System.out.println("creating Instruments");
-		buttonList = new ArrayList<ImageButton>();
+		buttonList = new ArrayList<LinearLayout>();
 		activity = _activity;
 		context = activity.getApplicationContext();
 		tracks = _t;
@@ -38,29 +40,45 @@ public class Instruments {
 	void createButton(String name, int id){
 		System.out.println("creating button " + name);
 		ImageButton tempButton = new ImageButton(context);
-		tempButton.setOnHoverListener(onHover);
+		//tempButton.setOnHoverListener(onHover);
 		tempButton.setId(id);
+		tempButton.setPadding(46, 60, 0, 46);
 		tempButton.setTag(name);
+		TextView t = new TextView(context);
+		t.setTextColor(Color.BLACK);
+		t.setGravity(Gravity.CENTER_HORIZONTAL);
+		t.setPadding(46, 0, 0, 0);
 		
+		// This makes the Track Selection Menu!!!!!
 		if(name.contentEquals("Piano")){
-			tempButton.setImageResource(R.drawable.piano);
+			tempButton.setImageResource(R.drawable.selectorpiano_trackmenu);
+			t.setText("Piano");
 		}
 		else if(name.contentEquals("Snare Drum")){
-			tempButton.setImageResource(R.drawable.snare);
+			tempButton.setImageResource(R.drawable.selectorsnare_trackmenu);
+			t.setText("Snare Drum");
 		}
 		else if(name.contentEquals("Bass Drum")){
-			tempButton.setImageResource(R.drawable.bass);
+			tempButton.setImageResource(R.drawable.selectorbass_trackmenu);
+			t.setText("Bass Drum");
 		}
 		else if(name.contentEquals("Vocals")){
-			tempButton.setImageResource(R.drawable.vocals);
+			tempButton.setImageResource(R.drawable.selectorvocals_trackmenu);
+			t.setText("Vocals");
 		}
 		else{
-			tempButton.setImageResource(R.drawable.beatbox);
+			tempButton.setImageResource(R.drawable.selectorbeatbox_trackmenu);
+			t.setText("Beat Box");
 		}
 		
     	tempButton.setOnClickListener(new AddTrackListener(tracks, trackView, activity, this));
     	tempButton.setBackgroundColor(Color.TRANSPARENT);
-		buttonList.add(tempButton);
+    	LinearLayout l = new LinearLayout(context);
+    	l.setOrientation(LinearLayout.VERTICAL);
+    	l.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+    	l.addView(tempButton);
+    	l.addView(t);
+    	buttonList.add(l);
 	}
 	
 	void createScreen(){
@@ -68,12 +86,12 @@ public class Instruments {
 		layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
 		layout.removeAllViewsInLayout();
 	    curLoc = 0;
-	    for(ImageButton button : buttonList){
+	    for(LinearLayout button : buttonList){
 	    	layout.addView(button);	    	
 	    }
 	}
 
-    final OnHoverListener onHover = new OnHoverListener() {
+    /*final OnHoverListener onHover = new OnHoverListener() {
 		@Override
 		public boolean onHover(View v, MotionEvent event) {
 			layout.removeAllViews();
@@ -118,5 +136,5 @@ public class Instruments {
 			}
 			return true;
 		}	
-    };
+    };*/
 }

@@ -176,6 +176,7 @@ public class TrackList {
 	}
 
 	public void removeTrack(int position_){
+
 		//change this without using iterators
 		for(CurrentTrack ct : tracks){
 			if (ct.position == position_){

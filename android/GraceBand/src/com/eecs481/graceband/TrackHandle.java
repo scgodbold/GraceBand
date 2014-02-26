@@ -5,20 +5,11 @@ import java.util.ArrayList;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnHoverListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.LinearLayout.LayoutParams;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN) public class TrackHandle{
 	private ArrayList<LinearLayout> tracks; // Change data type to work with music thing
@@ -41,8 +32,9 @@ import android.widget.LinearLayout.LayoutParams;
 		list = (LinearLayout) activity.findViewById(R.id.tracks);
 		addTrackButtonBar = new LinearLayout(context);
 		addTrackButton = new ImageButton(context);
+		addTrackButton.setPadding(40, 40, 0, 40);
 		addTrackButton.setBackgroundColor(Color.TRANSPARENT);
-		addTrackButton.setImageResource(R.drawable.add_track);
+		addTrackButton.setImageResource(R.drawable.add_track_selector);
 		addTrackButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -68,6 +60,7 @@ import android.widget.LinearLayout.LayoutParams;
 		l.setId(ids++);
 		
 		ImageButton remove = new ImageButton(context);
+		remove.setPadding(40, 40, 0, 40);
 		remove.setBackgroundColor(Color.TRANSPARENT);
 		remove.setId(id);
 		if(val.contentEquals("Piano")){

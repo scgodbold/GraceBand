@@ -40,7 +40,9 @@ public class AllTracks {
 	public AllTracks(Context context){
 		//initialize all available tracks	
 		tracks = new ArrayList<Track>();
+		tracks.add(new Track(context, R.raw.ride_bell));
 		tracks.add(new Track(context, R.raw.kick));
+
 		tracks.add(new Track(context, R.raw.ride_bell));
 
 	}
