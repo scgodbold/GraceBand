@@ -35,7 +35,7 @@ public class BeatsEditor extends Activity {
         backButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				TrackList.clearBeats();
+				TrackList.get_instance().clearBeats();
 				TrackList.get_instance().stopAll();
 				finish();
 			}

@@ -40,6 +40,7 @@ import android.widget.LinearLayout;
 			@Override
 			public void onClick(View v) {
 				System.out.println("clicked beats menu");
+				TrackList.get_instance().stopAll();
 				createSoundMenu();
 				
 			}

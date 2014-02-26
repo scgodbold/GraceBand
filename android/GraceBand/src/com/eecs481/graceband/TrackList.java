@@ -125,9 +125,6 @@ public class TrackList extends SoundPool {
 			stopAll();
 		}
 		Beats.add(new CurrentTrack(curPos, this.load(context, resid, 1)));
-		if(resume){
-			playAll();
-		}
 		return curPos++;
 	}
 
