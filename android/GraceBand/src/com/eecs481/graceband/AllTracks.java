@@ -16,6 +16,9 @@ public class AllTracks{
 		//initialize all available tracks
 		tracks.add(new Track(R.raw.kick, "Kick drum"));
 		tracks.add(new Track(R.raw.ride_bell, "Ride bell"));
+		tracks.add(new Track(R.raw.bongo, "Bongo"));
+		tracks.add(new Track(R.raw.drums, "Drums"));
+		tracks.add(new Track(R.raw.guitar, "Guitar"));
 	}
 }
 

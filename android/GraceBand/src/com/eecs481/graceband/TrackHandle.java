@@ -130,8 +130,8 @@ import android.widget.LinearLayout.LayoutParams;
 		ArrayList<Track> temp = all_tracks.tracks;
 		instList.createButton("Snare Drum",temp.get(0).get_resid());
 		instList.createButton("Bass Drum",temp.get(1).get_resid());
-		instList.createButton("Piano",2);
-		instList.createButton("BeatBox",3);
-		instList.createButton("Vocals",4);
+		instList.createButton("Piano",temp.get(2).get_resid());
+		instList.createButton("BeatBox",temp.get(3).get_resid());
+		instList.createButton("Vocals",temp.get(4).get_resid());
 	}
 }
