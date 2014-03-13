@@ -94,26 +94,21 @@ import android.widget.LinearLayout.LayoutParams;
 		}
 	}
 	
-	public int getNumTracks()
-	{
-		return tracks.size();
-	}
-	
 	void createSoundMenu(){
 		buttonList = new ArrayList<LinearLayout>();
-        instButtons();
-        createScreen();
-        activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
-        activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
-        activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
-        activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
-	}
-	
-	void instButtons(){
 		AllTracks all_tracks = new AllTracks();
 		for(int i = 0; i < all_tracks.tracks.size(); i++) {
 			createButton(all_tracks.tracks.get(i));
 		}
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
+	    for(LinearLayout button : buttonList){
+	    	layout.addView(button);	    	
+	    }
+        activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
+        activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
+        activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
+        activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
 	}
 	
 	void createButton(Track track){
@@ -140,14 +135,5 @@ import android.widget.LinearLayout.LayoutParams;
     	l.addView(tempButton);
     	l.addView(text);
     	buttonList.add(l);
-	}
-	
-	void createScreen(){
-		System.out.println("creating screen");
-		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
-		layout.removeAllViewsInLayout();
-	    for(LinearLayout button : buttonList){
-	    	layout.addView(button);	    	
-	    }
 	}
 }
