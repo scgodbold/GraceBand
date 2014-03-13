@@ -25,7 +25,7 @@ public class AddTrackListener implements OnClickListener {
 	public void onClick(View v) {
 		TrackButton button = (TrackButton) v;
 		System.out.println("clicked button " + button.getTag().toString());
-		int i = TrackList.get_instance().addTrack(activity.getApplicationContext(), button.getId());
+		int i = TrackList.get_instance().addTrack(activity.getApplicationContext(), button.getTrack());
 		tracks.addTrack(button.getTrack(), i);
 		activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
 		activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);

@@ -78,4 +78,8 @@ public class TrackList extends SoundPool {
 		return curPos++;
 	}
 	
+	public void clearBeats() {
+		Beats.clear();
+	}
+	
 }
