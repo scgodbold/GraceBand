@@ -7,11 +7,16 @@ import android.media.SoundPool;
 public class Track {
 	private int resid;
 	private String name;
+	private int instrumentDrawable, beatMenuDrawable;
 	public int get_resid(){return resid;}
 	public String get_name(){return name;}
-	public Track(int resid_, String name_){
+	public int getInstrumentDrawable(){return instrumentDrawable;}
+	public int getBeatMenuDrawable(){return beatMenuDrawable;}
+	public Track(int resid_, String name_, int selectorsnareTrackmenu, int selectorsnare){
 		resid = resid_;
 		name = name_;
+		instrumentDrawable = selectorsnareTrackmenu;
+		beatMenuDrawable = selectorsnare;
 	}
 }
 

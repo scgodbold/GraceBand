@@ -37,41 +37,23 @@ public class Instruments {
 	}
 	
 	// ADD SOUND FILE STUFF HERE?
-	void createButton(String name, int id){
-		System.out.println("creating button " + name);
-		ImageButton tempButton = new ImageButton(context);
+	void createButton(Track track){
+		System.out.println("creating button " + track.get_name());
+		TrackButton tempButton = new TrackButton(context);
 		//tempButton.setOnHoverListener(onHover);
-		tempButton.setId(id);
+		tempButton.setTrack(track);
+		tempButton.setId(track.get_resid());
 		tempButton.setPadding(46, 60, 0, 46);
-		tempButton.setTag(name);
+		tempButton.setTag(track.get_name());
 		TextView t = new TextView(context);
 		t.setTextColor(Color.BLACK);
 		t.setGravity(Gravity.CENTER_HORIZONTAL);
 		t.setPadding(46, 0, 0, 0);
-		
-		// This makes the Track Selection Menu!!!!!
-		if(name.contentEquals("Piano")){
-			tempButton.setImageResource(R.drawable.selectorpiano_trackmenu);
-			t.setText(name);
-		}
-		else if(name.contentEquals("Tambourine")){
-			tempButton.setImageResource(R.drawable.selectorsnare_trackmenu);
-			t.setText(name);
-		}
-		else if(name.contentEquals("Bongo")){
-			tempButton.setImageResource(R.drawable.selectorbass_trackmenu);
-			t.setText(name);
-		}
-		else if(name.contentEquals("Vocals")){
-			tempButton.setImageResource(R.drawable.selectorvocals_trackmenu);
-			t.setText(name);
-		}
-		else{
-			tempButton.setImageResource(R.drawable.selectorbeatbox_trackmenu);
-			t.setText(name);
-		}
+		t.setText(track.get_name());
+		tempButton.setImageResource(track.getBeatMenuDrawable());
 		
     	tempButton.setOnClickListener(new AddTrackListener(tracks, trackView, activity, this));
+    	
     	tempButton.setBackgroundColor(Color.TRANSPARENT);
     	LinearLayout l = new LinearLayout(context);
     	l.setOrientation(LinearLayout.VERTICAL);

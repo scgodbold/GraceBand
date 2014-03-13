@@ -14,7 +14,6 @@ public class BeatsEditor extends Activity {
 
 	TrackHandle t;	
 	View trackView;
-	Instruments instList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -53,32 +53,19 @@ import android.widget.LinearLayout;
 		list.addView(addTrackButtonBar);
 	}
 	
-	public void addTrack(String val, int id)
+	public void addTrack(Track track, int id)
 	{
 		if(tracks.size() >= maxTracks)return;
 		list.removeView(addTrackButtonBar);
 		LinearLayout l = new LinearLayout(context);
 		l.setId(ids++);
 		
-		ImageButton remove = new ImageButton(context);
+		TrackButton remove = new TrackButton(context);
+		remove.setTrack(track);
 		remove.setPadding(40, 40, 0, 40);
 		remove.setBackgroundColor(Color.TRANSPARENT);
 		remove.setId(id);
-		if(val.contentEquals("Piano")){
-			remove.setImageResource(R.drawable.selectorpiano);
-		}
-		else if(val.contentEquals("Tambourine")){
-			remove.setImageResource(R.drawable.selectorsnare);
-		}
-		else if(val.contentEquals("Bongo")){
-			remove.setImageResource(R.drawable.selectorbass);
-		}
-		else if(val.contentEquals("Vocals")){
-			remove.setImageResource(R.drawable.selectorvocals);
-		}
-		else{
-			remove.setImageResource(R.drawable.selectorbeatbox);
-		}
+		remove.setImageResource(track.getBeatMenuDrawable());
 		remove.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -121,11 +108,8 @@ import android.widget.LinearLayout;
 	
 	void instButtons(){
 		AllTracks all_tracks = new AllTracks();
-		ArrayList<Track> temp = all_tracks.tracks;
-		instList.createButton("Tambourine",temp.get(0).get_resid()); //S
-		instList.createButton("Bongo",temp.get(2).get_resid()); //B
-		instList.createButton("Piano",temp.get(1).get_resid()); //P
-		instList.createButton("Guitar",temp.get(4).get_resid()); //BB
-		instList.createButton("Vocals",temp.get(3).get_resid()); //V
+		for(int i = 0; i < all_tracks.tracks.size(); i++) {
+			instList.createButton(all_tracks.tracks.get(i));
+		}
 	}
 }
