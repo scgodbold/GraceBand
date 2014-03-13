@@ -11,14 +11,12 @@ public class AddTrackListener implements OnClickListener {
 	TrackHandle tracks;
 	LinearLayout trackView;
 	Activity activity;
-	Instruments instruments;
 	
-	AddTrackListener(TrackHandle _t, View _view, Activity _activity, Instruments _instruments)
+	AddTrackListener(TrackHandle _t, View _view, Activity _activity)
 	{
 		tracks = _t;
 		trackView = (LinearLayout) _view;
 		activity = _activity;
-		instruments = _instruments;
 	}
 	
 	@Override

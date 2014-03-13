@@ -7,9 +7,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.LinearLayout.LayoutParams;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN) public class TrackHandle{
 	private ArrayList<LinearLayout> tracks; // Change data type to work with music thing
@@ -19,7 +22,7 @@ import android.widget.LinearLayout;
 	static Integer ids = 0;
 	private LinearLayout addTrackButtonBar;
 	private ImageButton addTrackButton;
-	Instruments instList;
+	private ArrayList<LinearLayout> buttonList;
 	
 	final int maxTracks = 5;
 	
@@ -97,9 +100,9 @@ import android.widget.LinearLayout;
 	}
 	
 	void createSoundMenu(){
-		instList = new Instruments(activity, this, activity.findViewById(R.id.tracks));
+		buttonList = new ArrayList<LinearLayout>();
         instButtons();
-        instList.createScreen();
+        createScreen();
         activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
         activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
         activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
@@ -109,7 +112,42 @@ import android.widget.LinearLayout;
 	void instButtons(){
 		AllTracks all_tracks = new AllTracks();
 		for(int i = 0; i < all_tracks.tracks.size(); i++) {
-			instList.createButton(all_tracks.tracks.get(i));
+			createButton(all_tracks.tracks.get(i));
 		}
+	}
+	
+	void createButton(Track track){
+		System.out.println("creating button " + track.get_name());
+		TrackButton tempButton = new TrackButton(context);
+		//tempButton.setOnHoverListener(onHover);
+		tempButton.setTrack(track);
+		tempButton.setId(track.get_resid());
+		tempButton.setPadding(46, 60, 0, 46);
+		tempButton.setTag(track.get_name());
+		TextView text = new TextView(context);
+		text.setTextColor(Color.BLACK);
+		text.setGravity(Gravity.CENTER_HORIZONTAL);
+		text.setPadding(46, 0, 0, 0);
+		text.setText(track.get_name());
+		tempButton.setImageResource(track.getBeatMenuDrawable());
+		
+    	tempButton.setOnClickListener(new AddTrackListener(this, activity.findViewById(R.id.tracks), activity));
+    	
+    	tempButton.setBackgroundColor(Color.TRANSPARENT);
+    	LinearLayout l = new LinearLayout(context);
+    	l.setOrientation(LinearLayout.VERTICAL);
+    	l.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+    	l.addView(tempButton);
+    	l.addView(text);
+    	buttonList.add(l);
+	}
+	
+	void createScreen(){
+		System.out.println("creating screen");
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
+	    for(LinearLayout button : buttonList){
+	    	layout.addView(button);	    	
+	    }
 	}
 }
