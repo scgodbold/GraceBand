@@ -26,11 +26,11 @@
         	 android:src="@drawable/selector"/>
 	  
 		<ImageButton
-    	    android:id="@+id/pause"
+    	    android:id="@+id/stop"
 	        android:layout_width="290dp"
     	    android:layout_height="50dp"
     	    android:layout_gravity="left"
-    	    android:src="@drawable/selectorpause"/>
+    	    android:src="@drawable/selectorstop"/>
 
 
 		<ImageButton
