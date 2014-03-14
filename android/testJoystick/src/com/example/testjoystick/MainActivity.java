@@ -2,9 +2,9 @@ package com.example.testjoystick;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.InputDevice;
 import android.view.Menu;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -22,6 +22,15 @@ public class MainActivity extends Activity {
         
         reset = true;
         previousEvent = 0;
+        findViewById(R.id.button1).setFocusableInTouchMode(true);
+        findViewById(R.id.button1).setFocusable(true);
+        findViewById(R.id.button2).setFocusableInTouchMode(false);
+        findViewById(R.id.button2).setFocusable(false);
+        findViewById(R.id.button3).setFocusableInTouchMode(false);
+        findViewById(R.id.button3).setFocusable(false);
+        findViewById(R.id.button4).setFocusableInTouchMode(false);
+        findViewById(R.id.button4).setFocusable(false);
+        findViewById(R.id.button1).requestFocus();
     }
 
     public boolean onGenericMotionEvent(MotionEvent event)
@@ -46,26 +55,54 @@ public class MainActivity extends Activity {
     		reset = true;
     	}
     	else if(reset && diff > TIME_TOLERANCE)
-    	{
-    		if(x > y)
+    	{    		
+    		View v,w;
+    		w = getCurrentFocus();
+    		if(x >= y)
     		{
     			reset = false;
     			if(xPos)
+    			{
     				text.setText("Right");
+    				v = findViewById(R.id.button2);
+    				v.requestFocus();
+    				
+    			}
     			else
+    			{
     				text.setText("Left");
+    				v = findViewById(R.id.button1);
+    				v.requestFocus();
+    				
+    			}
     		}
     		else
     		{
     			reset = false;
     			if(yPos)
+    			{
     				text.setText("Down");
+    				v = findViewById(R.id.button3);
+    				v.requestFocus();
+    				
+    			}
     			else
+    			{
     				text.setText("Up");
+    				v = findViewById(R.id.button1);
+    				v.requestFocus();
+    				
+    			}
+    		}
+    		if(v.getId() != w.getId())
+    		{
+    			v.setFocusable(true);
+    			v.setFocusableInTouchMode(true);
+    			v.requestFocus();
+    			w.setFocusable(false);
+    			w.setFocusableInTouchMode(false);
     		}
     	}
-    	else
-    	{}
 
 		return false;
     }
