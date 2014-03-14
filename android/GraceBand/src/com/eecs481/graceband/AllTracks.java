@@ -14,48 +14,10 @@ public class AllTracks{
 	public AllTracks(){
 		tracks = new ArrayList<Track>();
 		//initialize all available tracks
-		tracks.add(new Track(R.raw.tambourine, "Tambourine"));
-		tracks.add(new Track(R.raw.piano, "Piano"));
-		tracks.add(new Track(R.raw.bongo, "Bongos"));
-		tracks.add(new Track(R.raw.vocal, "Vocals"));
-		tracks.add(new Track(R.raw.guitar, "Guitar"));
+		tracks.add(new Track(R.raw.tambourine, "Tambourine", R.drawable.selectorsnare_trackmenu, R.drawable.selectorsnare));
+		tracks.add(new Track(R.raw.piano, "Piano", R.drawable.selectorpiano_trackmenu, R.drawable.selectorpiano));
+		tracks.add(new Track(R.raw.bongo, "Bongos", R.drawable.selectorbass_trackmenu, R.drawable.selectorbass));
+		tracks.add(new Track(R.raw.vocal, "Vocals", R.drawable.selectorvocals_trackmenu, R.drawable.selectorvocals));
+		tracks.add(new Track(R.raw.guitar, "Guitar", R.drawable.selectorbeatbox_trackmenu, R.drawable.selectorbeatbox));
 	}
 }
-
-/*
-public class AllTracks {
-	public ArrayList<Track> tracks;
-	
-	private static AllTracks singleton = new AllTracks();
-	
-	public static AllTracks get_instance(){
-		return singleton;
-	}
-	
-	private AllTracks(){
-		//initialize all available tracks
-		
-	}
-	
-	public AllTracks(Context context){
-		//initialize all available tracks	
-		tracks = new ArrayList<Track>();
-		tracks.add(new Track(context, R.raw.kick));
-		tracks.add(new Track(context, R.raw.ride_bell));
-
-	}
-	
-	public class TrackNotFoundException extends Exception{
-		TrackNotFoundException(){}
-	}
-
-	Track getTrackById(int soundId_) throws TrackNotFoundException {
-		for(Track t : tracks){
-			if(t.getSoundId() == soundId_){
-				return t;
-			}
-		}
-		throw new TrackNotFoundException();
-	} 
-}
-*/

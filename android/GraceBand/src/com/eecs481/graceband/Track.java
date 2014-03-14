@@ -7,71 +7,16 @@ import android.media.SoundPool;
 public class Track {
 	private int resid;
 	private String name;
+	private int instrumentDrawable, beatMenuDrawable;
 	public int get_resid(){return resid;}
 	public String get_name(){return name;}
-	public Track(int resid_, String name_){
+	public int getInstrumentDrawable(){return instrumentDrawable;}
+	public int getBeatMenuDrawable(){return beatMenuDrawable;}
+	public Track(int resid_, String name_, int selectorsnareTrackmenu, int selectorsnare){
 		resid = resid_;
 		name = name_;
+		instrumentDrawable = selectorsnareTrackmenu;
+		beatMenuDrawable = selectorsnare;
 	}
 }
 
-/*
-public class Track extends SoundPool {
-	private int soundId;
-	private int streamId;
-	private float volume;
-	
-	//track attributes - add other things like image here
-	private String name;
-	
-	public Track(){
-		super(10, AudioManager.STREAM_MUSIC, 0);
-	}
-
-
-
-	public Track(String path) {
-		super(10, AudioManager.STREAM_MUSIC, 0);
-		soundId = this.load(path, 1);
-	}
-	
-	public Track(Context context, int resId) {
-		super(10, AudioManager.STREAM_MUSIC, 0);
-		getVolume(context);
-		soundId = this.load(context, resId, 1);
-	}
-
-	private void getVolume(Context context) {
-	    AudioManager audioManager = (AudioManager) context.getSystemService(context.AUDIO_SERVICE);
-	    float actualVolume = (float) audioManager
-	        .getStreamVolume(AudioManager.STREAM_MUSIC);
-	    float maxVolume = (float) audioManager
-	        .getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-	    volume = actualVolume / maxVolume;
-	}
-
-	public void play() {
-		streamId = this.play(soundId, 0.0f, 0.0f, 0, -1, 1f);
-		streamId = this.play(soundId, 0.0f, 0.0f, 0, -1, 1f);
-		this.stop(streamId);
-		streamId = this.play(soundId, volume, volume, 0, -1, 1f);
-	}
-
-	public void stop() {
-		this.stop(streamId);
-	}
-
-	public void pause(){
-		this.pause(streamId);
-	}
-
-	public int getSoundId(){
-		return soundId;
-	}
-
-	public String getName(){
-		return name;
-	}
-
-}
-*/

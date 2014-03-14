@@ -7,9 +7,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.LinearLayout.LayoutParams;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN) public class TrackHandle{
 	private ArrayList<LinearLayout> tracks; // Change data type to work with music thing
@@ -19,7 +22,7 @@ import android.widget.LinearLayout;
 	static Integer ids = 0;
 	private LinearLayout addTrackButtonBar;
 	private ImageButton addTrackButton;
-	Instruments instList;
+	private ArrayList<LinearLayout> buttonList;
 	
 	final int maxTracks = 5;
 	
@@ -53,32 +56,19 @@ import android.widget.LinearLayout;
 		list.addView(addTrackButtonBar);
 	}
 	
-	public void addTrack(String val, int id)
+	public void addTrack(Track track, int id)
 	{
 		if(tracks.size() >= maxTracks)return;
 		list.removeView(addTrackButtonBar);
 		LinearLayout l = new LinearLayout(context);
 		l.setId(ids++);
 		
-		ImageButton remove = new ImageButton(context);
+		TrackButton remove = new TrackButton(context);
+		remove.setTrack(track);
 		remove.setPadding(40, 40, 0, 40);
 		remove.setBackgroundColor(Color.TRANSPARENT);
 		remove.setId(id);
-		if(val.contentEquals("Piano")){
-			remove.setImageResource(R.drawable.selectorpiano);
-		}
-		else if(val.contentEquals("Tambourine")){
-			remove.setImageResource(R.drawable.selectorsnare);
-		}
-		else if(val.contentEquals("Bongo")){
-			remove.setImageResource(R.drawable.selectorbass);
-		}
-		else if(val.contentEquals("Vocals")){
-			remove.setImageResource(R.drawable.selectorvocals);
-		}
-		else{
-			remove.setImageResource(R.drawable.selectorbeatbox);
-		}
+		remove.setImageResource(track.getBeatMenuDrawable());
 		remove.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -104,28 +94,46 @@ import android.widget.LinearLayout;
 		}
 	}
 	
-	public int getNumTracks()
-	{
-		return tracks.size();
-	}
-	
 	void createSoundMenu(){
-		instList = new Instruments(activity, this, activity.findViewById(R.id.tracks));
-        instButtons();
-        instList.createScreen();
+		buttonList = new ArrayList<LinearLayout>();
+		AllTracks all_tracks = new AllTracks();
+		for(int i = 0; i < all_tracks.tracks.size(); i++) {
+			createButton(all_tracks.tracks.get(i));
+		}
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
+	    for(LinearLayout button : buttonList){
+	    	layout.addView(button);	    	
+	    }
         activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
         activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
         activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
         activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
 	}
 	
-	void instButtons(){
-		AllTracks all_tracks = new AllTracks();
-		ArrayList<Track> temp = all_tracks.tracks;
-		instList.createButton("Tambourine",temp.get(0).get_resid()); //S
-		instList.createButton("Bongo",temp.get(2).get_resid()); //B
-		instList.createButton("Piano",temp.get(1).get_resid()); //P
-		instList.createButton("Guitar",temp.get(4).get_resid()); //BB
-		instList.createButton("Vocals",temp.get(3).get_resid()); //V
+	void createButton(Track track){
+		System.out.println("creating button " + track.get_name());
+		TrackButton tempButton = new TrackButton(context);
+		//tempButton.setOnHoverListener(onHover);
+		tempButton.setTrack(track);
+		tempButton.setId(track.get_resid());
+		tempButton.setPadding(46, 60, 0, 46);
+		tempButton.setTag(track.get_name());
+		TextView text = new TextView(context);
+		text.setTextColor(Color.BLACK);
+		text.setGravity(Gravity.CENTER_HORIZONTAL);
+		text.setPadding(46, 0, 0, 0);
+		text.setText(track.get_name());
+		tempButton.setImageResource(track.getBeatMenuDrawable());
+		
+    	tempButton.setOnClickListener(new AddTrackListener(this, activity.findViewById(R.id.tracks), activity));
+    	
+    	tempButton.setBackgroundColor(Color.TRANSPARENT);
+    	LinearLayout l = new LinearLayout(context);
+    	l.setOrientation(LinearLayout.VERTICAL);
+    	l.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+    	l.addView(tempButton);
+    	l.addView(text);
+    	buttonList.add(l);
 	}
 }
