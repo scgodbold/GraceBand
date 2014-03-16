@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class BeatsEditor extends Activity {
 
@@ -61,13 +62,14 @@ public class BeatsEditor extends Activity {
         saveButton.setOnClickListener(new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
+        		String saved_filename = "";
         		try {
-					TrackList.get_instance().save(getBaseContext());
+					saved_filename = TrackList.get_instance().save(getBaseContext());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-        		//Toast message here
+        		Toast toast = Toast.makeText(getApplicationContext(), "Song saved as \""+saved_filename+"\"", Toast.LENGTH_LONG);
         	}
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
