@@ -70,6 +70,7 @@ public class BeatsEditor extends Activity {
 					e.printStackTrace();
 				}
         		Toast toast = Toast.makeText(getApplicationContext(), "Song saved as \""+saved_filename+"\"", Toast.LENGTH_LONG);
+        		toast.show();
         	}
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
