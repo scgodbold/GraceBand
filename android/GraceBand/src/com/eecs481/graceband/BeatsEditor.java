@@ -6,6 +6,7 @@ import java.io.IOException;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -43,7 +44,8 @@ public class BeatsEditor extends Activity {
 			public void onClick(View v) {
 				TrackList.get_instance().clearBeats();
 				TrackList.get_instance().stopAll();
-				finish();
+				//finish();
+				back();
 			}
 		});
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +84,10 @@ public class BeatsEditor extends Activity {
 				findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
 			}
 		});
+	}
+	
+	public void back(){
+		NavUtils.navigateUpFromSameTask(this);
 	}
 	
 	@Override
