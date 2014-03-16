@@ -4,16 +4,25 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class BeatsEditor extends Activity {
 
 	TrackHandle t;	
 	View trackView;
+	
+	private static double ZERO_TOLERANCE = .9;
+	private static long TIME_TOLERANCE = 20;
+	private boolean reset;
+	private long previousEvent;
+	private SongEditorMapper songMapper;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +76,11 @@ public class BeatsEditor extends Activity {
 				findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
 			}
 		});
+        
+        // Start the Joystick Mappers
+        songMapper = new SongEditorMapper((LinearLayout)findViewById(R.id.tracks), (ImageButton)findViewById(R.id.play), (ImageButton)findViewById(R.id.stop), (ImageButton)findViewById(R.id.saveButton), (ImageButton)findViewById(R.id.back));
+        reset = true;
+        previousEvent = 0;
 	}
 	
 	@Override
@@ -76,4 +90,62 @@ public class BeatsEditor extends Activity {
 		return true;
 	}
 
+	public boolean onGenericMotionEvent(MotionEvent event)
+    {
+    	float x = event.getX();
+    	float y = event.getY();
+    	
+    	long diff = event.getEventTime() - previousEvent;
+    	previousEvent = event.getEventTime();
+    	
+    	boolean xPos = x > 0;
+    	boolean yPos = y > 0;
+    	
+    	x = (x > 0) ? x : -x;
+    	y = (y > 0) ? y : -y;
+    	
+    	if(x < ZERO_TOLERANCE && y < ZERO_TOLERANCE)
+    	{
+    		reset = true;
+    	}
+    	else if(reset && diff > TIME_TOLERANCE)
+    	{    		
+    		View v,w;
+    		w = getCurrentFocus();
+    		if(x >= y)
+    		{
+    			reset = false;
+    			if(xPos)
+    			{
+    				v = songMapper.getNextFocus(w, MovementDirection.RIGHT);
+    			}
+    			else
+    			{
+    				v = songMapper.getNextFocus(w, MovementDirection.LEFT);
+    			}
+    		}
+    		else
+    		{
+    			reset = false;
+    			if(yPos)
+    			{
+    				v = songMapper.getNextFocus(w, MovementDirection.DOWN);
+    			}
+    			else
+    			{
+    				v = songMapper.getNextFocus(w, MovementDirection.UP);
+    			}
+    		}
+    		if(v.getId() != w.getId())
+    		{
+    			v.setFocusable(true);
+    			v.setFocusableInTouchMode(true);
+    			v.requestFocus();
+    			w.setFocusable(false);
+    			w.setFocusableInTouchMode(false);
+    		}
+    	}
+
+		return false;
+    }
 }

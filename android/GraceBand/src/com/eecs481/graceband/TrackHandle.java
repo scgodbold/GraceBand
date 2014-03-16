@@ -9,12 +9,13 @@ import android.graphics.Color;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.WebView.FindListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN) public class TrackHandle{
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1) public class TrackHandle{
 	private ArrayList<LinearLayout> tracks; // Change data type to work with music thing
 	private Context context;
 	private Activity activity;
@@ -33,11 +34,12 @@ import android.widget.LinearLayout.LayoutParams;
 		activity = _activity;
 
 		list = (LinearLayout) activity.findViewById(R.id.tracks);
-		addTrackButtonBar = new LinearLayout(context);
-		addTrackButton = new ImageButton(context);
-		addTrackButton.setPadding(40, 40, 0, 40);
-		addTrackButton.setBackgroundColor(Color.TRANSPARENT);
-		addTrackButton.setImageResource(R.drawable.add_track_selector);
+		addTrackButtonBar = (LinearLayout) activity.findViewById(R.id.addTrackButtonBar);
+		addTrackButton = (ImageButton) activity.findViewById(R.id.addTrackButton);
+		addTrackButtonBar.setVisibility(View.VISIBLE);
+		addTrackButton.setFocusable(true);
+		addTrackButton.setFocusableInTouchMode(true);
+		addTrackButton.requestFocus();
 		addTrackButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -48,12 +50,6 @@ import android.widget.LinearLayout.LayoutParams;
 				
 			}
 		});
-		
-		
-		addTrackButtonBar.addView(addTrackButton);
-		//l.addView(icon);
-		//l.addView(trackImg);
-		list.addView(addTrackButtonBar);
 	}
 	
 	public void addTrack(Track track, int id)

@@ -63,7 +63,7 @@ public class SongEditorMapper {
 	
 	private View getNextLeft(View current)
 	{
-		if(current.getId() == play.getId() && current.getId() == stop.getId())
+		if(current.getId() == play.getId() || current.getId() == stop.getId())
 			return play;
 		else if(current.getId() == save.getId())
 			return stop;
@@ -106,7 +106,7 @@ public class SongEditorMapper {
 					break;
 				}
 			}
-			if(match == trackList.getChildCount()-1)
+			if(match == trackList.getChildCount()) // Change this it shouldnt point to current
 				return current;
 			else if(match > 0)
 			{

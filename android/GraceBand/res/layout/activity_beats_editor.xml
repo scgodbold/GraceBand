@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:background="#D4D4D4"
     android:orientation="vertical"
-    tools:context=".BeatsEditor" >
-
+    tools:context=".BeatsEditor" >	
+  
    <LinearLayout
         android:id="@+id/menuBar"
         android:layout_width="fill_parent"
@@ -17,19 +17,37 @@
 	         android:id="@+id/back"
 	         android:layout_width="93dp"
     	     android:layout_height="50dp" 
+			 android:focusable="false"
+		     android:focusableInTouchMode="false"
+		     android:nextFocusLeft="@+id/back"
+		     android:nextFocusRight="@+id/back"
+			 android:nextFocusUp="@+id/back"
+			 android:nextFocusDown="@+id/back"	
         	 android:src="@drawable/selectorback"/>
        
 	    <ImageButton
 	         android:id="@+id/play"
 	         android:layout_width="290dp"
-    	     android:layout_height="50dp" 
+    	     android:layout_height="50dp"
+			 android:focusable="false"
+		     android:focusableInTouchMode="false"
+		     android:nextFocusLeft="@+id/play"
+		     android:nextFocusRight="@+id/play"
+			 android:nextFocusUp="@+id/play"
+			 android:nextFocusDown="@+id/play" 
         	 android:src="@drawable/selector"/>
 	  
 		<ImageButton
     	    android:id="@+id/stop"
 	        android:layout_width="290dp"
     	    android:layout_height="50dp"
-    	    android:layout_gravity="left"
+    	    android:layout_gravity="left" 
+			 android:focusable="false"
+		     android:focusableInTouchMode="false"
+		     android:nextFocusLeft="@+id/stop"
+		     android:nextFocusRight="@+id/stop"
+			 android:nextFocusUp="@+id/stop"
+			 android:nextFocusDown="@+id/stop"
     	    android:src="@drawable/selectorstop"/>
 
 
@@ -37,7 +55,13 @@
     	    android:id="@+id/saveButton"
 	        android:layout_width="290dp"
     	    android:layout_height="50dp"
-    	    android:layout_gravity="left"
+    	    android:layout_gravity="left" 
+			 android:focusable="false"
+		     android:focusableInTouchMode="false"
+		     android:nextFocusLeft="@+id/saveButton"
+		     android:nextFocusRight="@+id/saveButton"
+			 android:nextFocusUp="@+id/saveButton"
+			 android:nextFocusDown="@+id/saveButton"
     	    android:src="@drawable/selectorsave"/>
 				
 		
@@ -60,18 +84,28 @@
 	    android:layout_margin="15dp"
 	    android:background="@drawable/layout_border">
 		
-	    <!-- <LinearLayout
+	    
+	    <LinearLayout
 	        android:id="@+id/addTrackButtonBar"
 	    	android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content">
+	    	android:layout_height="wrap_content"
+	    	android:visibility="gone">
 	        
 	        <ImageButton
-				android:id="@+id/beatMenu"
-			    android:layout_width="150dp"
-			    android:layout_height="150dp"
-			    android:background="@drawable/add_track"/>
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+				android:id="@+id/addTrackButton"
+			    android:paddingLeft="40px"
+			    android:paddingTop="40px"
+			    android:paddingBottom="40px"
+			    android:paddingRight="0px"
+			    android:nextFocusLeft="@+id/addTrackButton"
+		 	    android:nextFocusRight="@+id/addTrackButton"
+				android:nextFocusUp="@+id/addTrackButton"
+				android:nextFocusDown="@+id/addTrackButton"
+			    android:background="@drawable/add_track_selector"/>
 	        
-	    </LinearLayout> -->
+	    </LinearLayout>
 
 	</LinearLayout>
     	
