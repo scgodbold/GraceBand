@@ -18,7 +18,7 @@ public class BeatsEditor extends Activity {
 	TrackHandle t;	
 	View trackView;
 	
-	private static double ZERO_TOLERANCE = .9;
+	private static double ZERO_TOLERANCE = .97;
 	private static long TIME_TOLERANCE = 20;
 	private boolean reset;
 	private long previousEvent;
@@ -72,6 +72,7 @@ public class BeatsEditor extends Activity {
 			public void onClick(View v) {
 				findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
 				findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);
+				findViewById(R.id.back).setVisibility(ImageButton.VISIBLE);
 				findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
 				findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
 			}

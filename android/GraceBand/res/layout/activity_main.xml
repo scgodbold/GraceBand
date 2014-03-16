@@ -33,12 +33,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:nextFocusLeft="@+id/start"
+            android:nextFocusRight="@+id/start"
+            android:nextFocusDown="@+id/start"
+            android:nextFocusUp="@+id/start"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:background="@drawable/start_selector" />
 
         <ImageButton
             android:id="@+id/quit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:nextFocusLeft="@+id/quit"
+            android:nextFocusRight="@+id/quit"
+            android:nextFocusDown="@+id/quit"
+            android:nextFocusUp="@+id/quit"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:background="@drawable/quit_selector" />
 
     </LinearLayout>

@@ -81,6 +81,12 @@ import android.widget.LinearLayout.LayoutParams;
 			}
 		});
 		remove.setBaselineAlignBottom(true);
+		remove.setFocusable(false);
+		remove.setFocusableInTouchMode(false);
+		remove.setNextFocusDownId(remove.getId());
+		remove.setNextFocusLeftId(remove.getId());
+		remove.setNextFocusRightId(remove.getId());
+		remove.setNextFocusUpId(remove.getId());
 		l.setBaselineAligned(false);
 		l.addView(remove);
 		tracks.add(l);
@@ -103,6 +109,7 @@ import android.widget.LinearLayout.LayoutParams;
 	    }
         activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
         activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
+        activity.findViewById(R.id.back).setVisibility(ImageButton.GONE);
         activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
         activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
 	}

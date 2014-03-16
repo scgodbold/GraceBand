@@ -19,6 +19,7 @@ public class SongEditorMapper {
 	
 	public View getNextFocus(View current, MovementDirection direction)
 	{
+		System.out.println(trackList.getChildCount());
 		View next;
 		switch (direction)
 		{
@@ -57,8 +58,7 @@ public class SongEditorMapper {
 		if(current.getId() == play.getId() || current.getId() == stop.getId() || current.getId() == save.getId())
 			return ((LinearLayout)trackList.getChildAt(trackList.getChildCount()-1)).getChildAt(0);
 		// Uncomment back and delete this line V when you change the back button to behave appropriately
-		return ((LinearLayout)trackList.getChildAt(trackList.getChildCount()-1)).getChildAt(0);
-		//return back;
+		return back;
 	}
 	
 	private View getNextLeft(View current)
@@ -106,9 +106,10 @@ public class SongEditorMapper {
 					break;
 				}
 			}
-			if(match == trackList.getChildCount()) // Change this it shouldnt point to current
+			System.out.println(match);
+			if(match == trackList.getChildCount()-1) // Change this it shouldnt point to current
 				return current;
-			else if(match > 0)
+			else if(match >= 0)
 			{
 				match++;
 				return ((LinearLayout)trackList.getChildAt(match)).getChildAt(0);

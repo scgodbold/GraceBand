@@ -9,6 +9,12 @@ public class TrackButton extends ImageButton {
 	
 	public TrackButton(Context context) {
 		super(context);
+		setNextFocusDownId(this.getId());
+		setNextFocusLeftId(this.getId());
+		setNextFocusRightId(this.getId());
+		setNextFocusUpId(this.getId());
+		setFocusable(false);
+		setFocusableInTouchMode(false);
 		// TODO Auto-generated constructor stub
 	}
 	

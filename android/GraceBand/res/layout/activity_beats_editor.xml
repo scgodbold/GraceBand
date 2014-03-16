@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:background="#272727">
        
-  		<ImageButton
-	         android:id="@+id/back"
+  		<ImageView
+	         android:id="@+id/logo"
 	         android:layout_width="93dp"
     	     android:layout_height="50dp" 
 			 android:focusable="false"
@@ -89,6 +89,9 @@
 	        android:id="@+id/addTrackButtonBar"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
+	    	android:paddingLeft="40px"
+	    	android:paddingTop="40px"
+		    android:paddingBottom="40px"
 	    	android:visibility="gone">
 	        
 	        <ImageButton
@@ -106,9 +109,25 @@
 			    android:background="@drawable/add_track_selector"/>
 	        
 	    </LinearLayout>
+	    
+	    
 
 	</LinearLayout>
     	
+	<ImageButton 
+	        android:id="@+id/back"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/selectorback"
+	        android:nextFocusLeft="@+id/back"
+		 	android:nextFocusRight="@+id/back"
+			android:nextFocusUp="@+id/back"
+			android:nextFocusDown="@+id/back"
+			android:focusable="false"
+			android:layout_gravity="center_horizontal"
+			android:paddingBottom="5px"
+			android:focusableInTouchMode="false"/>
+	
 	<LinearLayout android:id="@+id/soundMenu"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"

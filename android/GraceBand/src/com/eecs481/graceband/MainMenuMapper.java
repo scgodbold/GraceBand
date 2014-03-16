@@ -10,7 +10,7 @@ public class MainMenuMapper {
 	private ImageButton start, quit;
 	
 	
-	public void MainMenumapper(ImageButton st, ImageButton qu)
+	public MainMenuMapper(ImageButton st, ImageButton qu)
 	{
 		start =st;
 		quit = qu;
@@ -35,14 +35,17 @@ public class MainMenuMapper {
 	public View getNextFocus (View Current , MovementDirection dir)
 	{
 		View next;
-		switch (direction)
+		switch (dir)
 		{
 		case UP:
 			next= Goto_Up(Current);
+			break;
 		case DOWN:
 			next =Goto_Down(Current);
+			break;
 		default:
 			next = Current;
+			break;
 		}
 		return next; 
 	}

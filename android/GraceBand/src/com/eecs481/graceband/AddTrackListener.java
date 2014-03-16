@@ -27,6 +27,7 @@ public class AddTrackListener implements OnClickListener {
 		tracks.addTrack(button.getTrack(), i);
 		activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
 		activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);
+		activity.findViewById(R.id.back).setVisibility(ImageButton.VISIBLE);
 		activity.findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
 		activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
 	}
