@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
         getActionBar().hide();
         
         final ImageButton startButton = (ImageButton) findViewById(R.id.start);
-        final ImageButton loadButton = (ImageButton) findViewById(R.id.quit);
+        final ImageButton loadButton = (ImageButton) findViewById(R.id.load);
         final ImageButton quitButton = (ImageButton) findViewById(R.id.quit);
         
         startButton.setOnClickListener(new View.OnClickListener() {
