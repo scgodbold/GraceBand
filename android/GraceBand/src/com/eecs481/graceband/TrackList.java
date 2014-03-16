@@ -17,7 +17,7 @@ import com.eecs481.graceband.Track;
 public class TrackList extends SoundPool {
 	private int curPos;
 	private boolean isPlaying;
-	private ArrayList<Beat> Beats;
+	public ArrayList<Beat> Beats;
 	
 	public class Beat{
 		Beat(int position_, int soundID_, Track track_){

@@ -37,7 +37,6 @@ public class MainActivity extends Activity {
         
         
         loadButton.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				try {
@@ -47,6 +46,8 @@ public class MainActivity extends Activity {
 				} catch (TrackNotFoundException e) {
 					e.printStackTrace();
 				}
+				Intent intent = new Intent(getBaseContext(), BeatsEditor.class);
+				startActivity(intent);
 			}
 		});
 		
@@ -55,14 +56,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				//finish();//
-					try {
-						TrackList.get_instance().load(getBaseContext());
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (TrackNotFoundException e) {
-						e.printStackTrace();
-					}
+				finish();
 			}
 		});
     }
