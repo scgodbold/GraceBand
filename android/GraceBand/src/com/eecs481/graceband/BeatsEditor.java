@@ -75,6 +75,9 @@ public class BeatsEditor extends Activity {
 				findViewById(R.id.back).setVisibility(ImageButton.VISIBLE);
 				findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
 				findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
+				findViewById(R.id.play).setFocusable(true);
+				findViewById(R.id.play).setFocusableInTouchMode(true);
+				findViewById(R.id.play).requestFocus();
 			}
 		});
         
@@ -147,6 +150,6 @@ public class BeatsEditor extends Activity {
     		}
     	}
 
-		return false;
+		return true;
     }
 }

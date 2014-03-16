@@ -47,6 +47,8 @@ import android.widget.LinearLayout.LayoutParams;
 				System.out.println("clicked beats menu");
 				TrackList.get_instance().stopAll();
 				createSoundMenu();
+				addTrackButton.setFocusable(false);
+				addTrackButton.setFocusableInTouchMode(false);
 				
 			}
 		});

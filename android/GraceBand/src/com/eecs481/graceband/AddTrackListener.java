@@ -30,6 +30,9 @@ public class AddTrackListener implements OnClickListener {
 		activity.findViewById(R.id.back).setVisibility(ImageButton.VISIBLE);
 		activity.findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
 		activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
+		activity.findViewById(R.id.play).setFocusable(true);
+		activity.findViewById(R.id.play).setFocusableInTouchMode(true);
+		activity.findViewById(R.id.play).requestFocus();
 	}
 
 }
