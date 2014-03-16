@@ -1,14 +1,18 @@
 package com.eecs481.graceband;
 
+import java.io.IOException;
+
+import com.eecs481.graceband.AllTracks.TrackNotFoundException;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
+//import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
+//import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -20,6 +24,7 @@ public class MainActivity extends Activity {
         getActionBar().hide();
         
         final ImageButton startButton = (ImageButton) findViewById(R.id.start);
+        final ImageButton loadButton = (ImageButton) findViewById(R.id.quit);
         final ImageButton quitButton = (ImageButton) findViewById(R.id.quit);
         
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -29,6 +34,22 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+        
+        
+        loadButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				try {
+					TrackList.get_instance().load(getBaseContext());
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (TrackNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
         
         quitButton.setOnClickListener(new View.OnClickListener() {
 			

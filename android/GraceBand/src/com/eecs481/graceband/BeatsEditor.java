@@ -1,6 +1,8 @@
 package com.eecs481.graceband;
 
-import android.media.AudioManager;
+//import android.media.AudioManager;
+import java.io.IOException;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -23,12 +25,12 @@ public class BeatsEditor extends Activity {
         getActionBar().hide();
         
         final ImageButton playButton = (ImageButton) findViewById(R.id.play);
-        final ImageButton pauseButton = (ImageButton) findViewById(R.id.stop);
+        final ImageButton stopButton = (ImageButton) findViewById(R.id.stop);
         final ImageButton saveButton = (ImageButton) findViewById(R.id.saveButton);
         final Button cancelButton = (Button) findViewById(R.id.cancel);
         final ImageButton backButton = (ImageButton) findViewById(R.id.back);
     
-        t = new TrackHandle(this.getApplicationContext(), this);
+        t = new TrackHandle(getApplicationContext(), this);
         trackView = findViewById(R.id.tracks);
         
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +47,7 @@ public class BeatsEditor extends Activity {
 				TrackList.get_instance().playAll();
 			}
 		});
-        pauseButton.setOnClickListener(new View.OnClickListener() {
+        stopButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				TrackList.get_instance().stopAll();
@@ -55,7 +57,12 @@ public class BeatsEditor extends Activity {
         saveButton.setOnClickListener(new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
-
+        		try {
+					TrackList.get_instance().save(getBaseContext());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         	}
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
