@@ -32,7 +32,7 @@ public class AllTracks{
 	
 	public Track getTrackByName(String name_) throws TrackNotFoundException {
 		for(int i = 0; i < tracks.size(); i++){
-			if(tracks.get(i).get_name() == name_){
+			if(tracks.get(i).get_name().equals(name_)){
 				return tracks.get(i);
 			}
 		}

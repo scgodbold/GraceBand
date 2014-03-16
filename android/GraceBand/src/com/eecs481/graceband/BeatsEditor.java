@@ -32,6 +32,10 @@ public class BeatsEditor extends Activity {
     
         t = new TrackHandle(getApplicationContext(), this);
         trackView = findViewById(R.id.tracks);
+        /*
+         Add a load button to this screen instead of main screen.
+         Then, after loading into TrackList, build buttons with TrackHandle.addTrack() here
+         */
         
         backButton.setOnClickListener(new View.OnClickListener() {
 			@Override

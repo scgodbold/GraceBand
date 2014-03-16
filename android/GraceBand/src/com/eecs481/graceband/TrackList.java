@@ -1,6 +1,7 @@
 package com.eecs481.graceband;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -105,6 +106,7 @@ public class TrackList extends SoundPool {
 	
 		//write the name of each track to the file, separated by commas
 		for(int i = 0; i < Beats.size(); i++){
+				System.out.println("Saving to file:"+Beats.get(i).track.get_name());
 				fos.write(Beats.get(i).track.get_name().getBytes());
 				if(i != Beats.size()){
 					fos.write(";".getBytes());
@@ -115,6 +117,18 @@ public class TrackList extends SoundPool {
 	}
 	
 	public void loadFile(Context context_, String target_) throws IOException, TrackNotFoundException{
+		FileInputStream fis = context_.openFileInput(target_);
+		StringBuffer fileContent = new StringBuffer("");
+		int datum;
+	    while( (datum = fis.read()) != -1){
+	    	fileContent.append((char)datum);
+	    }
+		String fileData = new String(fileContent);
+		
+		
+		
+		
+		/*
 		BufferedReader inputReader = new BufferedReader(new InputStreamReader(context_.openFileInput(target_)));
 		
 		String fileData;
@@ -124,6 +138,7 @@ public class TrackList extends SoundPool {
 		}
 		
 		inputReader.close();
+		*/
 		
 		System.out.println("Read from file: "+fileData);
 		if(fileData == null){
@@ -131,23 +146,24 @@ public class TrackList extends SoundPool {
 			return;
 		}
 		
-		System.out.println("Tokens:");
 		String tokens[] = fileData.split(";");
-		for(int i = 0; i < tokens.length; i++){
-			System.out.println(tokens[i]);
-		}
-		
 		AllTracks a = new AllTracks();
 		
 		//build an ArrayList<Beat> from the tokens
 		ArrayList<Beat> temp = new ArrayList<Beat>();
 		for(int i = 0; i < tokens.length; i++){
-			Track t = a.getTrackByName(tokens[i]);
-			new Beat(curPos, this.load(context_, t.get_resid(), 1), t);
+			System.out.println("Reading: "+tokens[i]);
+			try{
+				temp.add(new Beat(curPos, this.load(context_, a.getTrackByName(tokens[i]).get_resid(), 1), a.getTrackByName(tokens[i])));
+			} catch (TrackNotFoundException e){
+				System.out.println("Track not found");
+				return;
+			}
+			curPos++;
 		}
 		
 		//if finished without exception, move data over
-		Beats = temp;
+		Beats = temp;	
 	}
 	
 	public void deleteFile(Context context_, String target_){

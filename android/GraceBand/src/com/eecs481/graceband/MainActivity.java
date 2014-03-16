@@ -55,8 +55,14 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
+				//finish();//
+					try {
+						TrackList.get_instance().load(getBaseContext());
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (TrackNotFoundException e) {
+						e.printStackTrace();
+					}
 			}
 		});
     }
