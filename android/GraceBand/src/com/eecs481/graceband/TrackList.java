@@ -2,10 +2,12 @@ package com.eecs481.graceband;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -90,8 +92,18 @@ public class TrackList extends SoundPool {
 		Beats.clear();
 	}
 	
-	public void save(Context context_) throws IOException{
-		saveFile(context_, "savedfile");
+	public ArrayList<String> getFileList(Context context_){
+		return new ArrayList<String>(Arrays.asList(context_.fileList()));
+	}
+	
+	public String save(Context context_) throws IOException{
+		String filename = generateFileName();
+		saveFile(context_, filename);
+		return filename;
+	}
+	
+	private String generateFileName(){
+		return "savedfile";
 	}
 	
 	public void load(Context context_) throws IOException, TrackNotFoundException{
@@ -117,6 +129,10 @@ public class TrackList extends SoundPool {
 	}
 	
 	public void loadFile(Context context_, String target_) throws IOException, TrackNotFoundException{
+		if(target_.equals("New Song")){
+			return;
+		}
+		
 		FileInputStream fis = context_.openFileInput(target_);
 		StringBuffer fileContent = new StringBuffer("");
 		int datum;

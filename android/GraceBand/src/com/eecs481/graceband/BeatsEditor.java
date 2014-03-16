@@ -67,6 +67,7 @@ public class BeatsEditor extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+        		//Toast message here
         	}
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
