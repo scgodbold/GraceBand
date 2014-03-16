@@ -20,7 +20,7 @@ import android.support.v4.app.NavUtils;
 public class LoadMenu extends Activity {
 
 	private ListView lv;
-	private ArrayAdapter<ArrayList<String> > adapter;
+	private ArrayAdapter<String> adapter;
 	private ArrayList<String> songArray;
 	
 	@Override
@@ -30,8 +30,7 @@ public class LoadMenu extends Activity {
 		// Show the Up button in the action bar.
 		songArray = TrackList.get_instance().getFileList(getBaseContext());
 		songArray.add("New Song");
-		adapter = new ArrayAdapter<ArrayList<String> >(this, android.R.layout.simple_list_item_1);
-		adapter.add(songArray);
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, songArray);
 		lv = (ListView) findViewById(R.id.list);
 		lv.setAdapter(adapter);
 	    lv.setOnItemClickListener(new OnItemClickListener()
