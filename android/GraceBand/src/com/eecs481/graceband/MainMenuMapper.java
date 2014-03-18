@@ -6,7 +6,6 @@ import android.widget.LinearLayout;
 
 public class MainMenuMapper {
 
-	private MovementDirection direction;
 	private ImageButton start, quit;
 	
 	
