@@ -40,6 +40,12 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:background="@drawable/start_selector" />
+        
+        <ImageButton
+            android:id="@+id/load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selectorpause" />
 
         <ImageButton
             android:id="@+id/quit"

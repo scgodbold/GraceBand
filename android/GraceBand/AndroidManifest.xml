@@ -24,7 +24,11 @@
         </activity>
         <activity
             android:name="com.eecs481.graceband.BeatsEditor"
-            android:label="@string/title_activity_beats_editor" >
+            android:label="@string/title_activity_beats_editor" 
+            android:parentActivityName="com.eecs481.graceband.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eecs481.graceband.MainActivity" />
         </activity>
         <activity
             android:name="com.eecs481.graceband.SoundsMenu"
@@ -33,6 +37,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eecs481.graceband.BeatsEditor" />
+        </activity>
+        <activity
+            android:name="com.eecs481.graceband.LoadMenu"
+            android:label="@string/title_activity_load_menu"
+            android:parentActivityName="com.eecs481.graceband.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eecs481.graceband.MainActivity" />
         </activity>
     </application>
 

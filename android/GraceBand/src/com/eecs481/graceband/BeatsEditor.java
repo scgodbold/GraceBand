@@ -1,10 +1,13 @@
 package com.eecs481.graceband;
 
-import android.media.AudioManager;
+//import android.media.AudioManager;
+import java.io.IOException;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BeatsEditor extends Activity {
 
@@ -35,7 +39,7 @@ public class BeatsEditor extends Activity {
         getActionBar().hide();
         
         final ImageButton playButton = (ImageButton) findViewById(R.id.play);
-        final ImageButton pauseButton = (ImageButton) findViewById(R.id.stop);
+        final ImageButton stopButton = (ImageButton) findViewById(R.id.stop);
         final ImageButton saveButton = (ImageButton) findViewById(R.id.saveButton);
         final Button cancelButton = (Button) findViewById(R.id.cancel);
         final ImageButton backButton = (ImageButton) findViewById(R.id.back);
@@ -45,13 +49,18 @@ public class BeatsEditor extends Activity {
         
         t = new TrackHandle(this.getApplicationContext(), this, instrumentMap);
         trackView = findViewById(R.id.tracks);
+        /*
+         Add a load button to this screen instead of main screen.
+         Then, after loading into TrackList, build buttons with TrackHandle.addTrack() here
+         */
         
         backButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				TrackList.get_instance().clearBeats();
 				TrackList.get_instance().stopAll();
-				finish();
+				//finish();
+				back();
 			}
 		});
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +69,7 @@ public class BeatsEditor extends Activity {
 				TrackList.get_instance().playAll();
 			}
 		});
-        pauseButton.setOnClickListener(new View.OnClickListener() {
+        stopButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				TrackList.get_instance().stopAll();
@@ -70,7 +79,15 @@ public class BeatsEditor extends Activity {
         saveButton.setOnClickListener(new View.OnClickListener() {
         	@Override
         	public void onClick(View v) {
-
+        		String saved_filename = "";
+        		try {
+					saved_filename = TrackList.get_instance().save(getBaseContext());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        		Toast toast = Toast.makeText(getApplicationContext(), "Song saved as \""+saved_filename+"\"", Toast.LENGTH_LONG);
+        		toast.show();
         	}
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +110,10 @@ public class BeatsEditor extends Activity {
         reset = true;
         previousEvent = 0;
         instrumentMenu = false;
+	}
+	
+	public void back(){
+		NavUtils.navigateUpFromSameTask(this);
 	}
 	
 	@Override

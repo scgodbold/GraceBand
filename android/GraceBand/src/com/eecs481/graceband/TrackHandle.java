@@ -42,7 +42,6 @@ import android.widget.LinearLayout.LayoutParams;
 		addTrackButton.setFocusableInTouchMode(true);
 		addTrackButton.requestFocus();
 		addTrackButton.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				System.out.println("clicked beats menu");
@@ -58,9 +57,19 @@ import android.widget.LinearLayout.LayoutParams;
 				y.requestFocus();
 			}
 		});
+		// THis is the master branch
+		addTrackButtonBar.addView(addTrackButton);
+		//l.addView(icon);
+		//l.addView(trackImg);
+		list.addView(addTrackButtonBar);
+		
+		for(int i = 0; i < TrackList.get_instance().Beats.size(); i++){
+			addTrack(TrackList.get_instance().Beats.get(i).track, TrackList.get_instance().Beats.get(i).position);
+		}
+		
 	}
 	
-	public void addTrack(Track track, int id)
+	public void addTrack(Track track, int position_id)
 	{
 		if(tracks.size() >= maxTracks)return;
 		list.removeView(addTrackButtonBar);
@@ -71,7 +80,7 @@ import android.widget.LinearLayout.LayoutParams;
 		remove.setTrack(track);
 		remove.setPadding(40, 40, 0, 40);
 		remove.setBackgroundColor(Color.TRANSPARENT);
-		remove.setId(id);
+		remove.setId(position_id);
 		remove.setImageResource(track.getBeatMenuDrawable());
 		remove.setOnClickListener(new View.OnClickListener() {
 			
