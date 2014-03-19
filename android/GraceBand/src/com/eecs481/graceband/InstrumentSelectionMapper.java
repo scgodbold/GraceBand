@@ -14,25 +14,11 @@ public class InstrumentSelectionMapper {
 	public InstrumentSelectionMapper(Activity _activity, AllTracks _allTracks) {
 		activity = _activity;
 		allTracks = _allTracks;
-		current = allTracks.tracks.size()/2;
+		current = (int) Math.ceil((double)allTracks.tracks.size()/2.0);
         cancel = false;
-        activity.findViewById(allTracks.tracks.get(current).get_resid()).setFocusableInTouchMode(true);
-        activity.findViewById(allTracks.tracks.get(current).get_resid()).setFocusable(true);
-        activity.findViewById(allTracks.tracks.get(current).get_resid()).requestFocus();
-        for(int i = 0; i < current; i++) {
-	        activity.findViewById(allTracks.tracks.get(i).get_resid()).setFocusableInTouchMode(false);
-	        activity.findViewById(allTracks.tracks.get(i).get_resid()).setFocusable(false);
-        }
-        for(int i = current+1; i < allTracks.tracks.size(); i++) {
-	        activity.findViewById(allTracks.tracks.get(i).get_resid()).setFocusableInTouchMode(false);
-	        activity.findViewById(allTracks.tracks.get(i).get_resid()).setFocusable(false);
-        }
-        
-        activity.findViewById(R.id.cancel).setFocusableInTouchMode(false);
-        activity.findViewById(R.id.cancel).setFocusable(false);
 	}
 	
-	public View focusInstrument(View currentView, MovementDirection direction) {
+	public View getNextFocus(View currentView, MovementDirection direction) {
 		View next = currentView;
 		switch(direction) {
 			case UP:
@@ -69,7 +55,14 @@ public class InstrumentSelectionMapper {
 				next = currentView;
 				break;
 		}
+		
 		return next;
 	}
-	
+
+	public View getCurrent()
+	{
+		current = allTracks.tracks.size()/2;
+		System.out.println("THIS IS THE CURRENT " + current);
+		return activity.findViewById(allTracks.tracks.get(current).get_resid());
+	}
 }

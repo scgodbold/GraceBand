@@ -150,6 +150,12 @@
 		    style="?android:attr/borderlessButtonStyle"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
+		    android:focusable="false"
+			android:focusableInTouchMode="false"
+			android:nextFocusLeft="@+id/cancel"
+			android:nextFocusRight="@+id/cancel"
+			android:nextFocusUp="@+id/cancel"
+			android:nextFocusDown="@+id/cancel"
 		    android:text="Cancel" />
 	</LinearLayout>
 	

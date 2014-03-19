@@ -24,11 +24,12 @@ import android.widget.LinearLayout.LayoutParams;
 	private LinearLayout addTrackButtonBar;
 	private ImageButton addTrackButton;
 	private ArrayList<LinearLayout> buttonList;
-	
+	private InstrumentSelectionMapper map;
 	final int maxTracks = 5;
 	
-	public TrackHandle(Context _context, Activity _activity)
+	public TrackHandle(Context _context, Activity _activity, InstrumentSelectionMapper _map)
 	{
+		map = _map;
 		tracks = new ArrayList<LinearLayout>();
 		context = _context;
 		activity = _activity;
@@ -46,10 +47,15 @@ import android.widget.LinearLayout.LayoutParams;
 			public void onClick(View v) {
 				System.out.println("clicked beats menu");
 				TrackList.get_instance().stopAll();
+				BeatsEditor.instrumentMenu = true;
 				createSoundMenu();
 				addTrackButton.setFocusable(false);
 				addTrackButton.setFocusableInTouchMode(false);
-				
+				View y;
+				y = map.getCurrent();
+				y.setFocusable(true);
+				y.setFocusableInTouchMode(true);
+				y.requestFocus();
 			}
 		});
 	}
@@ -79,7 +85,10 @@ import android.widget.LinearLayout.LayoutParams;
 				}
 				tracks.remove(removed);
 				TrackList.get_instance().removeTrack(v.getId());
-				
+				View play = activity.findViewById(R.id.play);
+				play.setFocusable(true);
+				play.setFocusableInTouchMode(true);
+				play.requestFocus();
 			}
 		});
 		remove.setBaselineAlignBottom(true);
@@ -129,8 +138,15 @@ import android.widget.LinearLayout.LayoutParams;
 		text.setGravity(Gravity.CENTER_HORIZONTAL);
 		text.setPadding(46, 0, 0, 0);
 		text.setText(track.get_name());
-		tempButton.setImageResource(track.getBeatMenuDrawable());
-		
+		tempButton.setImageResource(track.getInstrumentDrawable());
+		tempButton.setFocusableInTouchMode(false);
+        tempButton.setFocusable(false);
+        
+        tempButton.setNextFocusDownId(tempButton.getId());
+        tempButton.setNextFocusLeftId(tempButton.getId());
+        tempButton.setNextFocusRightId(tempButton.getId());
+        tempButton.setNextFocusUpId(tempButton.getId());
+        
     	tempButton.setOnClickListener(new AddTrackListener(this, activity.findViewById(R.id.tracks), activity));
     	
     	tempButton.setBackgroundColor(Color.TRANSPARENT);
