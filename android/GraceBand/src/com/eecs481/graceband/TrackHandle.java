@@ -58,10 +58,10 @@ import android.widget.LinearLayout.LayoutParams;
 			}
 		});
 		// THis is the master branch
-		addTrackButtonBar.addView(addTrackButton);
+		//addTrackButtonBar.addView(addTrackButton);
 		//l.addView(icon);
 		//l.addView(trackImg);
-		list.addView(addTrackButtonBar);
+		//list.addView(addTrackButtonBar);
 		
 		for(int i = 0; i < TrackList.get_instance().Beats.size(); i++){
 			addTrack(TrackList.get_instance().Beats.get(i).track, TrackList.get_instance().Beats.get(i).position);
@@ -132,6 +132,28 @@ import android.widget.LinearLayout.LayoutParams;
         activity.findViewById(R.id.back).setVisibility(ImageButton.GONE);
         activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
         activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
+	}
+	
+	public void shiftListRight() {
+		LinearLayout temp = buttonList.get(buttonList.size()-1);
+		buttonList.remove(buttonList.size()-1);
+		buttonList.add(0,temp);
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
+	    for(LinearLayout button : buttonList){
+	    	layout.addView(button);	    	
+	    }
+	}
+	
+	public void shiftListLeft() {
+		LinearLayout temp = buttonList.get(0);
+		buttonList.remove(0);
+		buttonList.add(temp);
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
+	    for(LinearLayout button : buttonList){
+	    	layout.addView(button);	    	
+	    }
 	}
 	
 	void createButton(Track track){

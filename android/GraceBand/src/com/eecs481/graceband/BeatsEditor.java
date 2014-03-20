@@ -48,6 +48,7 @@ public class BeatsEditor extends Activity {
         instrumentMap = new InstrumentSelectionMapper(this, allTracks);
         
         t = new TrackHandle(this.getApplicationContext(), this, instrumentMap);
+        instrumentMap.setTrackHandle(t);
         trackView = findViewById(R.id.tracks);
         /*
          Add a load button to this screen instead of main screen.

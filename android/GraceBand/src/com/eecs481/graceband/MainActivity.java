@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
         final ImageButton loadButton = (ImageButton) findViewById(R.id.load);
         final ImageButton quitButton = (ImageButton) findViewById(R.id.quit);
         
-        menuMap = new MainMenuMapper(startButton, quitButton);
+        menuMap = new MainMenuMapper(startButton, quitButton, loadButton);
         reset = true;
         previousEvent = 0;
         startButton.setFocusable(true);

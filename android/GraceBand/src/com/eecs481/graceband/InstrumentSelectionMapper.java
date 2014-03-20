@@ -7,6 +7,7 @@ public class InstrumentSelectionMapper {
 
 	private Activity activity;
 	private AllTracks allTracks;
+	private TrackHandle trackHandle;
 	
 	private int current;
 	private boolean cancel;
@@ -16,6 +17,10 @@ public class InstrumentSelectionMapper {
 		allTracks = _allTracks;
 		current = (int) Math.ceil((double)allTracks.tracks.size()/2.0);
         cancel = false;
+	}
+	
+	public void setTrackHandle(TrackHandle _trackHandle) {
+		trackHandle = _trackHandle;
 	}
 	
 	public View getNextFocus(View currentView, MovementDirection direction) {
@@ -40,6 +45,7 @@ public class InstrumentSelectionMapper {
 						current = allTracks.tracks.size()-1;
 					}
 					next = activity.findViewById(allTracks.tracks.get(current).get_resid());
+					trackHandle.shiftListRight();
 				}
 				break;
 			case RIGHT:
@@ -49,6 +55,7 @@ public class InstrumentSelectionMapper {
 						current = 0;
 					}
 					next = activity.findViewById(allTracks.tracks.get(current).get_resid());
+					trackHandle.shiftListLeft();
 				}
 				break;
 			default:
