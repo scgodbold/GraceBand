@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -56,6 +57,14 @@ public class LoadMenu extends Activity {
 		
 		setupActionBar();
 	}
+	
+	public boolean onGenericMotionEvent(MotionEvent event)
+    {
+    	float x = event.getX();
+    	float y = event.getY();
+
+		return true;
+    }
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.

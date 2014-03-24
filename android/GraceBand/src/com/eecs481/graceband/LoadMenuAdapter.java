@@ -26,8 +26,13 @@ public class LoadMenuAdapter extends ArrayAdapter<String> {
 		View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
 		TextView textView = (TextView) rowView.findViewById(R.id.TextView1);
 		textView.setText(values.get(position));
+		rowView.setId(position);
 		rowView.setFocusableInTouchMode(false);
 		rowView.setFocusable(false);
+		rowView.setNextFocusDownId(position);
+		rowView.setNextFocusUpId(position);
+		rowView.setNextFocusLeftId(position);
+		rowView.setNextFocusRightId(position);
 		return rowView;
 	}
 }
