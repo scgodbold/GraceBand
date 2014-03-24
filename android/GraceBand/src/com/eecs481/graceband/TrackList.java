@@ -12,6 +12,7 @@ import java.util.Arrays;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.text.format.Time;
 
 import com.eecs481.graceband.AllTracks.TrackNotFoundException;
 import com.eecs481.graceband.Track;
@@ -103,7 +104,10 @@ public class TrackList extends SoundPool {
 	}
 	
 	private String generateFileName(){
-		return "savedfile";
+		//generate a string containing the current timestamp
+		Time now = new Time();
+		now.setToNow();
+		return now.toString();
 	}
 	
 	public void load(Context context_) throws IOException, TrackNotFoundException{
