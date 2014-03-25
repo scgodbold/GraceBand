@@ -4,38 +4,39 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.ListView;
 
 public class LoadMenuMapper {
 
 	private Activity activity;
-	private LoadMenu loadMenu;
+	private ListView listView;
 	private ArrayList<String> songArray;
 	
 	private int current;
 	
-	public LoadMenuMapper(Activity _activity) {
+	public LoadMenuMapper(Activity _activity, ArrayList<String> _songArray,ListView _lv) {
 		activity = _activity;
-		current = 0;
-	}
-	
-	public void setLoadMenu(LoadMenu _loadMenu) {
-		loadMenu = _loadMenu;
-	}
-	
-	public void setSongArray(ArrayList<String> _songArray) {
 		songArray = _songArray;
+		listView = _lv;
+		current = 0;
 	}
 	
 	public View getNextFocus(View currentView, MovementDirection direction) {
 		View next = currentView;
 		switch(direction) {
 			case UP:
-				
+				if(current - 1 >= 0){
+					current--;
+					next = listView.findViewById(current);
+				}
 				break;
-			case DOWN:				
+			case DOWN:
+				if(current + 1 < songArray.size()){
+					current++;
+					next = listView.findViewById(current);
+				}
 				break;
 			default:
-				next = currentView;
 				break;
 		}
 		
