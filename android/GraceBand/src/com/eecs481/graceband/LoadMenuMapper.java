@@ -27,13 +27,13 @@ public class LoadMenuMapper {
 			case UP:
 				if(current - 1 >= 0){
 					current--;
-					next = listView.findViewById(current);
+					next = (View) listView.getItemAtPosition(current);
 				}
 				break;
 			case DOWN:
 				if(current + 1 < songArray.size()){
 					current++;
-					next = listView.findViewById(current);
+					next = (View) listView.getItemAtPosition(current);
 				}
 				break;
 			default:
