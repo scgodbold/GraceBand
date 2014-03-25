@@ -26,8 +26,6 @@ import android.support.v4.app.NavUtils;
 
 public class LoadMenu extends Activity {
 
-	//private ListView lv;
-	//private LoadMenuAdapter adapter;
 	private ArrayList<String> songArray;
 	private LoadMenuMapper map;
 	
@@ -37,6 +35,7 @@ public class LoadMenu extends Activity {
 	private long previousEvent;
 	
 	private ArrayList<LinearLayout> fileList;
+	private LinearLayout fileLayout;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +51,13 @@ public class LoadMenu extends Activity {
 		for(int i = 0; i < songArray.size(); i++){
 			addFile(songArray.get(i), i);
 		}
-		
-		LinearLayout layout = (LinearLayout) findViewById(R.id.loadMenu);
-		layout.removeAllViewsInLayout();
+		fileLayout = (LinearLayout) findViewById(R.id.fileLayout);
+		fileLayout.removeAllViewsInLayout();
 	    for(LinearLayout button : fileList){
-	    	layout.addView(button);	    	
+	    	fileLayout.addView(button);	    	
 	    }
 	    
 	    map = new LoadMenuMapper(this,fileList);
-	    
-		setupActionBar();
 	}
 	
 	public void addFile(String name, int i){
@@ -93,7 +89,7 @@ public class LoadMenu extends Activity {
 			}
 		});
     	LinearLayout l = new LinearLayout(getBaseContext());
-    	l.setOrientation(LinearLayout.VERTICAL);
+    	l.setOrientation(LinearLayout.HORIZONTAL);
     	l.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
     	l.addView(tempButton);
     	fileList.add(l);
@@ -156,38 +152,4 @@ public class LoadMenu extends Activity {
     	}
     	return true;
     }
-
-	/**
-	 * Set up the {@link android.app.ActionBar}.
-	 */
-	private void setupActionBar() {
-
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.load_menu, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
 }
