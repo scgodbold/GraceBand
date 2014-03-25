@@ -35,9 +35,9 @@ public class LoadMenu extends Activity {
 	private boolean reset;
 	private long previousEvent;
 	
-	private ArrayList<Button> fileList;
+	private static ArrayList<Button> fileList;
 	private LinearLayout fileLayout;
-	LayoutParams lp;
+	static LayoutParams lp;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,8 @@ public class LoadMenu extends Activity {
 		
 
 		fileLayout.removeAllViewsInLayout();
-	    for(Button button : fileList){
-	    	fileLayout.addView(button,lp);	    	
+		for(int i=0; i<11; i++){
+	    	fileLayout.addView(fileList.get(i),lp);	    	
 	    }
 
 	    fileList.get(0).setFocusableInTouchMode(true);
@@ -154,4 +154,27 @@ public class LoadMenu extends Activity {
     	}
     	return true;
     }
+	
+	static public void shiftListUp(Activity activity) {
+		Button temp = fileList.get(fileList.size()-1);
+		fileList.remove(fileList.size()-1);
+		fileList.add(0,temp);
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
+		layout.removeAllViewsInLayout();
+		for(int i=0; i<11; i++){
+	    	layout.addView(fileList.get(i),lp);	    	
+	    }
+	}
+	
+	static public void shiftListDown(Activity activity) {
+		Button temp = fileList.get(0);
+		fileList.remove(0);
+		fileList.add(temp);
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
+		layout.removeAllViewsInLayout();
+		for(int i=0; i<11; i++){
+	    	layout.addView(fileList.get(i),lp);	    	
+	    }
+	}
+	
 }
