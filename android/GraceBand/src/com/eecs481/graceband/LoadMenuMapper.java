@@ -4,20 +4,19 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class LoadMenuMapper {
 
 	private Activity activity;
-	private ListView listView;
-	private ArrayList<String> songArray;
+	private ArrayList<LinearLayout> fileList;
 	
 	private int current;
 	
-	public LoadMenuMapper(Activity _activity, ArrayList<String> _songArray,ListView _lv) {
+	public LoadMenuMapper(Activity _activity, ArrayList<LinearLayout> _fileList) {
 		activity = _activity;
-		songArray = _songArray;
-		listView = _lv;
+		fileList = _fileList;
 		current = 0;
 	}
 	
@@ -27,13 +26,13 @@ public class LoadMenuMapper {
 			case UP:
 				if(current - 1 >= 0){
 					current--;
-					next = listView.getAdapter().getView(current, null, listView);
+					next = fileList.get(current);
 				}
 				break;
 			case DOWN:
-				if(current + 1 < songArray.size()){
+				if(current + 1 < fileList.size()){
 					current++;
-					next = listView.getAdapter().getView(current, null, listView);
+					next = fileList.get(current);
 				}
 				break;
 			default:
