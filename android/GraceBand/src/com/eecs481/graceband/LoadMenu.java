@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -34,8 +35,9 @@ public class LoadMenu extends Activity {
 	private boolean reset;
 	private long previousEvent;
 	
-	private ArrayList<LinearLayout> fileList;
+	private ArrayList<Button> fileList;
 	private LinearLayout fileLayout;
+	LayoutParams lp;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +45,29 @@ public class LoadMenu extends Activity {
 		setContentView(R.layout.activity_load_menu);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getActionBar().hide();
-		songArray = TrackList.get_instance().getFileList(getBaseContext());
+        
+        previousEvent =0;
+        reset = true;
+		
+        songArray = TrackList.get_instance().getFileList(getBaseContext());
 		songArray.add("New Song");
 		
-		
-		fileList = new ArrayList<LinearLayout>();
+        lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        fileLayout = (LinearLayout)findViewById(R.id.fileLayout);
+		fileList = new ArrayList<Button>();
 		for(int i = 0; i < songArray.size(); i++){
 			addFile(songArray.get(i), i);
 		}
-		fileLayout = (LinearLayout) findViewById(R.id.fileLayout);
+		
+
 		fileLayout.removeAllViewsInLayout();
-	    for(LinearLayout button : fileList){
-	    	fileLayout.addView(button);	    	
+	    for(Button button : fileList){
+	    	fileLayout.addView(button,lp);	    	
 	    }
-	    
+
+	    fileList.get(0).setFocusableInTouchMode(true);
+		fileList.get(0).setFocusable(true); 
+	    fileList.get(0).requestFocus();
 	    map = new LoadMenuMapper(this,fileList);
 	}
 	
@@ -72,13 +83,16 @@ public class LoadMenu extends Activity {
         tempButton.setNextFocusLeftId(tempButton.getId());
         tempButton.setNextFocusRightId(tempButton.getId());
         tempButton.setNextFocusUpId(tempButton.getId());
-        tempButton.setOnClickListener(new View.OnClickListener() {
+        tempButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				Button temp = (Button) v;
 				try {
-					TrackList.get_instance().loadFile(getBaseContext(), (String) temp.getText());
+					System.out.println("Button Name :"+ temp.getText().toString());
+					TrackList.get_instance().loadFile(getBaseContext(), temp.getText().toString());
+					Intent intent = new Intent(getBaseContext(), BeatsEditor.class);
+					startActivity(intent);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -88,11 +102,10 @@ public class LoadMenu extends Activity {
 				}
 			}
 		});
-    	LinearLayout l = new LinearLayout(getBaseContext());
-    	l.setOrientation(LinearLayout.HORIZONTAL);
-    	l.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-    	l.addView(tempButton);
-    	fileList.add(l);
+
+        fileLayout.addView(tempButton, lp);
+
+    	fileList.add(tempButton);
 	}
 	
 	public boolean onGenericMotionEvent(MotionEvent event)
@@ -117,19 +130,8 @@ public class LoadMenu extends Activity {
     	{    		
     		View v,w;
     		w = getCurrentFocus();
-    		if(x >= y)
-    		{
-    			reset = false;
-    			if(xPos)
-    			{
-    				v = map.getNextFocus(w, MovementDirection.RIGHT);
-    			}
-    			else
-    			{
-    				v = map.getNextFocus(w, MovementDirection.LEFT);
-    			}
-    		}
-    		else
+    		v = w;
+    		if(x < y)
     		{
     			reset = false;
     			if(yPos)

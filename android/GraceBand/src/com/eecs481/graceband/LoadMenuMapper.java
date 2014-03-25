@@ -4,17 +4,18 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class LoadMenuMapper {
 
 	private Activity activity;
-	private ArrayList<LinearLayout> fileList;
+	private ArrayList<Button> fileList;
 	
 	private int current;
 	
-	public LoadMenuMapper(Activity _activity, ArrayList<LinearLayout> _fileList) {
+	public LoadMenuMapper(Activity _activity, ArrayList<Button> _fileList) {
 		activity = _activity;
 		fileList = _fileList;
 		current = 0;
