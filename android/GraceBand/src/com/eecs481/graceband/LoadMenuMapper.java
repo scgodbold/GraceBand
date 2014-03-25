@@ -28,14 +28,18 @@ public class LoadMenuMapper {
 				if(current - 1 >= 0){
 					current--;
 					next = fileList.get(current);
-					LoadMenu.shiftListUp(activity);
+					if(current%10 == 0 && current != 0){
+						LoadMenu.shiftListUp(activity);
+					}
 				}
 				break;
 			case DOWN:
 				if(current + 1 < fileList.size()){
 					current++;
 					next = fileList.get(current);
-					LoadMenu.shiftListDown(activity);
+					if(current%10 == 0 && current != fileList.size() - 1) {
+						LoadMenu.shiftListDown(activity);
+					}
 				}
 				break;
 			default:

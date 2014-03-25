@@ -156,9 +156,11 @@ public class LoadMenu extends Activity {
     }
 	
 	static public void shiftListUp(Activity activity) {
-		Button temp = fileList.get(fileList.size()-1);
-		fileList.remove(fileList.size()-1);
-		fileList.add(0,temp);
+		for(int i = 0; i<11; i++){
+			Button temp = fileList.get(fileList.size()-1);
+			fileList.remove(fileList.size()-1);
+			fileList.add(0,temp);
+		}
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
 		layout.removeAllViewsInLayout();
 		for(int i=0; i<11; i++){
@@ -167,9 +169,11 @@ public class LoadMenu extends Activity {
 	}
 	
 	static public void shiftListDown(Activity activity) {
-		Button temp = fileList.get(0);
-		fileList.remove(0);
-		fileList.add(temp);
+		for(int i = 0; i<11; i++){
+			Button temp = fileList.get(0);
+			fileList.remove(0);
+			fileList.add(temp);
+		}
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
 		layout.removeAllViewsInLayout();
 		for(int i=0; i<11; i++){
