@@ -15,7 +15,7 @@ public class InstrumentSelectionMapper {
 	public InstrumentSelectionMapper(Activity _activity, AllTracks _allTracks) {
 		activity = _activity;
 		allTracks = _allTracks;
-		current = (int) Math.ceil((double)allTracks.tracks.size()/2.0);
+		current = 2;
         cancel = false;
 	}
 	
