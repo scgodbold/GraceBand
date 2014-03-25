@@ -11,9 +11,9 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.view.View;
 import android.support.v4.app.NavUtils;
@@ -21,8 +21,14 @@ import android.support.v4.app.NavUtils;
 public class LoadMenu extends Activity {
 
 	private ListView lv;
-	private ArrayAdapter<String> adapter;
+	private LoadMenuAdapter adapter;
 	private ArrayList<String> songArray;
+	private LoadMenuMapper map;
+	
+	private static double ZERO_TOLERANCE = .97;
+	private static long TIME_TOLERANCE = 20;
+	private boolean reset;
+	private long previousEvent;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,7 @@ public class LoadMenu extends Activity {
 		// Show the Up button in the action bar.
 		songArray = TrackList.get_instance().getFileList(getBaseContext());
 		songArray.add("New Song");
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, songArray);
+		adapter = new LoadMenuAdapter(this, songArray);
 		lv = (ListView) findViewById(R.id.list);
 		lv.setAdapter(adapter);
 	    lv.setOnItemClickListener(new OnItemClickListener()
@@ -54,9 +60,69 @@ public class LoadMenu extends Activity {
 				startActivity(intent);
 	        }
 	    });
-		
+	    
+	    map = new LoadMenuMapper(this,songArray,lv);
+	    
 		setupActionBar();
 	}
+	
+	public boolean onGenericMotionEvent(MotionEvent event)
+    {
+    	float x = event.getX();
+    	float y = event.getY();
+    	
+    	long diff = event.getEventTime() - previousEvent;
+    	previousEvent = event.getEventTime();
+    	
+    	boolean xPos = x > 0;
+    	boolean yPos = y > 0;
+    	
+    	x = (x > 0) ? x : -x;
+    	y = (y > 0) ? y : -y;
+    	
+    	if(x < ZERO_TOLERANCE && y < ZERO_TOLERANCE)
+    	{
+    		reset = true;
+    	}
+    	else if(reset && diff > TIME_TOLERANCE)
+    	{    		
+    		View v,w;
+    		w = getCurrentFocus();
+    		if(x >= y)
+    		{
+    			reset = false;
+    			if(xPos)
+    			{
+    				v = map.getNextFocus(w, MovementDirection.RIGHT);
+    			}
+    			else
+    			{
+    				v = map.getNextFocus(w, MovementDirection.LEFT);
+    			}
+    		}
+    		else
+    		{
+    			reset = false;
+    			if(yPos)
+    			{
+    				v = map.getNextFocus(w, MovementDirection.DOWN);
+    			}
+    			else
+    			{
+    				v = map.getNextFocus(w, MovementDirection.UP);
+    			}
+    		}
+    		if(v.getId() != w.getId())
+    		{
+    			v.setFocusable(true);
+    			v.setFocusableInTouchMode(true);
+    			v.requestFocus();
+    			w.setFocusable(false);
+    			w.setFocusableInTouchMode(false);
+    		}
+    	}
+    	return true;
+    }
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.

@@ -23,7 +23,7 @@
 		     android:nextFocusRight="@+id/back"
 			 android:nextFocusUp="@+id/back"
 			 android:nextFocusDown="@+id/back"	
-        	 android:src="@drawable/selectorback"/>
+        	 android:src="@drawable/gblogo"/>
        
 	    <ImageButton
 	         android:id="@+id/play"

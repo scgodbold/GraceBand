@@ -10,54 +10,58 @@
     tools:context=".MainActivity" 
     android:clipToPadding="false"
     android:padding="0dp"
-    android:background="#D4D4D4">
-
-    <TextView
+    android:background="#D4D4D4"
+    >
+<!-- -->
+    <ImageView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="top"
-        android:layout_marginBottom="45dp"
-        android:text="@string/title"
         android:layout_gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="top"
+        android:src="@drawable/gb_logo_main" />
     
     <LinearLayout 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/main_layout_border">
 
         <ImageButton
             android:id="@+id/start"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_height="100px"
             android:nextFocusLeft="@+id/start"
             android:nextFocusRight="@+id/start"
             android:nextFocusDown="@+id/start"
             android:nextFocusUp="@+id/start"
+            android:layout_marginTop="10px"
+            android:layout_marginLeft="3px"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:background="@drawable/start_selector" />
+            android:background="@drawable/main_play_selector" />
         
         <ImageButton
             android:id="@+id/load"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selectorpause" />
+            android:layout_height="100px"
+            android:layout_marginLeft="3px"
+            android:background="@drawable/main_load_selector" />
 
         <ImageButton
             android:id="@+id/quit"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="100px"
             android:nextFocusLeft="@+id/quit"
             android:nextFocusRight="@+id/quit"
             android:nextFocusDown="@+id/quit"
             android:nextFocusUp="@+id/quit"
+            android:layout_marginBottom="10px"
+            android:layout_marginLeft="3px"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:background="@drawable/quit_selector" />
+            android:background="@drawable/main_quit_selector" />
 
     </LinearLayout>
         
