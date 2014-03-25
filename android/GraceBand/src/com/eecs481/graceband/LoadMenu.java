@@ -92,8 +92,6 @@ public class LoadMenu extends Activity {
 				}
 			}
 		});
-    	
-    	tempButton.setBackgroundColor(Color.TRANSPARENT);
     	LinearLayout l = new LinearLayout(getBaseContext());
     	l.setOrientation(LinearLayout.VERTICAL);
     	l.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
