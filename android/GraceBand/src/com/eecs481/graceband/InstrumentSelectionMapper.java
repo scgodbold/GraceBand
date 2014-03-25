@@ -68,7 +68,7 @@ public class InstrumentSelectionMapper {
 
 	public View getCurrent()
 	{
-		current = allTracks.tracks.size()/2;
+		current = 2;
 		System.out.println("THIS IS THE CURRENT " + current);
 		return activity.findViewById(allTracks.tracks.get(current).get_resid());
 	}

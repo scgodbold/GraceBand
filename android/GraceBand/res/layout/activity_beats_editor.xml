@@ -23,7 +23,7 @@
 		     android:nextFocusRight="@+id/back"
 			 android:nextFocusUp="@+id/back"
 			 android:nextFocusDown="@+id/back"	
-        	 android:src="@drawable/gblogo"/>
+        	 android:src="@drawable/gb_logo"/>
        
 	    <ImageButton
 	         android:id="@+id/play"
@@ -127,6 +127,10 @@
 			android:layout_gravity="center_horizontal"
 			android:paddingBottom="5px"
 			android:focusableInTouchMode="false"/>
+	<View
+	    android:layout_width="wrap_content"
+	    android:layout_height="5px"
+	    />
 	
 	<LinearLayout android:id="@+id/soundMenu"
 	    android:layout_width="fill_parent"
@@ -147,16 +151,16 @@
 	
 		<Button
 			android:id="@+id/cancel"
-		    style="?android:attr/borderlessButtonStyle"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
+		    android:background="@drawable/cancel_selector"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="450px"
 		    android:focusable="false"
 			android:focusableInTouchMode="false"
 			android:nextFocusLeft="@+id/cancel"
 			android:nextFocusRight="@+id/cancel"
 			android:nextFocusUp="@+id/cancel"
-			android:nextFocusDown="@+id/cancel"
-		    android:text="Cancel" />
+			android:nextFocusDown="@+id/cancel"/>
 	</LinearLayout>
 	
 </LinearLayout>

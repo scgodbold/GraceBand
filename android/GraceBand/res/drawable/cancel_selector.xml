@@ -2,16 +2,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:state_enabled="false"
-    android:drawable="@drawable/play_unselected" />
+    android:drawable="@drawable/cancel" />
 <item
     android:state_pressed="true"
     android:state_enabled="true"
-    android:drawable="@drawable/play_click" />
+    android:drawable="@drawable/cancel_click" />
 <item
     android:state_focused="true"
     android:state_enabled="true"
-    android:drawable="@drawable/play" />
+    android:drawable="@drawable/cancel_hover" />
 <item
     android:state_enabled="true"
-    android:drawable="@drawable/play_unselected" />
+    android:drawable="@drawable/cancel" />
 </selector>
