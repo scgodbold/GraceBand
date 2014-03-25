@@ -127,9 +127,9 @@ import android.widget.LinearLayout.LayoutParams;
 		for(int i=0; i<5; i++){
 	    	layout.addView(buttonList.get(i));	    	
 	    }
-        activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
-        activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
-        activity.findViewById(R.id.back).setVisibility(ImageButton.GONE);
+        //activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
+        //activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
+        //activity.findViewById(R.id.back).setVisibility(ImageButton.GONE);
         activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
         activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
 	}
