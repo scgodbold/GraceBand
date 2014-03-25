@@ -124,8 +124,8 @@ import android.widget.LinearLayout.LayoutParams;
 		}
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
 		layout.removeAllViewsInLayout();
-	    for(LinearLayout button : buttonList){
-	    	layout.addView(button);	    	
+		for(int i=0; i<5; i++){
+	    	layout.addView(buttonList.get(i));	    	
 	    }
         activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
         activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
@@ -140,8 +140,8 @@ import android.widget.LinearLayout.LayoutParams;
 		buttonList.add(0,temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
 		layout.removeAllViewsInLayout();
-	    for(LinearLayout button : buttonList){
-	    	layout.addView(button);	    	
+		for(int i=0; i<5; i++){
+	    	layout.addView(buttonList.get(i));	    	
 	    }
 	}
 	
@@ -151,8 +151,8 @@ import android.widget.LinearLayout.LayoutParams;
 		buttonList.add(temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
 		layout.removeAllViewsInLayout();
-	    for(LinearLayout button : buttonList){
-	    	layout.addView(button);	    	
+		for(int i=0; i<5; i++){
+	    	layout.addView(buttonList.get(i));	    	
 	    }
 	}
 	

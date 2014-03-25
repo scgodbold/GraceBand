@@ -2,16 +2,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:state_enabled="false"
-    android:drawable="@drawable/mainmenu" />
+    android:drawable="@drawable/quit" />
 <item
     android:state_pressed="true"
     android:state_enabled="true"
-    android:drawable="@drawable/mainmenu_click" />
+    android:drawable="@drawable/quit_hover" />
 <item
     android:state_focused="true"
     android:state_enabled="true"
-    android:drawable="@drawable/mainmenu_hover" />
+    android:drawable="@drawable/quit_hover" />
 <item
     android:state_enabled="true"
-    android:drawable="@drawable/mainmenu" />
+    android:drawable="@drawable/quit" />
 </selector>
