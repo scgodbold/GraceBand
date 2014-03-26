@@ -14,11 +14,13 @@ public class LoadMenuMapper {
 	private ArrayList<Button> fileList;
 	
 	private int current;
+	private int pos;
 	
 	public LoadMenuMapper(Activity _activity, ArrayList<Button> _fileList) {
 		activity = _activity;
 		fileList = _fileList;
 		current = 0;
+		pos = 0;
 	}
 	
 	public View getNextFocus(View currentView, MovementDirection direction) {
@@ -28,8 +30,11 @@ public class LoadMenuMapper {
 				if(current - 1 >= 0){
 					current--;
 					next = fileList.get(current);
-					if(current%10 == 0 && current != 0){
+					if(pos == 0){
 						LoadMenu.shiftListUp(activity);
+					}
+					else{
+						pos--;
 					}
 				}
 				break;
@@ -37,8 +42,11 @@ public class LoadMenuMapper {
 				if(current + 1 < fileList.size()){
 					current++;
 					next = fileList.get(current);
-					if(current%11 == 0 && current != fileList.size() - 1) {
+					if(current>10) {
 						LoadMenu.shiftListDown(activity);
+					}
+					else {
+						pos++;
 					}
 				}
 				break;
