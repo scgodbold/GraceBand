@@ -12,11 +12,11 @@ public class Track {
 	public String get_name(){return name;}
 	public int getInstrumentDrawable(){return instrumentDrawable;}
 	public int getBeatMenuDrawable(){return beatMenuDrawable;}
-	public Track(int resid_, String name_, int selectorsnareTrackmenu, int selectorsnare){
+	public Track(int resid_, String name_, int _instrumentDrawable, int _beatMenuDrawable){
 		resid = resid_;
 		name = name_;
-		instrumentDrawable = selectorsnareTrackmenu;
-		beatMenuDrawable = selectorsnare;
+		instrumentDrawable = _instrumentDrawable;
+		beatMenuDrawable = _beatMenuDrawable;
 	}
 }
 
