@@ -37,7 +37,7 @@ public class LoadMenuMapper {
 				if(current + 1 < fileList.size()){
 					current++;
 					next = fileList.get(current);
-					if(current%10 == 0 && current != fileList.size() - 1) {
+					if(current%11 == 0 && current != fileList.size() - 1) {
 						LoadMenu.shiftListDown(activity);
 					}
 				}
