@@ -122,6 +122,7 @@ import android.widget.LinearLayout.LayoutParams;
 		for(int i = 0; i < all_tracks.tracks.size(); i++) {
 			createButton(all_tracks.tracks.get(i));
 		}
+		map.setButtonList(buttonList);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
 		layout.removeAllViewsInLayout();
 		for(int i=0; i<5; i++){
@@ -132,28 +133,6 @@ import android.widget.LinearLayout.LayoutParams;
         activity.findViewById(R.id.back).setVisibility(ImageButton.GONE);
         activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
         activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
-	}
-	
-	public void shiftListRight() {
-		LinearLayout temp = buttonList.get(buttonList.size()-1);
-		buttonList.remove(buttonList.size()-1);
-		buttonList.add(0,temp);
-		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
-		layout.removeAllViewsInLayout();
-		for(int i=0; i<5; i++){
-	    	layout.addView(buttonList.get(i));	    	
-	    }
-	}
-	
-	public void shiftListLeft() {
-		LinearLayout temp = buttonList.get(0);
-		buttonList.remove(0);
-		buttonList.add(temp);
-		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
-		layout.removeAllViewsInLayout();
-		for(int i=0; i<5; i++){
-	    	layout.addView(buttonList.get(i));	    	
-	    }
 	}
 	
 	void createButton(Track track){

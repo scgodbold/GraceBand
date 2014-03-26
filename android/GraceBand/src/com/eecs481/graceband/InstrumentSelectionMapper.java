@@ -1,13 +1,18 @@
 package com.eecs481.graceband;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.view.View;
+import android.widget.LinearLayout;
 
 public class InstrumentSelectionMapper {
 
 	private Activity activity;
 	private AllTracks allTracks;
 	private TrackHandle trackHandle;
+	
+	ArrayList<LinearLayout> buttonList;
 	
 	private int current;
 	private boolean cancel;
@@ -17,6 +22,10 @@ public class InstrumentSelectionMapper {
 		allTracks = _allTracks;
 		current = 2;
         cancel = false;
+	}
+	
+	public void setButtonList(ArrayList<LinearLayout> _buttonList){
+		buttonList = _buttonList;
 	}
 	
 	public void setTrackHandle(TrackHandle _trackHandle) {
@@ -45,7 +54,7 @@ public class InstrumentSelectionMapper {
 						current = allTracks.tracks.size()-1;
 					}
 					next = activity.findViewById(allTracks.tracks.get(current).get_resid());
-					trackHandle.shiftListRight();
+					shiftListRight();
 				}
 				break;
 			case RIGHT:
@@ -55,7 +64,7 @@ public class InstrumentSelectionMapper {
 						current = 0;
 					}
 					next = activity.findViewById(allTracks.tracks.get(current).get_resid());
-					trackHandle.shiftListLeft();
+					shiftListLeft();
 				}
 				break;
 			default:
@@ -71,5 +80,27 @@ public class InstrumentSelectionMapper {
 		current = 2;
 		System.out.println("THIS IS THE CURRENT " + current);
 		return activity.findViewById(allTracks.tracks.get(current).get_resid());
+	}
+	
+	public void shiftListRight() {
+		LinearLayout temp = buttonList.get(buttonList.size()-1);
+		buttonList.remove(buttonList.size()-1);
+		buttonList.add(0,temp);
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
+		for(int i=0; i<5; i++){
+	    	layout.addView(buttonList.get(i));	    	
+	    }
+	}
+	
+	public void shiftListLeft() {
+		LinearLayout temp = buttonList.get(0);
+		buttonList.remove(0);
+		buttonList.add(temp);
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
+		for(int i=0; i<5; i++){
+	    	layout.addView(buttonList.get(i));	    	
+	    }
 	}
 }
