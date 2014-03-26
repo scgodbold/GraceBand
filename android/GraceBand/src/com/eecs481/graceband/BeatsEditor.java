@@ -3,8 +3,11 @@ package com.eecs481.graceband;
 //import android.media.AudioManager;
 import java.io.IOException;
 
+import com.eecs481.graceband.AllTracks.TrackNotFoundException;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v4.app.NavUtils;
@@ -37,6 +40,21 @@ public class BeatsEditor extends Activity {
 		setContentView(R.layout.activity_beats_editor);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getActionBar().hide();
+        
+        Intent intent = getIntent();
+        if(intent.hasExtra("saveFileName")){
+        	String saveFileName = intent.getStringExtra("saveFileName");
+        	try {
+				TrackList.get_instance().loadFile(getBaseContext(), saveFileName);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TrackNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        
         
         final ImageButton playButton = (ImageButton) findViewById(R.id.play);
         final ImageButton stopButton = (ImageButton) findViewById(R.id.stop);

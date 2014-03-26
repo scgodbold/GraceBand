@@ -61,7 +61,7 @@ public class LoadMenu extends Activity {
 		
 
 		fileLayout.removeAllViewsInLayout();
-		for(int i=0; i<11; i++){
+		for(int i=0; i<11 && i<fileList.size(); i++){
 	    	fileLayout.addView(fileList.get(i),lp);	    	
 	    }
 
@@ -88,18 +88,10 @@ public class LoadMenu extends Activity {
 			@Override
 			public void onClick(View v) {
 				Button temp = (Button) v;
-				try {
-					System.out.println("Button Name :"+ temp.getText().toString());
-					TrackList.get_instance().loadFile(getBaseContext(), temp.getText().toString());
-					Intent intent = new Intent(getBaseContext(), BeatsEditor.class);
-					startActivity(intent);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (TrackNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				//TrackList.get_instance().loadFile(getBaseContext(), temp.getText().toString());
+				Intent intent = new Intent(getBaseContext(), BeatsEditor.class);
+				intent.putExtra("saveFileName", temp.getText().toString());
+				startActivity(intent);
 			}
 		});
 
@@ -161,7 +153,7 @@ public class LoadMenu extends Activity {
 		fileList.add(0,temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
 		layout.removeAllViewsInLayout();
-		for(int i=0; i<11; i++){
+		for(int i=0; i<11 && i<fileList.size(); i++){
 	    	layout.addView(fileList.get(i),lp);	    	
 	    }
 	}
@@ -172,7 +164,7 @@ public class LoadMenu extends Activity {
 		fileList.add(temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
 		layout.removeAllViewsInLayout();
-		for(int i=0; i<11; i++){
+		for(int i=0; i<11 && i<fileList.size(); i++){
 	    	layout.addView(fileList.get(i),lp);	    	
 	    }
 	}
