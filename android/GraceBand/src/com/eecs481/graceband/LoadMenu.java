@@ -50,7 +50,7 @@ public class LoadMenu extends Activity {
         reset = true;
 		
         songArray = TrackList.get_instance().getFileList(getBaseContext());
-		songArray.add("New Song");
+		songArray.add(0,"New Song");
 		
         lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         fileLayout = (LinearLayout)findViewById(R.id.fileLayout);

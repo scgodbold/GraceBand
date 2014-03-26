@@ -107,7 +107,9 @@ public class TrackList extends SoundPool {
 		//generate a string containing the current timestamp
 		Time now = new Time();
 		now.setToNow();
-		return now.toString();
+		System.out.println(now.toMillis(true));
+		Integer time = Math.abs((int) now.toMillis(true));
+		return time.toString();
 	}
 	
 	public void load(Context context_) throws IOException, TrackNotFoundException{

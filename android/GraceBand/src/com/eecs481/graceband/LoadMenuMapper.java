@@ -27,28 +27,24 @@ public class LoadMenuMapper {
 		View next = currentView;
 		switch(direction) {
 			case UP:
-				if(current - 1 >= 0){
-					current--;
-					next = fileList.get(current);
-					if(pos == 0){
-						LoadMenu.shiftListUp(activity);
-					}
-					else{
-						pos--;
-					}
+				pos--;
+				current--;
+				if(pos <= 0){
+					pos = 0;
+					current = 0;
+					LoadMenu.shiftListUp(activity);
 				}
+				next = fileList.get(current);
 				break;
 			case DOWN:
-				if(current + 1 < fileList.size()){
-					current++;
-					next = fileList.get(current);
-					if(pos == 10) {
-						LoadMenu.shiftListDown(activity);
-					}
-					else {
-						pos++;
-					}
+				pos++;
+				current++;
+				if(pos >= 10) {
+					pos = 10;
+					current = 10;
+					LoadMenu.shiftListDown(activity);
 				}
+				next = fileList.get(current);
 				break;
 			default:
 				break;
