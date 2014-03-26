@@ -65,7 +65,7 @@ public class BeatsEditor extends Activity {
         allTracks = new AllTracks();
         instrumentMap = new InstrumentSelectionMapper(this, allTracks);
         
-        t = new TrackHandle(this.getApplicationContext(), this, instrumentMap);
+        t = new TrackHandle(this, instrumentMap);
         instrumentMap.setTrackHandle(t);
         trackView = findViewById(R.id.tracks);
         /*

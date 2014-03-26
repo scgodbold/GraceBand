@@ -27,12 +27,12 @@ import android.widget.LinearLayout.LayoutParams;
 	private InstrumentSelectionMapper map;
 	final int maxTracks = 5;
 	
-	public TrackHandle(Context _context, Activity _activity, InstrumentSelectionMapper _map)
+	public TrackHandle(Activity _activity, InstrumentSelectionMapper _map)
 	{
 		map = _map;
 		tracks = new ArrayList<LinearLayout>();
-		context = _context;
 		activity = _activity;
+		context = activity.getApplicationContext();
 
 		list = (LinearLayout) activity.findViewById(R.id.tracks);
 		addTrackButtonBar = (LinearLayout) activity.findViewById(R.id.addTrackButtonBar);
