@@ -10,7 +10,6 @@ public class InstrumentSelectionMapper {
 
 	private Activity activity;
 	private AllTracks allTracks;
-	private TrackHandle trackHandle;
 	
 	ArrayList<LinearLayout> buttonList;
 	
@@ -26,10 +25,6 @@ public class InstrumentSelectionMapper {
 	
 	public void setButtonList(ArrayList<LinearLayout> _buttonList){
 		buttonList = _buttonList;
-	}
-	
-	public void setTrackHandle(TrackHandle _trackHandle) {
-		trackHandle = _trackHandle;
 	}
 	
 	public View getNextFocus(View currentView, MovementDirection direction) {
