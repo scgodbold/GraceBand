@@ -112,10 +112,6 @@ public class TrackList extends SoundPool {
 		return time.toString();
 	}
 	
-	public void load(Context context_) throws IOException, TrackNotFoundException{
-		loadFile(context_, "savedfile");
-	}
-	
 	public void saveFile(Context context_, String target_) throws IOException{
 		FileOutputStream fos = null;
 		
