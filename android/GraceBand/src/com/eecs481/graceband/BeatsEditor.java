@@ -25,8 +25,8 @@ public class BeatsEditor extends Activity {
 	TrackHandle t;	
 	View trackView;
 	
-	private static double ZERO_TOLERANCE = .97;
-	private static long TIME_TOLERANCE = 20;
+	private static double ZERO_TOLERANCE = .40;
+	private static long TIME_TOLERANCE = 100;
 	private boolean reset;
 	private long previousEvent;
 	private SongEditorMapper songMapper;
@@ -66,7 +66,6 @@ public class BeatsEditor extends Activity {
         instrumentMap = new InstrumentSelectionMapper(this, allTracks);
         
         t = new TrackHandle(this, instrumentMap);
-        instrumentMap.setTrackHandle(t);
         trackView = findViewById(R.id.tracks);
         /*
          Add a load button to this screen instead of main screen.

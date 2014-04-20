@@ -8,20 +8,19 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
 public class LoadMenuMapper {
 
 	private Activity activity;
-	private ArrayList<Button> fileList;
-	
-	private int current;
+	private ArrayList<TextView> fileList;
+
 	private int pos;
 	private LayoutParams lp;
 	
-	public LoadMenuMapper(Activity _activity, ArrayList<Button> _fileList) {
+	public LoadMenuMapper(Activity _activity, ArrayList<TextView> _fileList) {
 		activity = _activity;
 		fileList = _fileList;
-		current = 0;
 		pos = 0;
 		lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 	}
@@ -31,23 +30,23 @@ public class LoadMenuMapper {
 		switch(direction) {
 			case UP:
 				pos--;
-				current--;
 				if(pos <= 0){
 					pos = 0;
-					current = 0;
-					shiftListUp(activity);
+					if(fileList.size() > 10) {
+						shiftListUp(activity);
+					}
 				}
-				next = fileList.get(current);
+				next = fileList.get(pos);
 				break;
 			case DOWN:
-				pos++;
-				current++;
+				if(pos < (fileList.size()-1)) {
+					pos++;
+				}
 				if(pos >= 10) {
 					pos = 10;
-					current = 10;
 					shiftListDown(activity);
 				}
-				next = fileList.get(current);
+				next = fileList.get(pos);
 				break;
 			default:
 				break;
@@ -57,7 +56,7 @@ public class LoadMenuMapper {
 	}
 	
 	private void shiftListUp(Activity activity) {
-		Button temp = fileList.get(fileList.size()-1);
+		TextView temp = fileList.get(fileList.size()-1);
 		fileList.remove(fileList.size()-1);
 		fileList.add(0,temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
@@ -68,7 +67,7 @@ public class LoadMenuMapper {
 	}
 	
 	private void shiftListDown(Activity activity) {
-		Button temp = fileList.get(0);
+		TextView temp = fileList.get(0);
 		fileList.remove(0);
 		fileList.add(temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);

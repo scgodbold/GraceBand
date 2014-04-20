@@ -1,15 +1,15 @@
 package com.eecs481.graceband;
 
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class MainMenuMapper {
 
-	private ImageButton start, quit, load;
+	private ImageView start, quit, load;
 	
 	
-	public MainMenuMapper(ImageButton st, ImageButton qu, ImageButton lo)
+	public MainMenuMapper(ImageView st, ImageView qu, ImageView lo)
 	{
 		start =st;
 		quit = qu;

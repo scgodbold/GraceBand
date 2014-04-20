@@ -6,8 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -105,11 +109,14 @@ public class TrackList extends SoundPool {
 	
 	private String generateFileName(){
 		//generate a string containing the current timestamp
-		Time now = new Time();
-		now.setToNow();
-		System.out.println(now.toMillis(true));
-		Integer time = Math.abs((int) now.toMillis(true));
-		return time.toString();
+		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("EDT"));
+		Date date = c.getTime();
+		SimpleDateFormat format = new SimpleDateFormat("MM dd yyyy HH:mm:ss");
+		String formedDate = format.format(date);
+		String fileName = new String();
+		fileName = "My Song ";
+		fileName += formedDate;
+		return fileName;
 	}
 	
 	public void saveFile(Context context_, String target_) throws IOException{

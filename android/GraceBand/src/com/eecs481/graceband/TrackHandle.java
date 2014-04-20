@@ -148,6 +148,7 @@ import android.widget.LinearLayout.LayoutParams;
 		text.setGravity(Gravity.CENTER_HORIZONTAL);
 		text.setPadding(46, 0, 0, 0);
 		text.setText(track.get_name());
+		text.setTextSize(23);
 		tempButton.setImageResource(track.getInstrumentDrawable());
 		tempButton.setFocusableInTouchMode(false);
         tempButton.setFocusable(false);

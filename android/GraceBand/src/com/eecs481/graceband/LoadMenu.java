@@ -30,12 +30,12 @@ public class LoadMenu extends Activity {
 	private ArrayList<String> songArray;
 	private LoadMenuMapper map;
 	
-	private static double ZERO_TOLERANCE = .97;
-	private static long TIME_TOLERANCE = 20;
+	private static double ZERO_TOLERANCE = .40;
+	private static long TIME_TOLERANCE = 100;
 	private boolean reset;
 	private long previousEvent;
 	
-	private static ArrayList<Button> fileList;
+	private static ArrayList<TextView> fileList;
 	private LinearLayout fileLayout;
 	static LayoutParams lp;
 	
@@ -54,7 +54,7 @@ public class LoadMenu extends Activity {
 		
         lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         fileLayout = (LinearLayout)findViewById(R.id.fileLayout);
-		fileList = new ArrayList<Button>();
+		fileList = new ArrayList<TextView>();
 		for(int i = 0; i < songArray.size(); i++){
 			addFile(songArray.get(i), i);
 		}
@@ -72,7 +72,7 @@ public class LoadMenu extends Activity {
 	}
 	
 	public void addFile(String name, int i){
-		Button tempButton = new Button(getBaseContext());
+		TextView tempButton = new TextView(getBaseContext());
 		//tempButton.setOnHoverListener(onHover);
 		tempButton.setId(i);
 		tempButton.setPadding(0,0,0,0);
@@ -83,7 +83,7 @@ public class LoadMenu extends Activity {
         tempButton.setNextFocusLeftId(tempButton.getId());
         tempButton.setNextFocusRightId(tempButton.getId());
         tempButton.setNextFocusUpId(tempButton.getId());
-        tempButton.setOnClickListener(new OnClickListener() {
+        /*tempButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -92,7 +92,7 @@ public class LoadMenu extends Activity {
 				Intent intent = new Intent(getBaseContext(), BeatsEditor.class);
 				intent.putExtra("saveFileName", temp.getText().toString());
 				startActivity(intent);
-			}
+			}*/
 		});
 
         fileLayout.addView(tempButton, lp);
@@ -100,6 +100,14 @@ public class LoadMenu extends Activity {
     	fileList.add(tempButton);
 	}
 	
+	function void loadSong(View v)
+	{
+		TextView temp = (TextView) v;
+		//TrackList.get_instance().loadFile(getBaseContext(), temp.getText().toString());
+		Intent intent = new Intent(getBaseContext(), BeatsEditor.class);
+		intent.putExtra("saveFileName", temp.getText().toString());
+		startActivity(intent);
+	}
 	public boolean onGenericMotionEvent(MotionEvent event)
     {
     	float x = event.getX();

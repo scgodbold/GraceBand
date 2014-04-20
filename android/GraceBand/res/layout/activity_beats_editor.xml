@@ -131,12 +131,13 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="5px"
 	    />
-	
+
 	<LinearLayout android:id="@+id/soundMenu"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_weight=".8"
-	    android:paddingTop="50dip"
+	    android:background="@drawable/layout_border"
+	    android:layout_weight=".9"
+	    android:layout_margin="15dip"
 	    android:visibility="gone"
 	    android:orientation="horizontal">
 	    
