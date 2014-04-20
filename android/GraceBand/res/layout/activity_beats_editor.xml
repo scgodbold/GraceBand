@@ -143,25 +143,18 @@
 	    
 	</LinearLayout>
 	
-	<LinearLayout android:id="@+id/cancelBar"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_weight=".1"
-	    android:visibility="gone"
-	    android:orientation="vertical">
-	
-		<Button
-			android:id="@+id/cancel"
-		    android:background="@drawable/cancel_selector"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_marginLeft="450px"
-		    android:focusable="false"
-			android:focusableInTouchMode="false"
-			android:nextFocusLeft="@+id/cancel"
-			android:nextFocusRight="@+id/cancel"
-			android:nextFocusUp="@+id/cancel"
-			android:nextFocusDown="@+id/cancel"/>
-	</LinearLayout>
+	<ImageButton 
+	        android:id="@+id/cancelBar"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:background="@drawable/cancel_selector"
+	        android:nextFocusLeft="@+id/cancelBar"
+		 	android:nextFocusRight="@+id/cancelBar"
+			android:nextFocusUp="@+id/cancelBar"
+			android:nextFocusDown="@+id/cancelBar"
+			android:focusable="false"
+			android:layout_gravity="center_horizontal"
+			android:layout_margin="5px"
+			android:focusableInTouchMode="false"/>
 	
 </LinearLayout>
