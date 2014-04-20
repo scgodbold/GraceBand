@@ -145,7 +145,7 @@ import android.widget.LinearLayout.LayoutParams;
 		text.setGravity(Gravity.CENTER);
 		text.setTextSize(30);
 		text.setTypeface(Typeface.DEFAULT_BOLD);
-		text.setPadding(65, 20, 0, 0);
+		text.setPadding(65, 20, 0, 10);
 		//text.setPadding(left, top, right, bottom);
 		text.setText(category.toString());
 		
@@ -178,7 +178,7 @@ import android.widget.LinearLayout.LayoutParams;
 		//tempButton.setOnHoverListener(onHover);
 		tempButton.setTrack(track);
 		tempButton.setId(track.get_resid());
-		tempButton.setPadding(65, 10, 0, 20);
+		tempButton.setPadding(65, 10, 0, 10);
 		tempButton.setTag(track.get_name());
 
 		tempButton.setImageResource(track.getInstrumentDrawable());
