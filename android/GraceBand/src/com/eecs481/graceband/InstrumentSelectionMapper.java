@@ -39,7 +39,7 @@ public class InstrumentSelectionMapper {
 			case DOWN:
 				if(!cancel) {
 					cancel = true;
-			        next = activity.findViewById(R.id.cancel);
+			        next = activity.findViewById(R.id.cancelBar);
 				}
 				break;
 			case LEFT:
