@@ -155,6 +155,7 @@
 			android:focusable="false"
 			android:layout_gravity="center_horizontal"
 			android:layout_margin="5px"
-			android:focusableInTouchMode="false"/>
+			android:focusableInTouchMode="false"
+			android:visibility="gone"/>
 	
 </LinearLayout>

@@ -59,7 +59,7 @@ public class BeatsEditor extends Activity {
         final ImageButton playButton = (ImageButton) findViewById(R.id.play);
         final ImageButton stopButton = (ImageButton) findViewById(R.id.stop);
         final ImageButton saveButton = (ImageButton) findViewById(R.id.saveButton);
-        final Button cancelButton = (Button) findViewById(R.id.cancel);
+        final ImageButton cancelButton = (ImageButton) findViewById(R.id.cancelBar);
         final ImageButton backButton = (ImageButton) findViewById(R.id.back);
     
         allTracks = new AllTracks();
