@@ -79,6 +79,7 @@ public class LoadMenu extends Activity {
 		fileList.get(0).setFocusable(true); 
 	    fileList.get(0).requestFocus();
 	    map = new LoadMenuMapper(this,fileList);
+	    ((TextView) ((LinearLayout) getCurrentFocus()).getChildAt(0)).setTextColor(Color.WHITE);
 	}
 	
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN) public void addFile(String name, int i){
@@ -87,20 +88,9 @@ public class LoadMenu extends Activity {
 		TextView t = new TextView(getBaseContext());
 		t.setText(name);
 		t.setTextSize(24);
+		t.setTextColor(Color.BLACK);
 		t.setTypeface(Typeface.DEFAULT_BOLD);
-		ColorStateList l = new ColorStateList (
-				   new int [] [] {
-				      new int [] {android.R.attr.state_selected},
-				      new int [] {android.R.attr.state_focused},
-				      new int [] {}
-				   },
-				   new int [] {
-				      Color.WHITE,
-				      Color.WHITE,
-				      Color.BLACK
-				   }
-				);
-		t.setTextColor(getResources().getColor(R.color.loadmenu_text_color));
+		
 		Drawable d = getResources().getDrawable(R.drawable.selector_loadmenu);
 		
 		tempButton.setId(i);
@@ -166,9 +156,11 @@ public class LoadMenu extends Activity {
     		}
     		if(v.getId() != w.getId())
     		{
+    			((TextView) ((LinearLayout) w).getChildAt(0)).setTextColor(Color.BLACK);
     			v.setFocusable(true);
     			v.setFocusableInTouchMode(true);
     			v.requestFocus();
+    			((TextView) ((LinearLayout) v).getChildAt(0)).setTextColor(Color.WHITE);
     			w.setFocusable(false);
     			w.setFocusableInTouchMode(false);
     		}

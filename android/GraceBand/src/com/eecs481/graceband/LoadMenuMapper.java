@@ -23,27 +23,30 @@ public class LoadMenuMapper {
 		fileList = _fileList;
 		pos = 0;
 		lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		lp.setMargins(10, 10, 10, 10);
 	}
 	
 	public View getNextFocus(View currentView, MovementDirection direction) {
 		View next = currentView;
 		switch(direction) {
 			case UP:
-				pos--;
-				if(pos <= 0){
+				if(pos > 0 || fileList.size() > 5) {
+					pos--;
+				}
+				if(pos < 0){
 					pos = 0;
-					if(fileList.size() > 10) {
+					if(fileList.size() >= 5) {
 						shiftListUp(activity);
 					}
 				}
 				next = fileList.get(pos);
 				break;
 			case DOWN:
-				if(pos < (fileList.size()-1)) {
+				if(pos < fileList.size()-1 || (fileList.size() > 5)) {
 					pos++;
 				}
-				if(pos >= 10) {
-					pos = 10;
+				if(pos > 5) {
+					pos = 5;
 					shiftListDown(activity);
 				}
 				next = fileList.get(pos);
@@ -61,7 +64,7 @@ public class LoadMenuMapper {
 		fileList.add(0,temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
 		layout.removeAllViewsInLayout();
-		for(int i=0; i<11 && i<fileList.size(); i++){
+		for(int i=0; i<6 && i<fileList.size(); i++){
 	    	layout.addView(fileList.get(i),lp);	    	
 	    }
 	}
@@ -72,7 +75,7 @@ public class LoadMenuMapper {
 		fileList.add(temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
 		layout.removeAllViewsInLayout();
-		for(int i=0; i<11 && i<fileList.size(); i++){
+		for(int i=0; i<6 && i<fileList.size(); i++){
 	    	layout.addView(fileList.get(i),lp);	    	
 	    }
 	}
