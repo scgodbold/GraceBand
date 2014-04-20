@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
+import android.content.res.XmlResourceParser;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -87,10 +88,19 @@ public class LoadMenu extends Activity {
 		t.setText(name);
 		t.setTextSize(24);
 		t.setTypeface(Typeface.DEFAULT_BOLD);
-		t.setTextColor();
-		
-		ColorStateList l = R.color.loadmenu_text_color;
-		
+		ColorStateList l = new ColorStateList (
+				   new int [] [] {
+				      new int [] {android.R.attr.state_selected},
+				      new int [] {android.R.attr.state_focused},
+				      new int [] {}
+				   },
+				   new int [] {
+				      Color.WHITE,
+				      Color.WHITE,
+				      Color.BLACK
+				   }
+				);
+		t.setTextColor(getResources().getColor(R.color.loadmenu_text_color));
 		Drawable d = getResources().getDrawable(R.drawable.selector_loadmenu);
 		
 		tempButton.setId(i);
