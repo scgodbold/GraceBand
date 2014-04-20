@@ -8,17 +8,17 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 public class LoadMenuMapper {
 
 	private Activity activity;
-	private ArrayList<TextView> fileList;
+	private ArrayList<LinearLayout> fileList;
 
 	private int pos;
 	private LayoutParams lp;
 	
-	public LoadMenuMapper(Activity _activity, ArrayList<TextView> _fileList) {
+	public LoadMenuMapper(Activity _activity, ArrayList<LinearLayout> _fileList) {
 		activity = _activity;
 		fileList = _fileList;
 		pos = 0;
@@ -56,7 +56,7 @@ public class LoadMenuMapper {
 	}
 	
 	private void shiftListUp(Activity activity) {
-		TextView temp = fileList.get(fileList.size()-1);
+		LinearLayout temp = fileList.get(fileList.size()-1);
 		fileList.remove(fileList.size()-1);
 		fileList.add(0,temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);
@@ -67,7 +67,7 @@ public class LoadMenuMapper {
 	}
 	
 	private void shiftListDown(Activity activity) {
-		TextView temp = fileList.get(0);
+		LinearLayout temp = fileList.get(0);
 		fileList.remove(0);
 		fileList.add(temp);
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.fileLayout);

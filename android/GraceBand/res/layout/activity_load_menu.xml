@@ -9,7 +9,11 @@
         android:id="@+id/fileLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#272727"
+        android:background="#D4D4D4"
+        android:paddingLeft="10px"
+        android:paddingRight="10px"
+        android:paddingTop="15px"
+        android:paddingBottom="15px"
         android:orientation="vertical" >
     </LinearLayout>
  

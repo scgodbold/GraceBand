@@ -5,11 +5,16 @@ import java.util.ArrayList;
 
 import com.eecs481.graceband.AllTracks.TrackNotFoundException;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,10 +23,11 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.view.View;
 import android.support.v4.app.NavUtils;
 
@@ -33,9 +39,10 @@ public class LoadMenu extends Activity {
 	private static double ZERO_TOLERANCE = .40;
 	private static long TIME_TOLERANCE = 100;
 	private boolean reset;
+	private boolean lockTouch;
 	private long previousEvent;
 	
-	private static ArrayList<TextView> fileList;
+	private static ArrayList<LinearLayout> fileList;
 	private LinearLayout fileLayout;
 	static LayoutParams lp;
 	
@@ -48,13 +55,15 @@ public class LoadMenu extends Activity {
         
         previousEvent =0;
         reset = true;
-		
+		lockTouch = false;
+        
         songArray = TrackList.get_instance().getFileList(getBaseContext());
 		songArray.add(0,"New Song");
 		
         lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        lp.setMargins(10, 10, 10, 10);
         fileLayout = (LinearLayout)findViewById(R.id.fileLayout);
-		fileList = new ArrayList<TextView>();
+		fileList = new ArrayList<LinearLayout>();
 		for(int i = 0; i < songArray.size(); i++){
 			addFile(songArray.get(i), i);
 		}
@@ -71,36 +80,38 @@ public class LoadMenu extends Activity {
 	    map = new LoadMenuMapper(this,fileList);
 	}
 	
-	public void addFile(String name, int i){
-		TextView tempButton = new TextView(getBaseContext());
-		//tempButton.setOnHoverListener(onHover);
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN) public void addFile(String name, int i){
+		LinearLayout tempButton = new LinearLayout(getBaseContext());
+		
+		TextView t = new TextView(getBaseContext());
+		t.setText(name);
+		t.setTextSize(24);
+		t.setTypeface(Typeface.DEFAULT_BOLD);
+		t.setTextColor();
+		
+		ColorStateList l = R.color.loadmenu_text_color;
+		
+		Drawable d = getResources().getDrawable(R.drawable.selector_loadmenu);
+		
 		tempButton.setId(i);
-		tempButton.setPadding(0,0,0,0);
-		tempButton.setText(name);
+		tempButton.setPadding(10,25,10,25);
 		tempButton.setFocusableInTouchMode(false);
         tempButton.setFocusable(false);        
         tempButton.setNextFocusDownId(tempButton.getId());
         tempButton.setNextFocusLeftId(tempButton.getId());
         tempButton.setNextFocusRightId(tempButton.getId());
         tempButton.setNextFocusUpId(tempButton.getId());
-        /*tempButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Button temp = (Button) v;
-				//TrackList.get_instance().loadFile(getBaseContext(), temp.getText().toString());
-				Intent intent = new Intent(getBaseContext(), BeatsEditor.class);
-				intent.putExtra("saveFileName", temp.getText().toString());
-				startActivity(intent);
-			}*/
-		});
+        tempButton.setBackground(d);
+        tempButton.setGravity(Gravity.CENTER);
+        
+        tempButton.addView(t);
 
         fileLayout.addView(tempButton, lp);
 
     	fileList.add(tempButton);
 	}
 	
-	function void loadSong(View v)
+	private void loadSong(View v)
 	{
 		TextView temp = (TextView) v;
 		//TrackList.get_instance().loadFile(getBaseContext(), temp.getText().toString());
@@ -154,4 +165,25 @@ public class LoadMenu extends Activity {
     	}
     	return true;
     }	
+	
+    public boolean onTouchEvent(MotionEvent event)
+    {
+    	
+    	if(event.getAction() == MotionEvent.ACTION_DOWN)
+    	{
+    		if(!lockTouch)
+    		{
+	    		lockTouch = true;
+	    		System.out.println("Down Event");
+	    		LinearLayout current = (LinearLayout) getCurrentFocus();
+	    		loadSong(current.getChildAt(0));
+    		}
+    	}
+    	else if(event.getAction() == MotionEvent.ACTION_UP)
+    	{
+    		lockTouch = false;
+    		System.out.println("Up Event");
+    	}
+		return true;
+    }
 }
