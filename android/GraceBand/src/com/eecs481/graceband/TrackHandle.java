@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
@@ -23,8 +24,8 @@ import android.widget.LinearLayout.LayoutParams;
 	static Integer ids = 0;
 	private LinearLayout addTrackButtonBar;
 	private ImageButton addTrackButton;
-	private ArrayList<LinearLayout> buttonList;
 	private InstrumentSelectionMapper map;
+	private ArrayList<LinearLayout> categoryList;
 	final int maxTracks = 5;
 	
 	public TrackHandle(Activity _activity, InstrumentSelectionMapper _map)
@@ -47,22 +48,18 @@ import android.widget.LinearLayout.LayoutParams;
 				System.out.println("clicked beats menu");
 				TrackList.get_instance().stopAll();
 				BeatsEditor.instrumentMenu = true;
-				createSoundMenu();
+				viewSoundMenu();
 				addTrackButton.setFocusable(false);
 				addTrackButton.setFocusableInTouchMode(false);
-				View y;
+				/*View y;
 				y = map.getCurrent();
 				y.setFocusable(true);
 				y.setFocusableInTouchMode(true);
-				y.requestFocus();
+				y.requestFocus();*/
 			}
 		});
-		// THis is the master branch
-		//addTrackButtonBar.addView(addTrackButton);
-		//l.addView(icon);
-		//l.addView(trackImg);
-		//list.addView(addTrackButtonBar);
 		
+		createSoundMenu();
 		for(int i = 0; i < TrackList.get_instance().Beats.size(); i++){
 			addTrack(TrackList.get_instance().Beats.get(i).track, TrackList.get_instance().Beats.get(i).position);
 		}
@@ -116,18 +113,7 @@ import android.widget.LinearLayout.LayoutParams;
 		}
 	}
 	
-	void createSoundMenu(){
-		buttonList = new ArrayList<LinearLayout>();
-		AllTracks all_tracks = new AllTracks();
-		for(int i = 0; i < all_tracks.tracks.size(); i++) {
-			createButton(all_tracks.tracks.get(i));
-		}
-		map.setButtonList(buttonList);
-		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
-		layout.removeAllViewsInLayout();
-		for(int i=0; i<5; i++){
-	    	layout.addView(buttonList.get(i));	    	
-	    }
+	void viewSoundMenu() {
         activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
         activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
         activity.findViewById(R.id.back).setVisibility(ImageButton.GONE);
@@ -135,7 +121,57 @@ import android.widget.LinearLayout.LayoutParams;
         activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
 	}
 	
-	void createButton(Track track){
+	void createSoundMenu(){
+		categoryList = new ArrayList<LinearLayout>();
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		
+		for(int i = 0; i < Category.values().length; i++) {
+			categoryList.add(createButtonList(Category.values()[i]));
+		}
+		//map.setButtonList(buttonList);
+
+		for(int i=0; i<4; i++){
+	    	layout.addView(categoryList.get(i));	    	
+	    }
+	}
+	
+	LinearLayout createButtonList(Category category) {
+		ArrayList<TrackButton> buttonList = new ArrayList<TrackButton>();
+		AllTracks all_tracks = new AllTracks();
+		
+		
+		TextView text = new TextView(context);
+		text.setTextColor(Color.BLACK);
+		text.setGravity(Gravity.CENTER);
+		text.setTextSize(30);
+		text.setTypeface(Typeface.DEFAULT_BOLD);
+		text.setPadding(46, 60, 0, 46);
+		text.setText(category.toString());
+		
+		for(int i = 0; i < all_tracks.tracks.size(); i++) {
+			Track temp = all_tracks.tracks.get(i);
+			if(temp.getCategory().name().contentEquals(category.toString())){
+				createButton(temp,buttonList);
+			}
+		}
+		//map.setButtonList(buttonList);
+		
+    	LinearLayout layout = new LinearLayout(context);
+    	layout.setOrientation(LinearLayout.VERTICAL);
+    	layout.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+    	layout.addView(text);
+		for(int i=0; i<buttonList.size(); i++){
+			TrackButton temp = buttonList.get(i);
+			if(i > 1) {
+				temp.setVisibility(TrackButton.GONE);
+			}
+	    	layout.addView(temp);	    	
+	    }
+
+		return layout;
+	}
+	
+	void createButton(Track track, ArrayList<TrackButton> buttonList){
 		System.out.println("creating button " + track.get_name());
 		TrackButton tempButton = new TrackButton(context);
 		//tempButton.setOnHoverListener(onHover);
@@ -143,12 +179,7 @@ import android.widget.LinearLayout.LayoutParams;
 		tempButton.setId(track.get_resid());
 		tempButton.setPadding(46, 60, 0, 46);
 		tempButton.setTag(track.get_name());
-		TextView text = new TextView(context);
-		text.setTextColor(Color.BLACK);
-		text.setGravity(Gravity.CENTER_HORIZONTAL);
-		text.setPadding(46, 0, 0, 0);
-		text.setText(track.get_name());
-		text.setTextSize(23);
+
 		tempButton.setImageResource(track.getInstrumentDrawable());
 		tempButton.setFocusableInTouchMode(false);
         tempButton.setFocusable(false);
@@ -161,11 +192,7 @@ import android.widget.LinearLayout.LayoutParams;
     	tempButton.setOnClickListener(new AddTrackListener(this, activity.findViewById(R.id.tracks), activity));
     	
     	tempButton.setBackgroundColor(Color.TRANSPARENT);
-    	LinearLayout l = new LinearLayout(context);
-    	l.setOrientation(LinearLayout.VERTICAL);
-    	l.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-    	l.addView(tempButton);
-    	l.addView(text);
-    	buttonList.add(l);
+
+    	buttonList.add(tempButton);
 	}
 }
