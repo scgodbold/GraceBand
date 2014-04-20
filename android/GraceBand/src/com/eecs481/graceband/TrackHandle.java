@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebView.FindListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
@@ -125,20 +126,31 @@ import android.widget.LinearLayout.LayoutParams;
 		categoryList = new ArrayList<LinearLayout>();
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
 		
+		ImageView larrow = new ImageView(context);
+		larrow.setImageResource(R.drawable.ic_launcher);
+		larrow.setPadding(20, 250, 20, 0);
+		
+		ImageView rarrow = new ImageView(context);
+		rarrow.setImageResource(R.drawable.ic_launcher);
+		rarrow.setPadding(20, 250, 20, 0);
+		
 		for(int i = 0; i < Category.values().length; i++) {
 			categoryList.add(createButtonList(Category.values()[i]));
 		}
 		//map.setButtonList(buttonList);
 
+		layout.addView(larrow);
+		
 		for(int i=0; i<4; i++){
 	    	layout.addView(categoryList.get(i));	    	
 	    }
+		
+		layout.addView(rarrow);
 	}
 	
 	LinearLayout createButtonList(Category category) {
 		ArrayList<TrackButton> buttonList = new ArrayList<TrackButton>();
 		AllTracks all_tracks = new AllTracks();
-		
 		
 		TextView text = new TextView(context);
 		text.setTextColor(Color.BLACK);
