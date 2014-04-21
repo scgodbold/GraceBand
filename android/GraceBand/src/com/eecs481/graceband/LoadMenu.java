@@ -37,8 +37,8 @@ public class LoadMenu extends Activity {
 	private ArrayList<String> songArray;
 	private LoadMenuMapper map;
 	
-	private static double ZERO_TOLERANCE = .40;
-	private static long TIME_TOLERANCE = 100;
+	private static double ZERO_TOLERANCE = .80;
+	private static long TIME_TOLERANCE = 30;
 	private boolean reset;
 	private boolean lockTouch;
 	private long previousEvent;
