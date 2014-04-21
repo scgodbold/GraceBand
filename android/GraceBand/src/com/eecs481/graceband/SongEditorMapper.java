@@ -1,14 +1,14 @@
 package com.eecs481.graceband;
 
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class SongEditorMapper {
 	private LinearLayout trackList;
-	private ImageButton play, stop, save, back;
+	private ImageView play, stop, save, back;
 
-	public SongEditorMapper(LinearLayout _trackList, ImageButton _play, ImageButton _stop, ImageButton _save, ImageButton _back)
+	public SongEditorMapper(LinearLayout _trackList, ImageView _play, ImageView _stop, ImageView _save, ImageView _back)
 	{
 		trackList = _trackList;
 		play = _play;

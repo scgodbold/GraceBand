@@ -2,8 +2,9 @@ package com.eecs481.graceband;
 
 import android.content.Context;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
-public class TrackButton extends ImageButton {
+public class TrackButton extends ImageView {
 
 	private Track buttonTrack;
 	

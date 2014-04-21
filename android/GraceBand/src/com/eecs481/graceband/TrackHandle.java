@@ -24,7 +24,7 @@ import android.widget.LinearLayout.LayoutParams;
 	private LinearLayout list;
 	static Integer ids = 0;
 	private LinearLayout addTrackButtonBar;
-	private ImageButton addTrackButton;
+	private ImageView addTrackButton;
 	private InstrumentSelectionMapper map;
 	private ArrayList<LinearLayout> categoryList;
 	final int maxTracks = 5;
@@ -38,12 +38,12 @@ import android.widget.LinearLayout.LayoutParams;
 
 		list = (LinearLayout) activity.findViewById(R.id.tracks);
 		addTrackButtonBar = (LinearLayout) activity.findViewById(R.id.addTrackButtonBar);
-		addTrackButton = (ImageButton) activity.findViewById(R.id.addTrackButton);
+		addTrackButton = (ImageView) activity.findViewById(R.id.addTrackButton);
 		addTrackButtonBar.setVisibility(View.VISIBLE);
 		addTrackButton.setFocusable(true);
 		addTrackButton.setFocusableInTouchMode(true);
 		addTrackButton.requestFocus();
-		addTrackButton.setOnClickListener(new View.OnClickListener() {
+		/*addTrackButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				System.out.println("clicked beats menu");
@@ -56,15 +56,34 @@ import android.widget.LinearLayout.LayoutParams;
 				y = map.getCurrent();
 				y.setFocusable(true);
 				y.setFocusableInTouchMode(true);
-				y.requestFocus();*/
+				y.requestFocus();
 			}
-		});
+		});*/
 		
 		createSoundMenu();
 		for(int i = 0; i < TrackList.get_instance().Beats.size(); i++){
 			addTrack(TrackList.get_instance().Beats.get(i).track, TrackList.get_instance().Beats.get(i).position);
 		}
 		
+	}
+	
+	public boolean containsTrack(LinearLayout track)
+	{
+		return tracks.contains(track);
+	}
+	public int getNumTracks()
+	{
+		return tracks.size();
+	}
+	
+	public void removeTrack(LinearLayout track)
+	{
+		tracks.remove(track);
+	}
+	
+	public void addSpecialButton(LinearLayout _addTrackButton)
+	{
+		tracks.add(_addTrackButton);
 	}
 	
 	public void addTrack(Track track, int position_id)
@@ -80,7 +99,7 @@ import android.widget.LinearLayout.LayoutParams;
 		remove.setBackgroundColor(Color.TRANSPARENT);
 		remove.setId(position_id);
 		remove.setImageResource(track.getBeatMenuDrawable());
-		remove.setOnClickListener(new View.OnClickListener() {
+		/*remove.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -97,7 +116,7 @@ import android.widget.LinearLayout.LayoutParams;
 				play.setFocusableInTouchMode(true);
 				play.requestFocus();
 			}
-		});
+		});*/
 		remove.setBaselineAlignBottom(true);
 		remove.setFocusable(false);
 		remove.setFocusableInTouchMode(false);
@@ -117,7 +136,7 @@ import android.widget.LinearLayout.LayoutParams;
 	void viewSoundMenu() {
         activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
         activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
-        activity.findViewById(R.id.back).setVisibility(ImageButton.GONE);
+        activity.findViewById(R.id.back).setVisibility(ImageView.GONE);
         activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
         activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
 	}
