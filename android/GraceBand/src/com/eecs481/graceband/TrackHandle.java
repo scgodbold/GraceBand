@@ -27,6 +27,7 @@ import android.widget.LinearLayout.LayoutParams;
 	private ImageView addTrackButton;
 	private InstrumentSelectionMapper map;
 	private ArrayList<LinearLayout> categoryList;
+	private ArrayList<ArrayList<TrackButton>> mapList;
 	final int maxTracks = 5;
 	
 	public TrackHandle(Activity _activity, InstrumentSelectionMapper _map)
@@ -142,6 +143,7 @@ import android.widget.LinearLayout.LayoutParams;
 	}
 	
 	void createSoundMenu(){
+		mapList = new ArrayList<ArrayList<TrackButton>>();
 		categoryList = new ArrayList<LinearLayout>();
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
 		
@@ -156,7 +158,7 @@ import android.widget.LinearLayout.LayoutParams;
 		for(int i = 0; i < Category.values().length; i++) {
 			categoryList.add(createButtonList(Category.values()[i]));
 		}
-		//map.setButtonList(buttonList);
+		map.setMapList(mapList);
 
 		layout.addView(larrow);
 		
@@ -186,7 +188,8 @@ import android.widget.LinearLayout.LayoutParams;
 				createButton(temp,buttonList);
 			}
 		}
-		//map.setButtonList(buttonList);
+		
+		mapList.add(buttonList);
 		
     	LinearLayout layout = new LinearLayout(context);
     	layout.setOrientation(LinearLayout.VERTICAL);
@@ -194,12 +197,12 @@ import android.widget.LinearLayout.LayoutParams;
     	layout.addView(text);
 		for(int i=0; i<buttonList.size(); i++){
 			TrackButton temp = buttonList.get(i);
-			if(i > 1) {
+			if(i > 0) {
 				temp.setVisibility(TrackButton.GONE);
 			}
 	    	layout.addView(temp);	    	
 	    }
-
+		
 		return layout;
 	}
 	
