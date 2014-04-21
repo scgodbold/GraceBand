@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -77,21 +78,6 @@ public class BeatsEditor extends Activity {
          Then, after loading into TrackList, build buttons with TrackHandle.addTrack() here
          */
         
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				BeatsEditor.instrumentMenu = false;
-				findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
-				findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);
-				findViewById(R.id.back).setVisibility(ImageView.VISIBLE);
-				findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
-				findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
-				findViewById(R.id.play).setFocusable(true);
-				findViewById(R.id.play).setFocusableInTouchMode(true);
-				findViewById(R.id.play).requestFocus();
-			}
-		});
-        
         // Start the Joystick Mappers
         songMapper = new SongEditorMapper((LinearLayout)findViewById(R.id.tracks), (ImageView)findViewById(R.id.play), (ImageView)findViewById(R.id.stop), (ImageView)findViewById(R.id.saveButton), (ImageView)findViewById(R.id.back));
         reset = true;
@@ -110,7 +96,17 @@ public class BeatsEditor extends Activity {
 	{
 		System.out.println("clicked beats menu");
 		TrackList.get_instance().stopAll();
+		instrumentMap.reset();
+		t.createSoundMenu();
 		BeatsEditor.instrumentMenu = true;
+		View y;
+		y = instrumentMap.getCurrent();
+		LinearLayout parent = (LinearLayout) y.getParent();
+		parent.getChildAt(1).setVisibility(ImageView.VISIBLE);
+		parent.getChildAt(parent.getChildCount()-1).setVisibility(ImageView.VISIBLE);
+		y.setFocusable(true);
+		y.setFocusableInTouchMode(true);
+		y.requestFocus();
 		findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
         findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
         findViewById(R.id.back).setVisibility(ImageView.GONE);
@@ -156,6 +152,36 @@ public class BeatsEditor extends Activity {
 		play.setFocusable(true);
 		play.setFocusableInTouchMode(true);
 		play.requestFocus();
+	}
+	
+	private void cancel()
+	{
+		BeatsEditor.instrumentMenu = false;
+		findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
+		findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);
+		findViewById(R.id.back).setVisibility(ImageView.VISIBLE);
+		findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
+		findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
+		findViewById(R.id.play).setFocusable(true);
+		findViewById(R.id.play).setFocusableInTouchMode(true);
+		findViewById(R.id.play).requestFocus();
+	}
+	
+	private void addTrackButton(View v)
+	{
+		TrackButton button = (TrackButton) v;
+		System.out.println("clicked button " + button.getTag().toString());
+		int i = TrackList.get_instance().addTrack(getApplicationContext(), button.getTrack());
+		t.addTrack(button.getTrack(), i);
+		instrumentMenu = false;
+		findViewById(R.id.soundMenu).setVisibility(LinearLayout.GONE);
+		findViewById(R.id.cancelBar).setVisibility(LinearLayout.GONE);
+		findViewById(R.id.back).setVisibility(ImageButton.VISIBLE);
+		findViewById(R.id.tracks).setVisibility(LinearLayout.VISIBLE);
+		findViewById(R.id.menuBar).setVisibility(LinearLayout.VISIBLE);
+		findViewById(R.id.play).setFocusable(true);
+		findViewById(R.id.play).setFocusableInTouchMode(true);
+		findViewById(R.id.play).requestFocus();
 	}
 	
 	@Override
@@ -274,32 +300,44 @@ public class BeatsEditor extends Activity {
 	    		lockTouch = true;
 	    		System.out.println("Down Event");
 	    		View current = getCurrentFocus();
-	    		
-	    		if(current.getId() == findViewById(R.id.play).getId())
+	    		if(!instrumentMenu)
 	    		{
-	    			play();
-	    		}
-	    		else if(current.getId() == findViewById(R.id.stop).getId())
-	    		{
-	    			stop();
-	    		}
-	    		else if(current.getId() == findViewById(R.id.saveButton).getId())
-	    		{
-	    			save();
-	    		}
-	    		else if(current.getId() == findViewById(R.id.back).getId())
-	    		{
-	    			back();
-	    		}
-	    		else if(current.getId() == addTrackButtonBar.getChildAt(0).getId())
-	    		{
-	    			addTrack();
+		    		if(current.getId() == findViewById(R.id.play).getId())
+		    		{
+		    			play();
+		    		}
+		    		else if(current.getId() == findViewById(R.id.stop).getId())
+		    		{
+		    			stop();
+		    		}
+		    		else if(current.getId() == findViewById(R.id.saveButton).getId())
+		    		{
+		    			save();
+		    		}
+		    		else if(current.getId() == findViewById(R.id.back).getId())
+		    		{
+		    			back();
+		    		}
+		    		else if(current.getId() == addTrackButtonBar.getChildAt(0).getId())
+		    		{
+		    			addTrack();
+		    		}
+		    		else
+		    		{
+		    			removeTrack(current);
+		    		}
 	    		}
 	    		else
 	    		{
-	    			removeTrack(current);
+	    			if(current.getId() == findViewById(R.id.cancelBar).getId())
+	    			{
+	    				cancel();
+	    			}
+	    			else
+	    			{
+	    				addTrackButton(current);
+	    			}
 	    		}
-	    		
     		}
     	}
     	else if(event.getAction() == MotionEvent.ACTION_UP)

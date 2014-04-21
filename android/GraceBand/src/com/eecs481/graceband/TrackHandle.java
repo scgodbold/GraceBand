@@ -53,15 +53,13 @@ import android.widget.LinearLayout.LayoutParams;
 				viewSoundMenu();
 				addTrackButton.setFocusable(false);
 				addTrackButton.setFocusableInTouchMode(false);
-				/*View y;
+				View y;
 				y = map.getCurrent();
 				y.setFocusable(true);
 				y.setFocusableInTouchMode(true);
 				y.requestFocus();
 			}
 		});*/
-		
-		createSoundMenu();
 		for(int i = 0; i < TrackList.get_instance().Beats.size(); i++){
 			addTrack(TrackList.get_instance().Beats.get(i).track, TrackList.get_instance().Beats.get(i).position);
 		}
@@ -134,39 +132,38 @@ import android.widget.LinearLayout.LayoutParams;
 		}
 	}
 	
-	void viewSoundMenu() {
-        activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
-        activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
-        activity.findViewById(R.id.back).setVisibility(ImageView.GONE);
-        activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
-        activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
-	}
-	
 	void createSoundMenu(){
 		mapList = new ArrayList<ArrayList<TrackButton>>();
 		categoryList = new ArrayList<LinearLayout>();
 		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
-		
+		layout.removeAllViews();
 		ImageView larrow = new ImageView(context);
-		larrow.setImageResource(R.drawable.ic_launcher);
-		larrow.setPadding(20, 250, 20, 0);
+		larrow.setImageResource(R.drawable.left_arrow);
+		larrow.setPadding(5, 250, 5, 0);
 		
 		ImageView rarrow = new ImageView(context);
-		rarrow.setImageResource(R.drawable.ic_launcher);
-		rarrow.setPadding(20, 250, 20, 0);
+		rarrow.setImageResource(R.drawable.right_arrow);
+		rarrow.setPadding(5, 250, 5, 0);
 		
 		for(int i = 0; i < Category.values().length; i++) {
 			categoryList.add(createButtonList(Category.values()[i]));
 		}
 		map.setMapList(mapList);
+		map.setList(categoryList);
 
 		layout.addView(larrow);
 		
 		for(int i=0; i<4; i++){
 	    	layout.addView(categoryList.get(i));	    	
 	    }
-		
+
 		layout.addView(rarrow);
+		
+        activity.findViewById(R.id.tracks).setVisibility(LinearLayout.GONE);
+        activity.findViewById(R.id.menuBar).setVisibility(LinearLayout.GONE);
+        activity.findViewById(R.id.back).setVisibility(ImageView.GONE);
+        activity.findViewById(R.id.cancelBar).setVisibility(LinearLayout.VISIBLE);
+        activity.findViewById(R.id.soundMenu).setVisibility(LinearLayout.VISIBLE);
 	}
 	
 	LinearLayout createButtonList(Category category) {
@@ -178,9 +175,18 @@ import android.widget.LinearLayout.LayoutParams;
 		text.setGravity(Gravity.CENTER);
 		text.setTextSize(30);
 		text.setTypeface(Typeface.DEFAULT_BOLD);
-		text.setPadding(65, 20, 0, 10);
+		text.setPadding(33, 60, 33, 10);
 		//text.setPadding(left, top, right, bottom);
 		text.setText(category.toString());
+		
+		ImageView uarrow = new ImageView(context);
+		uarrow.setImageResource(R.drawable.up_arrow);
+		uarrow.setPadding(0, 0, 0, 0);
+		uarrow.setVisibility(ImageView.INVISIBLE);
+		ImageView darrow = new ImageView(context);
+		darrow.setImageResource(R.drawable.down_arrow);
+		darrow.setPadding(0, 0, 0, 0);
+		darrow.setVisibility(ImageView.INVISIBLE);
 		
 		for(int i = 0; i < all_tracks.tracks.size(); i++) {
 			Track temp = all_tracks.tracks.get(i);
@@ -195,6 +201,7 @@ import android.widget.LinearLayout.LayoutParams;
     	layout.setOrientation(LinearLayout.VERTICAL);
     	layout.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
     	layout.addView(text);
+    	layout.addView(uarrow);
 		for(int i=0; i<buttonList.size(); i++){
 			TrackButton temp = buttonList.get(i);
 			if(i > 0) {
@@ -202,7 +209,7 @@ import android.widget.LinearLayout.LayoutParams;
 			}
 	    	layout.addView(temp);	    	
 	    }
-		
+		layout.addView(darrow);
 		return layout;
 	}
 	
@@ -212,7 +219,7 @@ import android.widget.LinearLayout.LayoutParams;
 		//tempButton.setOnHoverListener(onHover);
 		tempButton.setTrack(track);
 		tempButton.setId(track.get_resid());
-		tempButton.setPadding(65, 10, 0, 10);
+		tempButton.setPadding(33, 10, 33, 10);
 		tempButton.setTag(track.get_name());
 
 		tempButton.setImageResource(track.getInstrumentDrawable());

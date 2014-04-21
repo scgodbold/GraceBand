@@ -17,7 +17,7 @@ public class AllTracks{
 //		tracks.add(new Track(R.raw.bongo, "Bongos", R.drawable.selectorbass_trackmenu, R.drawable.selectorbass));
 //		tracks.add(new Track(R.raw.vocal, "Vocals", R.drawable.selectorvocals_trackmenu, R.drawable.selectorvocals));
 //		tracks.add(new Track(R.raw.guitar, "Guitar", R.drawable.selectorbeatbox_trackmenu, R.drawable.selectorbeatbox));
-		tracks.add(new Track(R.raw.bass_1, "Bass 1", R.drawable.selectorbass_trackmenu, R.drawable.selectorbass,Category.BASS));
+		tracks.add(new Track(R.raw.bass_1, "Bass 1", R.drawable.selector_loadmenu, R.drawable.selectorbass,Category.BASS));
 		tracks.add(new Track(R.raw.bass_2, "Bass 2", R.drawable.selectorbass_trackmenu, R.drawable.selectorbass,Category.BASS));
 		tracks.add(new Track(R.raw.basschord_1, "Bass Chords 1", R.drawable.selectorbass_trackmenu, R.drawable.selectorbass,Category.CHORD));
 		tracks.add(new Track(R.raw.basschord_2, "Bass Chords 2", R.drawable.selectorbass_trackmenu, R.drawable.selectorbass,Category.CHORD));
