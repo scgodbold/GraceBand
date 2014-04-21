@@ -11,7 +11,8 @@ public class InstrumentSelectionMapper {
 	private Activity activity;
 	private AllTracks allTracks;
 	
-	ArrayList<LinearLayout> buttonList;
+	ArrayList<ArrayList<TrackButton>> mapList;
+	ArrayList<Integer> categoryIndex;
 	
 	private int current;
 	private boolean cancel;
@@ -23,8 +24,12 @@ public class InstrumentSelectionMapper {
         cancel = false;
 	}
 	
-	public void setButtonList(ArrayList<LinearLayout> _buttonList){
-		buttonList = _buttonList;
+	public void setMapList(ArrayList<ArrayList<TrackButton>> _mapList){
+		mapList = _mapList;
+		categoryIndex = new ArrayList<Integer>();
+		for(int i = 0; i < mapList.size(); i++){
+			categoryIndex.add(0);
+		}
 	}
 	
 	public View getNextFocus(View currentView, MovementDirection direction) {
@@ -33,13 +38,19 @@ public class InstrumentSelectionMapper {
 			case UP:
 				if(cancel) {
 					cancel = false;
-					next = activity.findViewById(allTracks.tracks.get(current).get_resid());
+					//next = activity.findViewById(allTracks.tracks.get(current).get_resid());
+				}
+				else {
+					
 				}
 				break;
 			case DOWN:
-				if(!cancel) {
+				if(cancel) {
 					cancel = true;
 			        next = activity.findViewById(R.id.cancelBar);
+				}
+				else if(shiftDown()) {
+					
 				}
 				break;
 			case LEFT:
@@ -49,7 +60,7 @@ public class InstrumentSelectionMapper {
 						current = allTracks.tracks.size()-1;
 					}
 					next = activity.findViewById(allTracks.tracks.get(current).get_resid());
-					shiftListRight();
+					shiftRight();
 				}
 				break;
 			case RIGHT:
@@ -59,7 +70,7 @@ public class InstrumentSelectionMapper {
 						current = 0;
 					}
 					next = activity.findViewById(allTracks.tracks.get(current).get_resid());
-					shiftListLeft();
+					shiftLeft();
 				}
 				break;
 			default:
@@ -77,7 +88,7 @@ public class InstrumentSelectionMapper {
 		return activity.findViewById(allTracks.tracks.get(current).get_resid());
 	}
 	
-	public void shiftListRight() {
+	public void shiftRight() {
 		LinearLayout temp = buttonList.get(buttonList.size()-1);
 		buttonList.remove(buttonList.size()-1);
 		buttonList.add(0,temp);
@@ -88,7 +99,7 @@ public class InstrumentSelectionMapper {
 	    }
 	}
 	
-	public void shiftListLeft() {
+	public void shiftLeft() {
 		LinearLayout temp = buttonList.get(0);
 		buttonList.remove(0);
 		buttonList.add(temp);
@@ -97,5 +108,28 @@ public class InstrumentSelectionMapper {
 		for(int i=0; i<5; i++){
 	    	layout.addView(buttonList.get(i));	    	
 	    }
+	}
+	
+	public void shiftUp() {
+		LinearLayout temp = buttonList.get(buttonList.size()-1);
+		buttonList.remove(buttonList.size()-1);
+		buttonList.add(0,temp);
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
+		for(int i=0; i<5; i++){
+	    	layout.addView(buttonList.get(i));	    	
+	    }
+	}
+	
+	public boolean shiftDown() {
+		LinearLayout temp = buttonList.get(0);
+		buttonList.remove(0);
+		buttonList.add(temp);
+		LinearLayout layout = (LinearLayout) activity.findViewById(R.id.soundMenu);
+		layout.removeAllViewsInLayout();
+		for(int i=0; i<5; i++){
+	    	layout.addView(buttonList.get(i));	    	
+	    }
+		return true;
 	}
 }
