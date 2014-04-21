@@ -66,10 +66,10 @@ public class InstrumentSelectionMapper {
 			case RIGHT:
 				if(!cancel) {
 					current++;
-					if(current >= allTracks.tracks.size()) {
+					if(current >= mapList.size()) {
 						current = 0;
 					}
-					next = activity.findViewById(allTracks.tracks.get(current).get_resid());
+					next = activity.findViewById(mapList.get(current).get(categoryIndex.get(current)).getId());
 					shiftLeft();
 				}
 				break;
