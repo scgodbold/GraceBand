@@ -9,3 +9,8 @@ Graceband does have a couple of hardware requirements. First and foremost it mus
 Once you have it connected you should be good to go. Just launch Graceband and you are ready to play. One note about the joystick. In order to compensate for Grace's lack of fine motor control there is joystick logic written in to wait until the joystick returns to center for a certain period of time until it accepts new input. If you appear to be stuck on something let the joystick 0 itself and try again you should be ok. 
 
 As of now we require either a click of a button on the joystick or touching the specific object on the screen to click. However we are working on a full screen click to allow Grace to use the application independently.
+
+Note: TestJoyStick is a seperate application to GraceBand that we used to
+experiment with the joystick before implimenting into our actual application.
+It was part of our work but not something that we acutally wanted to tie into
+Graceband.
